@@ -21,29 +21,29 @@ class Horaires
     #[ORM\Column(type: Types::STRING)]
     private ?string $Lundi = null;
 
-    #[ORM\Column(type: Types::TIME_MUTABLE)]
-    private ?\DateTimeInterface $Mardi = null;
+    #[ORM\Column(type: Types::STRING)]
+    private ?string $Mardi = null;
 
-    #[ORM\Column(type: Types::TIME_MUTABLE)]
-    private ?\DateTimeInterface $Mercredi = null;
+    #[ORM\Column(type: Types::STRING)]
+    private ?string $Mercredi = null;
 
-    #[ORM\Column(type: Types::TIME_MUTABLE)]
-    private ?\DateTimeInterface $Jeudi = null;
+    #[ORM\Column(type: Types::STRING)]
+    private ?string $Jeudi = null;
 
-    #[ORM\Column(type: Types::TIME_MUTABLE)]
-    private ?\DateTimeInterface $Vendredi = null;
+    #[ORM\Column(type: Types::STRING)]
+    private ?string $Vendredi = null;
 
-    #[ORM\Column(type: Types::TIME_MUTABLE)]
-    private ?\DateTimeInterface $Samedi = null;
+    #[ORM\Column(type: Types::STRING)]
+    private ?string $Samedi = null;
 
-    #[ORM\Column(type: Types::TIME_MUTABLE)]
-    private ?\DateTimeInterface $Dimanche = null;
+    #[ORM\Column(type: Types::STRING)]
+    private ?string $Dimanche = null;
 
     #[ORM\Column]
-    private ?\DateTimeImmutable $creationDate = null;
+    private ?string $creationDate = null;
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
-    private ?\DateTimeInterface $modificationDate = null;
+    private ?string $modificationDate = null;
 
     public function getId(): ?int
     {
@@ -74,72 +74,72 @@ class Horaires
         return $this;
     }
 
-    public function getMardi(): ?\DateTimeInterface
+    public function getMardi(): ?string
     {
         return $this->Mardi;
     }
 
-    public function setMardi(\DateTimeInterface $Mardi): static
+    public function setMardi(string $Mardi): static
     {
         $this->Mardi = $Mardi;
 
         return $this;
     }
 
-    public function getMercredi(): ?\DateTimeInterface
+    public function getMercredi(): ?string
     {
         return $this->Mercredi;
     }
 
-    public function setMercredi(\DateTimeInterface $Mercredi): static
+    public function setMercredi(string $Mercredi): static
     {
         $this->Mercredi = $Mercredi;
 
         return $this;
     }
 
-    public function getJeudi(): ?\DateTimeInterface
+    public function getJeudi(): ?string
     {
         return $this->Jeudi;
     }
 
-    public function setJeudi(\DateTimeInterface $Jeudi): static
+    public function setJeudi(string $Jeudi): static
     {
         $this->Jeudi = $Jeudi;
 
         return $this;
     }
 
-    public function getVendredi(): ?\DateTimeInterface
+    public function getVendredi(): ?string
     {
         return $this->Vendredi;
     }
 
-    public function setVendredi(\DateTimeInterface $Vendredi): static
+    public function setVendredi(string $Vendredi): static
     {
         $this->Vendredi = $Vendredi;
 
         return $this;
     }
 
-    public function getSamedi(): ?\DateTimeInterface
+    public function getSamedi(): ?string
     {
         return $this->Samedi;
     }
 
-    public function setSamedi(\DateTimeInterface $Samedi): static
+    public function setSamedi(string $Samedi): static
     {
         $this->Samedi = $Samedi;
 
         return $this;
     }
 
-    public function getDimanche(): ?\DateTimeInterface
+    public function getDimanche(): ?string
     {
         return $this->Dimanche;
     }
 
-    public function setDimanche(\DateTimeInterface $Dimanche): static
+    public function setDimanche(string $Dimanche): static
     {
         $this->Dimanche = $Dimanche;
 
