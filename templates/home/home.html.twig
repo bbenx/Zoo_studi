@@ -1,0 +1,109 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}ZOO "Arcadia"{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('CSS/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('CSS/home.css') }}">
+{% endblock %}
+
+
+{% block body %}
+    <div class="container">
+        <header>
+            <h1>Zoo Arcadia</h1>
+            <p>Bienvenue dans notre zoo écologique</p>
+        </header>
+        
+        <main>
+            <section class="about">
+                <h2>A propos de nous</h2>
+                <p> Arcadia est un zoo enchanteur situé en France, à proximité de la mystique forêt de Brocéliande, au cœur de la Bretagne, depuis sa fondation en 1960. Avec ses décennies d'existence, le zoo est devenu un véritable joyau de la région, offrant une expérience unique aux visiteurs de tous âges.</p>
+
+                <p>Au sein d'Arcadia, les visiteurs sont invités à explorer un monde fascinant où une variété d'animaux exotiques et indigènes coexistent dans des habitats soigneusement aménagés. Du majestueux lion de la savane au singe malicieux de la jungle en passant par les oiseaux colorés des marais, chaque animal est placé dans un environnement qui reflète au mieux son habitat naturel.</p>
+
+                <p>La santé et le bien-être des animaux sont la priorité absolue d'Arcadia. Chaque jour, une équipe dévouée de vétérinaires qualifiés effectue des examens approfondis sur chaque résident de zoo, garantissant ainsi leur santé et leur bonheur. De plus, l'alimentation de chaque animal est minutieusement calculée pour assurer un régime optimal, avec chaque gramme soigneusement déterminé selon les recommandations des vétérinaires.</p>
+                
+            </section>
+
+            <section class="animals">
+                <h2>Nos Animaux</h2>
+                <p>Découvrez quelques-unes des espèces fascinantes que vous pouvez rencontrer lors de votre visite au Zoo Arcadia :</p>
+                <ul>
+                    <li>
+                        <div class="animal">
+                            <img src="Img_animaux/Lion.jpg" alt="Lion d'Afrique">
+                            <p><strong>Lions d'Afrique</strong></p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="animal">
+                            <img src="Img_animaux/Elephant.jpg" alt="Éléphant d'Asie">
+                            <p><strong>Éléphants d'Asie</strong></p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="animal">
+                            <img src="Img_animaux/Gorille.jpg" alt="Gorille des montagnes">
+                            <p><strong>Gorilles des montagnes</strong></p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="animal">
+                            <img src="Img_animaux/Tigre.jpg" alt="Tigre du Bengale">
+                            <p><strong>Tigres du Bengale</strong></p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="animal">
+                            <img src="Img_animaux/Panda.jpg" alt="Panda géant">
+                            <p><strong>Pandas géants</strong></p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="animal">
+                            <img src="Img_animaux/Ours.jpg" alt="Ours polaire">
+                            <p><strong>Ours polaires</strong></p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="animal">
+                            <img src="Img_animaux/Pingouin.jpg" alt="Pingouin empereur">
+                            <p><strong>Pingouins empereurs</strong></p>
+                        </div>
+                    </li>
+                </ul>
+            </section>
+
+
+            <section class="habitats">
+                <h2>Les Habitats</h2>
+                <p>Le Zoo Arcadia propose une diversité d'habitats soigneusement recréés pour abriter une multitude d'espèces. Explorez nos différents habitats :</p>
+                <ul>
+                    <li>Savane africaine</li>
+                    <li>Jungle tropicale</li>
+                    <li>Forêt humide</li>
+                    <li>Désert aride</li>
+                    <li>Zone aquatique</li>
+                </ul>
+            </section>
+            
+            <section class="services">
+                <h2>Nos Services</h2>
+                <p>Le Zoo Arcadia offre une gamme de services pour garantir une expérience inoubliable à nos visiteurs :</p>
+                <ul>
+                    <li>Visite guidée des habitats avec guide</li>
+                    <li>Visite du Zoo en petit train</li>
+                    <li>Restauration sur place</li>
+                </ul>
+            </section>
+
+
+        </main>
+        
+        <footer>
+            <p>&copy; {{ 'now' | date('Y') }} Zoo Studi. Tous droits réservés.</p>
+        </footer>
+    </div>
+{% endblock %}

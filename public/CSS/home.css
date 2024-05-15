@@ -1,0 +1,88 @@
+/* home.css */
+
+/* Styles généraux */
+
+/* Corps du site */
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    margin: 0;
+    background-color: #212d25;
+    color: white;
+}
+
+/* Conteneur principal */
+.container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.about p {
+    text-align: justify;
+}
+
+/* En-tête */
+header {
+    background-color: #22741c;
+    color: #fff;
+    padding: 20px;
+    text-align: center;
+    border-radius: 15px;
+}
+
+header h1 {
+    color: #fdcb02;
+}
+
+/* Menu de navigation */
+nav {
+    background-color: #158034;
+    padding: 10px;
+    text-align: center;
+    border-radius: 15px;
+}
+
+/* Contenu principal */
+main {
+    flex: 1;
+    padding: 20px;
+}
+
+/* Pied de page */
+footer {
+    background-color: #22741c;
+    color: #fff;
+    padding: 20px;
+    text-align: center;
+    border-radius: 15px;
+}
+
+
+/* Animaux */
+
+.animals {
+    margin-top: 20px; /* Ajoute un espace en haut de la section */
+}
+
+.animal {
+    text-align: center; /* Centre le contenu de chaque animal */
+    margin-bottom: 20px; /* Ajoute un espace en bas de chaque animal */
+}
+
+.animal img {
+    max-width: 100%; /* Assurez-vous que l'image ne dépasse pas sa largeur maximale */
+    border-radius: 10px; /* Ajoute des coins arrondis à l'image */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Ajoute une légère ombre à l'image */
+    width: 200px; /* Définit la largeur de l'image */
+    height: 150px; /* Définit la hauteur de l'image */
+    
+    
+
+}
+
+.animal p {
+    font-weight: bold; /* Met le texte en gras */
+    margin-top: 10px; /* Ajoute un espace en haut du nom de l'animal */
+}

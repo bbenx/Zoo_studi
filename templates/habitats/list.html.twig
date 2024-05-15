@@ -1,0 +1,12 @@
+{% extends 'base.html.twig'%}
+
+{% block body %}
+    <h1>Liste des habitats</h1>
+
+    <ul>
+    {% for habitat in habitats %}
+        <li>{{ habitat }}</li>
+    {% endfor %}
+    </ul>
+
+{% endblock %}

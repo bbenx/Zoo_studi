@@ -7,12 +7,11 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class HomeController extends AbstractController
 {
-  #[Route('/')]
-  public function number() : Response
+  #[Route('/home')]
+  public function home() : Response
   {
-	$number = rand(0, 100);
-	return $this->render('base.html.twig', [
-    	  	'number' => $number,
+	return $this->render('home/home.html.twig', [ // créer un fichier home/home.html.twig
+    	  	
 	]);
   }
 }
