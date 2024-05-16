@@ -19,7 +19,7 @@ class NourritureType extends AbstractType
         $builder
             ->add('type')
             ->add('quantite')
-            ->add('date_passage', DateTimeType::class, [
+            ->add('date_passage', NULL, [
                 'widget' => 'single_text',
             ])
             ->add('creationDate', DateTimeType::class, [
