@@ -5,6 +5,8 @@ namespace App\Entity;
 use App\Repository\HabitatsRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use DateTimeImmutable;
+use DateTimeInterface;
 
 #[ORM\Entity(repositoryClass: HabitatsRepository::class)]
 class Habitats
@@ -16,22 +18,22 @@ class Habitats
 
     #[ORM\ManyToOne]
     #[ORM\JoinColumn(nullable: false)]
-    private ?Etablissement $etablissement = null;
+    private ?Etablissement $Etablissement = null;
 
     #[ORM\Column(length: 255)]
-    private ?string $name = null;
+    private ?string $Nom = null;
 
     #[ORM\Column(type: Types::TEXT)]
-    private ?string $description = null;
+    private ?string $Description = null;
 
-    #[ORM\Column]
-    private array $images = [];
+    #[ORM\Column(nullable: true)]
+    private ?array $Images = null;
+
+    #[ORM\Column(type: Types::DATETIME_IMMUTABLE)]
+    private ?DateTimeImmutable $creationDate = null;
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
-    private ?\DateTimeInterface $creation_date = null;
-
-    #[ORM\Column(type: Types::DATETIME_MUTABLE)]
-    private ?\DateTimeInterface $modification_date = null;
+    private ?DateTimeInterface $modificationDate = null;
 
     public function getId(): ?int
     {
@@ -40,73 +42,86 @@ class Habitats
 
     public function getEtablissement(): ?Etablissement
     {
-        return $this->etablissement;
+        return $this->Etablissement;
     }
 
-    public function setEtablissement(?Etablissement $etablissement): static
+    public function setEtablissement(?Etablissement $Etablissement): static
     {
-        $this->etablissement = $etablissement;
+        $this->Etablissement = $Etablissement;
 
         return $this;
     }
 
-    public function getName(): ?string
+    public function getNom(): ?string
     {
-        return $this->name;
+        return $this->Nom;
     }
 
-    public function setName(string $name): static
+    public function setNom(string $Nom): static
     {
-        $this->name = $name;
+        $this->Nom = $Nom;
 
         return $this;
     }
 
     public function getDescription(): ?string
     {
-        return $this->description;
+        return $this->Description;
     }
 
-    public function setDescription(string $description): static
+    public function setDescription(string $Description): static
     {
-        $this->description = $description;
+        $this->Description = $Description;
 
         return $this;
     }
 
-    public function getImages(): array
+    public function getImages(): ?array
     {
-        return $this->images;
+        return $this->Images;
     }
 
-    public function setImages(array $images): static
+    public function setImages(?array $Images): static
     {
-        $this->images = $images;
+        $this->Images = $Images;
 
         return $this;
     }
 
-    public function getCreationDate(): ?\DateTimeInterface
+    public function getCreationDate(): ?\DateTimeImmutable
     {
-        return $this->creation_date;
+        return $this->creationDate;
     }
 
-    public function setCreationDate(\DateTimeInterface $creation_date): static
+    public function setCreationDate(\DateTimeImmutable $creationDate): static
     {
-        $this->creation_date = $creation_date;
+        $this->creationDate = $creationDate;
 
         return $this;
     }
 
     public function getModificationDate(): ?\DateTimeInterface
     {
-        return $this->modification_date;
+        return $this->modificationDate;
     }
 
-    public function setModificationDate(\DateTimeInterface $modification_date): static
+    public function setModificationDate(\DateTimeInterface $modificationDate): static
     {
-        $this->modification_date = $modification_date;
+        $this->modificationDate = $modificationDate;
 
         return $this;
+    }
+
+
+    #[ORM\PrePersist]
+    public function setCreationDateValue(): void
+    {
+        $this->creationDate = new DateTimeImmutable();
+    }
+
+    #[ORM\PreUpdate]
+    public function setModificationDateValue(): void
+    {
+        $this->modificationDate = new \DateTime();
     }
 }

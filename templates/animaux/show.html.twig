@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Animaux{% endblock %}
+
+{% block body %}
+    <h1>Animaux</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ animaux.id }}</td>
+            </tr>
+            <tr>
+                <th>Prenom</th>
+                <td>{{ animaux.Prenom }}</td>
+            </tr>
+            <tr>
+                <th>Race</th>
+                <td>{{ animaux.Race }}</td>
+            </tr>
+            <tr>
+                <th>Images</th>
+                <td>{{ animaux.Images ? animaux.Images|json_encode : '' }}</td>
+            </tr>
+            <tr>
+                <th>CreationDate</th>
+                <td>{{ animaux.creationDate ? animaux.creationDate|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>ModificationDate</th>
+                <td>{{ animaux.modificationDate ? animaux.modificationDate|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_animaux_index') }}">back to list</a>
+
+    <a href="{{ path('app_animaux_edit', {'id': animaux.id}) }}">edit</a>
+
+    {{ include('animaux/_delete_form.html.twig') }}
+{% endblock %}

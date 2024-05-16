@@ -5,6 +5,8 @@ namespace App\Entity;
 use App\Repository\UsersRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use DateTimeImmutable;
+use DateTimeInterface;
 
 #[ORM\Entity(repositoryClass: UsersRepository::class)]
 class Users
@@ -19,7 +21,7 @@ class Users
     private ?Etablissement $Etablissement = null;
 
     #[ORM\Column(length: 255)]
-    private ?string $memberTYpe = null;
+    private ?string $memberType = null;
 
     #[ORM\Column(length: 255)]
     private ?string $email = null;
@@ -27,11 +29,11 @@ class Users
     #[ORM\Column(length: 255)]
     private ?string $password = null;
 
-    #[ORM\Column(type: Types::DATETIME_MUTABLE)]
-    private ?\DateTimeInterface $creation_date = null;
+    #[ORM\Column(type: Types::DATETIME_IMMUTABLE)]
+    private ?DateTimeImmutable $creationDate = null;
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
-    private ?\DateTimeInterface $modification_date = null;
+    private ?DateTimeInterface $modificationDate = null;
 
     public function getId(): ?int
     {
@@ -50,14 +52,14 @@ class Users
         return $this;
     }
 
-    public function getMemberTYpe(): ?string
+    public function getMemberType(): ?string
     {
-        return $this->memberTYpe;
+        return $this->memberType;
     }
 
-    public function setMemberTYpe(string $memberTYpe): static
+    public function setMemberType(string $memberType): static
     {
-        $this->memberTYpe = $memberTYpe;
+        $this->memberType = $memberType;
 
         return $this;
     }
@@ -86,27 +88,39 @@ class Users
         return $this;
     }
 
-    public function getCreationDate(): ?\DateTimeInterface
+    public function getCreationDate(): ?\DateTimeImmutable
     {
-        return $this->creation_date;
+        return $this->creationDate;
     }
 
-    public function setCreationDate(\DateTimeInterface $creation_date): static
+    public function setCreationDate(\DateTimeImmutable $creationDate): static
     {
-        $this->creation_date = $creation_date;
+        $this->creationDate = $creationDate;
 
         return $this;
     }
 
     public function getModificationDate(): ?\DateTimeInterface
     {
-        return $this->modification_date;
+        return $this->modificationDate;
     }
 
-    public function setModificationDate(\DateTimeInterface $modification_date): static
+    public function setModificationDate(\DateTimeInterface $modificationDate): static
     {
-        $this->modification_date = $modification_date;
+        $this->modificationDate = $modificationDate;
 
         return $this;
+    }
+
+    #[ORM\PrePersist]
+    public function setCreationDateValue(): void
+    {
+        $this->creationDate = new DateTimeImmutable();
+    }
+
+    #[ORM\PreUpdate]
+    public function setModificationDateValue(): void
+    {
+        $this->modificationDate = new \DateTime();
     }
 }

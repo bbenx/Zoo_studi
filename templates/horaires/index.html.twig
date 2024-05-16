@@ -1,0 +1,57 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+	{{ parent() }}
+	<link rel="stylesheet" href="{{ asset('CSS/etablissement.css') }}">
+{% endblock %}
+
+{% block title %}Horaires index
+{% endblock %}
+
+{% block body %}
+	<h1>Horaires index</h1>
+
+	<table class="table">
+		<thead>
+			<tr>
+				<th>Id</th>
+				<th>Lundi</th>
+				<th>Mardi</th>
+				<th>Mercredi</th>
+				<th>Jeudi</th>
+				<th>Vendredi</th>
+				<th>Samedi</th>
+				<th>Dimanche</th>
+				<th>CreationDate</th>
+				<th>ModificationDate</th>
+				<th>actions</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for horaire in horaires %}
+				<tr>
+					<td>{{ horaire.id }}</td>
+					<td>{{ horaire.Lundi }}</td>
+					<td>{{ horaire.Mardi }}</td>
+					<td>{{ horaire.Mercredi }}</td>
+					<td>{{ horaire.Jeudi }}</td>
+					<td>{{ horaire.Vendredi }}</td>
+					<td>{{ horaire.Samedi }}</td>
+					<td>{{ horaire.Dimanche }}</td>
+					<td>{{ horaire.creationDate |date('Y-m-d H:i:s') }}</td>
+					<td>{{ horaire.modificationDate ? horaire.modificationDate|date('Y-m-d H:i:s') : '' }}</td>
+					<td>
+						<a href="{{ path('app_horaires_show', {'id': horaire.id}) }}">show</a>
+						<a href="{{ path('app_horaires_edit', {'id': horaire.id}) }}">edit</a>
+					</td>
+				</tr>
+			{% else %}
+				<tr>
+					<td colspan="11">no records found</td>
+				</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+
+	<a href="{{ path('app_horaires_new') }}">Create new</a>
+{% endblock %}

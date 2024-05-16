@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Habitats{% endblock %}
+
+{% block body %}
+    <h1>Habitats</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ habitat.id }}</td>
+            </tr>
+            <tr>
+                <th>Nom</th>
+                <td>{{ habitat.Nom }}</td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>{{ habitat.Description }}</td>
+            </tr>
+            <tr>
+                <th>Images</th>
+                <td>{{ habitat.Images ? habitat.Images|json_encode : '' }}</td>
+            </tr>
+            <tr>
+                <th>CreationDate</th>
+                <td>{{ habitat.creationDate ? habitat.creationDate|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>ModificationDate</th>
+                <td>{{ habitat.modificationDate ? habitat.modificationDate|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_habitats_index') }}">back to list</a>
+
+    <a href="{{ path('app_habitats_edit', {'id': habitat.id}) }}">edit</a>
+
+    {{ include('habitats/_delete_form.html.twig') }}
+{% endblock %}

@@ -6,6 +6,7 @@ use App\Entity\Etablissement;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -16,11 +17,17 @@ class EtablissementType extends AbstractType
         $builder
             ->add('nom', TextType::class)
             ->add('description', TextareaType::class)
-            ->add('creationDate', null, [
+            ->add('creationDate', DateTimeType::class, [
                 'widget' => 'single_text',
+                'disabled' => true,
+                'required' => false,
+                'label' => 'Date de création',
             ])
-            ->add('modificationDate', null, [
+            ->add('modificationDate', DateTimeType::class, [
                 'widget' => 'single_text',
+                'disabled' => true,
+                'required' => false,
+                'label' => 'Date de modification',
             ]);
     }
 

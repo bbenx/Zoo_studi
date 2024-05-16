@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}CommentairesHabitats index{% endblock %}
+
+{% block body %}
+    <h1>CommentairesHabitats index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Avis</th>
+                <th>Etat</th>
+                <th>Amelioration</th>
+                <th>Creation_date</th>
+                <th>Modification_date</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for commentaires_habitat in commentaires_habitats %}
+            <tr>
+                <td>{{ commentaires_habitat.id }}</td>
+                <td>{{ commentaires_habitat.avis }}</td>
+                <td>{{ commentaires_habitat.etat }}</td>
+                <td>{{ commentaires_habitat.amelioration }}</td>
+                <td>{{ commentaires_habitat.creationDate ? commentaires_habitat.creationDate|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ commentaires_habitat.modificationDate ? commentaires_habitat.modificationDate|date('Y-m-d H:i:s') : '' }}</td>
+                <td>
+                    <a href="{{ path('app_commentaires_habitats_show', {'id': commentaires_habitat.id}) }}">show</a>
+                    <a href="{{ path('app_commentaires_habitats_edit', {'id': commentaires_habitat.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="7">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_commentaires_habitats_new') }}">Create new</a>
+{% endblock %}

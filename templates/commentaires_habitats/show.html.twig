@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}CommentairesHabitats{% endblock %}
+
+{% block body %}
+    <h1>CommentairesHabitats</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ commentaires_habitat.id }}</td>
+            </tr>
+            <tr>
+                <th>Avis</th>
+                <td>{{ commentaires_habitat.avis }}</td>
+            </tr>
+            <tr>
+                <th>Etat</th>
+                <td>{{ commentaires_habitat.etat }}</td>
+            </tr>
+            <tr>
+                <th>Amelioration</th>
+                <td>{{ commentaires_habitat.amelioration }}</td>
+            </tr>
+            <tr>
+                <th>Creation_date</th>
+                <td>{{ commentaires_habitat.creationDate ? commentaires_habitat.creationDate|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Modification_date</th>
+                <td>{{ commentaires_habitat.modificationDate ? commentaires_habitat.modificationDate|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_commentaires_habitats_index') }}">back to list</a>
+
+    <a href="{{ path('app_commentaires_habitats_edit', {'id': commentaires_habitat.id}) }}">edit</a>
+
+    {{ include('commentaires_habitats/_delete_form.html.twig') }}
+{% endblock %}

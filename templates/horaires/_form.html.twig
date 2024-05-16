@@ -1,0 +1,13 @@
+{{ form_start(form) }}
+{{ form_row(form.idEtablissement) }}
+{{ form_row(form.Lundi) }}
+{{ form_row(form.Mardi) }}
+{{ form_row(form.Mercredi) }}
+{{ form_row(form.Jeudi) }}
+{{ form_row(form.Vendredi) }}
+{{ form_row(form.Samedi) }}
+{{ form_row(form.Dimanche) }}
+{{ form_row(form.creationDate,{'attr': {'readonly': 'readonly'}}) }}
+{{ form_row(form.modificationDate,{'attr': {'readonly': 'readonly'}}) }}
+<button class="btn">{{ button_label|default('Save') }}</button>
+{{ form_end(form) }}

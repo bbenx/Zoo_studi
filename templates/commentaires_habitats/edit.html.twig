@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit CommentairesHabitats{% endblock %}
+
+{% block body %}
+    <h1>Edit CommentairesHabitats</h1>
+
+    {{ include('commentaires_habitats/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('app_commentaires_habitats_index') }}">back to list</a>
+
+    {{ include('commentaires_habitats/_delete_form.html.twig') }}
+{% endblock %}

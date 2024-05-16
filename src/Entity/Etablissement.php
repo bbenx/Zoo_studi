@@ -5,8 +5,11 @@ namespace App\Entity;
 use App\Repository\EtablissementRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use DateTimeImmutable;
+use DateTimeInterface;
 
 #[ORM\Entity(repositoryClass: EtablissementRepository::class)]
+#[ORM\HasLifecycleCallbacks]
 class Etablissement
 {
     #[ORM\Id]
@@ -20,11 +23,11 @@ class Etablissement
     #[ORM\Column(type: Types::TEXT)]
     private ?string $description = null;
 
-    #[ORM\Column(type: Types::DATETIME_MUTABLE)]
-    private ?\DateTimeInterface $creationDate = null;
+    #[ORM\Column(type: Types::DATETIME_IMMUTABLE)]
+    private ?DateTimeImmutable $creationDate = null;
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
-    private ?\DateTimeInterface $modificationDate = null;
+    private ?DateTimeInterface $modificationDate = null;
 
     public function getId(): ?int
     {
@@ -55,12 +58,12 @@ class Etablissement
         return $this;
     }
 
-    public function getCreationDate(): ?\DateTimeInterface
+    public function getCreationDate(): ?\DateTimeImmutable
     {
         return $this->creationDate;
     }
 
-    public function setCreationDate(\DateTimeInterface $creationDate): static
+    public function setCreationDate(\DateTimeImmutable $creationDate): static
     {
         $this->creationDate = $creationDate;
 
@@ -77,5 +80,17 @@ class Etablissement
         $this->modificationDate = $modificationDate;
 
         return $this;
+    }
+
+    #[ORM\PrePersist]
+    public function setCreationDateValue(): void
+    {
+        $this->creationDate = new DateTimeImmutable();
+    }
+
+    #[ORM\PreUpdate]
+    public function setModificationDateValue(): void
+    {
+        $this->modificationDate = new \DateTime();
     }
 }

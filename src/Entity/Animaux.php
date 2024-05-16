@@ -5,6 +5,8 @@ namespace App\Entity;
 use App\Repository\AnimauxRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use DateTimeImmutable;
+use DateTimeInterface;
 
 #[ORM\Entity(repositoryClass: AnimauxRepository::class)]
 class Animaux
@@ -16,22 +18,22 @@ class Animaux
 
     #[ORM\ManyToOne]
     #[ORM\JoinColumn(nullable: false)]
-    private ?Habitats $habitat = null;
+    private ?Habitats $Habitat = null;
 
     #[ORM\Column(length: 255)]
-    private ?string $prenom = null;
+    private ?string $Prenom = null;
 
     #[ORM\Column(length: 255)]
-    private ?string $race = null;
+    private ?string $Race = null;
 
-    #[ORM\Column]
-    private array $images = [];
+    #[ORM\Column(nullable: true)]
+    private ?array $Images = null;
+
+    #[ORM\Column(type: Types::DATETIME_IMMUTABLE)]
+    private ?DateTimeImmutable $creationDate = null;
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
-    private ?\DateTimeInterface $creation_date = null;
-
-    #[ORM\Column(type: Types::DATETIME_MUTABLE)]
-    private ?\DateTimeInterface $modification_date = null;
+    private ?DateTimeInterface $modificationDate = null;
 
     public function getId(): ?int
     {
@@ -40,73 +42,85 @@ class Animaux
 
     public function getHabitat(): ?Habitats
     {
-        return $this->habitat;
+        return $this->Habitat;
     }
 
-    public function setHabitat(?Habitats $habitat): static
+    public function setHabitat(?Habitats $Habitat): static
     {
-        $this->habitat = $habitat;
+        $this->Habitat = $Habitat;
 
         return $this;
     }
 
     public function getPrenom(): ?string
     {
-        return $this->prenom;
+        return $this->Prenom;
     }
 
-    public function setPrenom(string $prenom): static
+    public function setPrenom(string $Prenom): static
     {
-        $this->prenom = $prenom;
+        $this->Prenom = $Prenom;
 
         return $this;
     }
 
     public function getRace(): ?string
     {
-        return $this->race;
+        return $this->Race;
     }
 
-    public function setRace(string $race): static
+    public function setRace(string $Race): static
     {
-        $this->race = $race;
+        $this->Race = $Race;
 
         return $this;
     }
 
-    public function getImages(): array
+    public function getImages(): ?array
     {
-        return $this->images;
+        return $this->Images;
     }
 
-    public function setImages(array $images): static
+    public function setImages(?array $Images): static
     {
-        $this->images = $images;
+        $this->Images = $Images;
 
         return $this;
     }
 
-    public function getCreationDate(): ?\DateTimeInterface
+    public function getCreationDate(): ?\DateTimeImmutable
     {
-        return $this->creation_date;
+        return $this->creationDate;
     }
 
-    public function setCreationDate(\DateTimeInterface $creation_date): static
+    public function setCreationDate(\DateTimeImmutable $creationDate): static
     {
-        $this->creation_date = $creation_date;
+        $this->creationDate = $creationDate;
 
         return $this;
     }
 
     public function getModificationDate(): ?\DateTimeInterface
     {
-        return $this->modification_date;
+        return $this->modificationDate;
     }
 
-    public function setModificationDate(\DateTimeInterface $modification_date): static
+    public function setModificationDate(\DateTimeInterface $modificationDate): static
     {
-        $this->modification_date = $modification_date;
+        $this->modificationDate = $modificationDate;
 
         return $this;
+    }
+
+    #[ORM\PrePersist]
+    public function setCreationDateValue(): void
+    {
+        $this->creationDate = new DateTimeImmutable();
+    }
+
+    #[ORM\PreUpdate]
+    public function setModificationDateValue(): void
+    {
+        $this->modificationDate = new \DateTime();
     }
 }

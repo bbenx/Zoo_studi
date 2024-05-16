@@ -5,8 +5,11 @@ namespace App\Entity;
 use App\Repository\HorairesRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use DateTimeImmutable;
+use DateTimeInterface;
 
 #[ORM\Entity(repositoryClass: HorairesRepository::class)]
+#[ORM\HasLifecycleCallbacks]
 class Horaires
 {
     #[ORM\Id]
@@ -39,11 +42,11 @@ class Horaires
     #[ORM\Column(type: Types::STRING)]
     private ?string $Dimanche = null;
 
-    #[ORM\Column]
-    private ?string $creationDate = null;
+    #[ORM\Column(type: Types::DATETIME_IMMUTABLE)]
+    private ?DateTimeImmutable $creationDate = null;
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
-    private ?string $modificationDate = null;
+    private ?DateTimeInterface $modificationDate = null;
 
     public function getId(): ?int
     {
@@ -170,15 +173,15 @@ class Horaires
         return $this;
     }
 
-    public function getNo(): ?string
+    #[ORM\PrePersist]
+    public function setCreationDateValue(): void
     {
-        return $this->no;
+        $this->creationDate = new DateTimeImmutable();
     }
 
-    public function setNo(string $no): static
+    #[ORM\PreUpdate]
+    public function setModificationDateValue(): void
     {
-        $this->no = $no;
-
-        return $this;
+        $this->modificationDate = new \DateTime();
     }
 }
