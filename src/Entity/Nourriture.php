@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\NourritureRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use DateTimeImmutable;
@@ -16,22 +18,24 @@ class Nourriture
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\ManyToOne]
-    #[ORM\JoinColumn(nullable: false)]
-    private ?Animaux $animal = null;
+    /**
+     * @var Collection<int, Animaux>
+     */
+    #[ORM\ManyToMany(targetEntity: Animaux::class)]
+    private Collection $Animal;
 
     #[ORM\ManyToOne]
     #[ORM\JoinColumn(nullable: false)]
-    private ?Users $user = null;
+    private ?Users $User = null;
 
     #[ORM\Column(length: 255)]
-    private ?string $type = null;
+    private ?string $Type = null;
 
     #[ORM\Column]
-    private ?int $quantite = null;
+    private ?int $Quantite = null;
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
-    private ?\DateTimeInterface $date_passage = null;
+    private ?\DateTimeInterface $DatePassage = null;
 
     #[ORM\Column(type: Types::DATETIME_IMMUTABLE)]
     private ?DateTimeImmutable $creationDate = null;
@@ -39,67 +43,84 @@ class Nourriture
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
     private ?DateTimeInterface $modificationDate = null;
 
+    public function __construct()
+    {
+        $this->Animal = new ArrayCollection();
+    }
+
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getAnimal(): ?Animaux
+    /**
+     * @return Collection<int, Animaux>
+     */
+    public function getAnimal(): Collection
     {
-        return $this->animal;
+        return $this->Animal;
     }
 
-    public function setAnimal(?Animaux $animal): static
+    public function addAnimal(Animaux $animal): static
     {
-        $this->animal = $animal;
+        if (!$this->Animal->contains($animal)) {
+            $this->Animal->add($animal);
+        }
+
+        return $this;
+    }
+
+    public function removeAnimal(Animaux $animal): static
+    {
+        $this->Animal->removeElement($animal);
 
         return $this;
     }
 
     public function getUser(): ?Users
     {
-        return $this->user;
+        return $this->User;
     }
 
-    public function setUser(?Users $user): static
+    public function setUser(?Users $User): static
     {
-        $this->user = $user;
+        $this->User = $User;
 
         return $this;
     }
 
     public function getType(): ?string
     {
-        return $this->type;
+        return $this->Type;
     }
 
-    public function setType(string $type): static
+    public function setType(string $Type): static
     {
-        $this->type = $type;
+        $this->Type = $Type;
 
         return $this;
     }
 
     public function getQuantite(): ?int
     {
-        return $this->quantite;
+        return $this->Quantite;
     }
 
-    public function setQuantité(int $quantite): static
+    public function setQuantite(int $Quantite): static
     {
-        $this->quantite = $quantite;
+        $this->Quantite = $Quantite;
 
         return $this;
     }
 
     public function getDatePassage(): ?\DateTimeInterface
     {
-        return $this->date_passage;
+        return $this->DatePassage;
     }
 
-    public function setDatePassage(\DateTimeInterface $date_passage): static
+    public function setDatePassage(\DateTimeInterface $DatePassage): static
     {
-        $this->date_passage = $date_passage;
+        $this->DatePassage = $DatePassage;
 
         return $this;
     }
@@ -109,9 +130,9 @@ class Nourriture
         return $this->creationDate;
     }
 
-    public function setCreationDate(\DateTimeImmutable $creation_date): static
+    public function setCreationDate(\DateTimeImmutable $creationDate): static
     {
-        $this->creationDate = $creation_date;
+        $this->creationDate = $creationDate;
 
         return $this;
     }
@@ -121,9 +142,9 @@ class Nourriture
         return $this->modificationDate;
     }
 
-    public function setModificationDate(\DateTimeInterface $modification_date): static
+    public function setModificationDate(\DateTimeInterface $modificationDate): static
     {
-        $this->modificationDate = $modification_date;
+        $this->modificationDate = $modificationDate;
 
         return $this;
     }

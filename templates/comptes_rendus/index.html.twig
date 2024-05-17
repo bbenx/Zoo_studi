@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}ComptesRendus index{% endblock %}
+
+{% block body %}
+    <h1>ComptesRendus index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>EtatAnimal</th>
+                <th>DetailEtat</th>
+                <th>TypeNourriture</th>
+                <th>GrammageNourriture</th>
+                <th>DatePassage</th>
+                <th>CreationDate</th>
+                <th>ModificationDate</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for comptes_rendu in comptes_renduses %}
+            <tr>
+                <td>{{ comptes_rendu.id }}</td>
+                <td>{{ comptes_rendu.EtatAnimal }}</td>
+                <td>{{ comptes_rendu.DetailEtat }}</td>
+                <td>{{ comptes_rendu.TypeNourriture }}</td>
+                <td>{{ comptes_rendu.GrammageNourriture }}</td>
+                <td>{{ comptes_rendu.DatePassage ? comptes_rendu.DatePassage|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ comptes_rendu.creationDate ? comptes_rendu.creationDate|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ comptes_rendu.modificationDate ? comptes_rendu.modificationDate|date('Y-m-d H:i:s') : '' }}</td>
+                <td>
+                    <a href="{{ path('app_comptes_rendus_show', {'id': comptes_rendu.id}) }}">show</a>
+                    <a href="{{ path('app_comptes_rendus_edit', {'id': comptes_rendu.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="9">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_comptes_rendus_new') }}">Create new</a>
+{% endblock %}

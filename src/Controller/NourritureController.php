@@ -28,6 +28,7 @@ class NourritureController extends AbstractController
         $nourriture = new Nourriture();
         $nourriture->setCreationDate(new \DateTimeImmutable());
         $nourriture->setModificationDate(new \DateTime());
+
         $form = $this->createForm(NourritureType::class, $nourriture);
         $form->handleRequest($request);
 

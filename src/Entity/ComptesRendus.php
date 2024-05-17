@@ -5,6 +5,8 @@ namespace App\Entity;
 use App\Repository\ComptesRendusRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use DateTimeImmutable;
+use DateTimeInterface;
 
 #[ORM\Entity(repositoryClass: ComptesRendusRepository::class)]
 class ComptesRendus
@@ -14,34 +16,34 @@ class ComptesRendus
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\ManyToOne]
+    #[ORM\OneToOne(cascade: ['persist', 'remove'])]
     #[ORM\JoinColumn(nullable: false)]
-    private ?Animaux $animal = null;
+    private ?Animaux $Animal = null;
 
     #[ORM\ManyToOne]
     #[ORM\JoinColumn(nullable: false)]
-    private ?Users $user = null;
+    private ?Users $User = null;
 
     #[ORM\Column(length: 255)]
     private ?string $EtatAnimal = null;
 
     #[ORM\Column(type: Types::TEXT)]
-    private ?string $detailEtat = null;
+    private ?string $DetailEtat = null;
 
     #[ORM\Column(length: 255)]
-    private ?string $typeNourriture = null;
+    private ?string $TypeNourriture = null;
 
     #[ORM\Column]
-    private ?int $grammageNourriture = null;
+    private ?int $GrammageNourriture = null;
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
-    private ?\DateTimeInterface $datePassage = null;
+    private ?\DateTimeInterface $DatePassage = null;
+
+    #[ORM\Column(type: Types::DATETIME_IMMUTABLE)]
+    private ?DateTimeImmutable $creationDate = null;
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
-    private ?\DateTimeInterface $creation_date = null;
-
-    #[ORM\Column(type: Types::DATETIME_MUTABLE)]
-    private ?\DateTimeInterface $modification_date = null;
+    private ?DateTimeInterface $modificationDate = null;
 
     public function getId(): ?int
     {
@@ -50,24 +52,24 @@ class ComptesRendus
 
     public function getAnimal(): ?Animaux
     {
-        return $this->animal;
+        return $this->Animal;
     }
 
-    public function setAnimal(?Animaux $animal): static
+    public function setAnimal(Animaux $Animal): static
     {
-        $this->animal = $animal;
+        $this->Animal = $Animal;
 
         return $this;
     }
 
     public function getUser(): ?Users
     {
-        return $this->user;
+        return $this->User;
     }
 
-    public function setUser(?Users $user): static
+    public function setUser(?Users $User): static
     {
-        $this->user = $user;
+        $this->User = $User;
 
         return $this;
     }
@@ -86,73 +88,84 @@ class ComptesRendus
 
     public function getDetailEtat(): ?string
     {
-        return $this->detailEtat;
+        return $this->DetailEtat;
     }
 
-    public function setDetailEtat(string $detailEtat): static
+    public function setDetailEtat(string $DetailEtat): static
     {
-        $this->detailEtat = $detailEtat;
+        $this->DetailEtat = $DetailEtat;
 
         return $this;
     }
 
     public function getTypeNourriture(): ?string
     {
-        return $this->typeNourriture;
+        return $this->TypeNourriture;
     }
 
-    public function setTypeNourriture(string $typeNourriture): static
+    public function setTypeNourriture(string $TypeNourriture): static
     {
-        $this->typeNourriture = $typeNourriture;
+        $this->TypeNourriture = $TypeNourriture;
 
         return $this;
     }
 
     public function getGrammageNourriture(): ?int
     {
-        return $this->grammageNourriture;
+        return $this->GrammageNourriture;
     }
 
-    public function setGrammageNourriture(int $grammageNourriture): static
+    public function setGrammageNourriture(int $GrammageNourriture): static
     {
-        $this->grammageNourriture = $grammageNourriture;
+        $this->GrammageNourriture = $GrammageNourriture;
 
         return $this;
     }
 
     public function getDatePassage(): ?\DateTimeInterface
     {
-        return $this->datePassage;
+        return $this->DatePassage;
     }
 
-    public function setDatePassage(\DateTimeInterface $datePassage): static
+    public function setDatePassage(\DateTimeInterface $DatePassage): static
     {
-        $this->datePassage = $datePassage;
+        $this->DatePassage = $DatePassage;
 
         return $this;
     }
 
-    public function getCreationDate(): ?\DateTimeInterface
+    public function getCreationDate(): ?\DateTimeImmutable
     {
-        return $this->creation_date;
+        return $this->creationDate;
     }
 
-    public function setCreationDate(\DateTimeInterface $creation_date): static
+    public function setCreationDate(\DateTimeImmutable $creationDate): static
     {
-        $this->creation_date = $creation_date;
+        $this->creationDate = $creationDate;
 
         return $this;
     }
 
     public function getModificationDate(): ?\DateTimeInterface
     {
-        return $this->modification_date;
+        return $this->modificationDate;
     }
 
-    public function setModificationDate(\DateTimeInterface $modification_date): static
+    public function setModificationDate(\DateTimeInterface $modificationDate): static
     {
-        $this->modification_date = $modification_date;
+        $this->modificationDate = $modificationDate;
 
         return $this;
+    }
+    #[ORM\PrePersist]
+    public function setCreationDateValue(): void
+    {
+        $this->creationDate = new DateTimeImmutable();
+    }
+
+    #[ORM\PreUpdate]
+    public function setModificationDateValue(): void
+    {
+        $this->modificationDate = new \DateTime();
     }
 }

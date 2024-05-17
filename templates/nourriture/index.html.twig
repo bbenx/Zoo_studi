@@ -1,44 +1,43 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Nourriture index
-{% endblock %}
+{% block title %}Nourriture index{% endblock %}
 
 {% block body %}
-	<h1>Nourriture index</h1>
+    <h1>Nourriture index</h1>
 
-	<table class="table">
-		<thead>
-			<tr>
-				<th>Id</th>
-				<th>Type</th>
-				<th>Quantité</th>
-				<th>Date_passage</th>
-				<th>Creation_date</th>
-				<th>Modification_date</th>
-				<th>actions</th>
-			</tr>
-		</thead>
-		<tbody>
-			{% for nourriture in nourritures %}
-				<tr>
-					<td>{{ nourriture.id }}</td>
-					<td>{{ nourriture.type }}</td>
-					<td>{{ nourriture.quantite }}</td>
-					<td>{{ nourriture.datePassage ? nourriture.datePassage|date('Y-m-d H:i:s') : '' }}</td>
-					<td>{{ nourriture.creationDate ? nourriture.creationDate|date('Y-m-d H:i:s') : '' }}</td>
-					<td>{{ nourriture.modificationDate ? nourriture.modificationDate|date('Y-m-d H:i:s') : '' }}</td>
-					<td>
-						<a href="{{ path('app_nourriture_show', {'id': nourriture.id}) }}">show</a>
-						<a href="{{ path('app_nourriture_edit', {'id': nourriture.id}) }}">edit</a>
-					</td>
-				</tr>
-			{% else %}
-				<tr>
-					<td colspan="7">no records found</td>
-				</tr>
-			{% endfor %}
-		</tbody>
-	</table>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Type</th>
+                <th>Quantite</th>
+                <th>DatePassage</th>
+                <th>CreationDate</th>
+                <th>ModificationDate</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for nourriture in nourritures %}
+            <tr>
+                <td>{{ nourriture.id }}</td>
+                <td>{{ nourriture.Type }}</td>
+                <td>{{ nourriture.Quantite }}</td>
+                <td>{{ nourriture.DatePassage ? nourriture.DatePassage|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ nourriture.creationDate ? nourriture.creationDate|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ nourriture.modificationDate ? nourriture.modificationDate|date('Y-m-d H:i:s') : '' }}</td>
+                <td>
+                    <a href="{{ path('app_nourriture_show', {'id': nourriture.id}) }}">show</a>
+                    <a href="{{ path('app_nourriture_edit', {'id': nourriture.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="7">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
 
-	<a href="{{ path('app_nourriture_new') }}">Create new</a>
+    <a href="{{ path('app_nourriture_new') }}">Create new</a>
 {% endblock %}

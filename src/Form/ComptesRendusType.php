@@ -3,7 +3,7 @@
 namespace App\Form;
 
 use App\Entity\Animaux;
-use App\Entity\Nourriture;
+use App\Entity\ComptesRendus;
 use App\Entity\Users;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
@@ -11,14 +11,15 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 
-
-class NourritureType extends AbstractType
+class ComptesRendusType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('Type')
-            ->add('Quantite')
+            ->add('EtatAnimal')
+            ->add('DetailEtat')
+            ->add('TypeNourriture')
+            ->add('GrammageNourriture')
             ->add('DatePassage', null, [
                 'widget' => 'single_text',
             ])
@@ -37,7 +38,6 @@ class NourritureType extends AbstractType
             ->add('Animal', EntityType::class, [
                 'class' => Animaux::class,
                 'choice_label' => 'id',
-                'multiple' => true,
             ])
             ->add('User', EntityType::class, [
                 'class' => Users::class,
@@ -48,7 +48,7 @@ class NourritureType extends AbstractType
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
-            'data_class' => Nourriture::class,
+            'data_class' => ComptesRendus::class,
         ]);
     }
 }

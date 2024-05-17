@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New ComptesRendus{% endblock %}
+
+{% block body %}
+    <h1>Create new ComptesRendus</h1>
+
+    {{ include('comptes_rendus/_form.html.twig') }}
+
+    <a href="{{ path('app_comptes_rendus_index') }}">back to list</a>
+{% endblock %}
