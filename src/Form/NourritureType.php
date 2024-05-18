@@ -36,12 +36,12 @@ class NourritureType extends AbstractType
             ])
             ->add('Animal', EntityType::class, [
                 'class' => Animaux::class,
-                'choice_label' => 'id',
+                'choice_label' => 'Prenom',
                 'multiple' => true,
             ])
             ->add('User', EntityType::class, [
                 'class' => Users::class,
-                'choice_label' => 'id',
+                'choice_label' => 'Role',
             ]);
     }
 

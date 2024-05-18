@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controller;
+namespace App\Controller\Admin;
 
 use App\Entity\CommentairesHabitats;
 use App\Form\CommentairesHabitatsType;
@@ -11,10 +11,10 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 
-#[Route('/commentaires/habitats')]
+#[Route('admin')]
 class CommentairesHabitatsController extends AbstractController
 {
-    #[Route('/', name: 'app_commentaires_habitats_index', methods: ['GET'])]
+    #[Route('/commentaires/habitats', name: 'app_commentaires_habitats_index', methods: ['GET'])]
     public function index(CommentairesHabitatsRepository $commentairesHabitatsRepository): Response
     {
         return $this->render('commentaires_habitats/index.html.twig', [
@@ -22,12 +22,13 @@ class CommentairesHabitatsController extends AbstractController
         ]);
     }
 
-    #[Route('/new', name: 'app_commentaires_habitats_new', methods: ['GET', 'POST'])]
+    #[Route('/commentaires/habitats/new', name: 'app_commentaires_habitats_new', methods: ['GET', 'POST'])]
     public function new(Request $request, EntityManagerInterface $entityManager): Response
     {
         $commentairesHabitat = new CommentairesHabitats();
         $commentairesHabitat->setCreationDate(new \DateTimeImmutable());
         $commentairesHabitat->setModificationDate(new \DateTime());
+        $commentairesHabitat->setUser($this->getUser());
 
         $form = $this->createForm(CommentairesHabitatsType::class, $commentairesHabitat);
         $form->handleRequest($request);
@@ -45,7 +46,7 @@ class CommentairesHabitatsController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}', name: 'app_commentaires_habitats_show', methods: ['GET'])]
+    #[Route('/commentaires/habitats/{id}', name: 'app_commentaires_habitats_show', methods: ['GET'])]
     public function show(CommentairesHabitats $commentairesHabitat): Response
     {
         return $this->render('commentaires_habitats/show.html.twig', [
@@ -53,7 +54,7 @@ class CommentairesHabitatsController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}/edit', name: 'app_commentaires_habitats_edit', methods: ['GET', 'POST'])]
+    #[Route('/commentaires/habitats/{id}/edit', name: 'app_commentaires_habitats_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, CommentairesHabitats $commentairesHabitat, EntityManagerInterface $entityManager): Response
     {
         $form = $this->createForm(CommentairesHabitatsType::class, $commentairesHabitat);
@@ -72,7 +73,7 @@ class CommentairesHabitatsController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}', name: 'app_commentaires_habitats_delete', methods: ['POST'])]
+    #[Route('/commentaires/habitats/{id}', name: 'app_commentaires_habitats_delete', methods: ['POST'])]
     public function delete(Request $request, CommentairesHabitats $commentairesHabitat, EntityManagerInterface $entityManager): Response
     {
         if ($this->isCsrfTokenValid('delete' . $commentairesHabitat->getId(), $request->getPayload()->get('_token'))) {

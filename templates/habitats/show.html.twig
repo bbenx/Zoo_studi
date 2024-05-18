@@ -1,42 +1,48 @@
-{% extends 'base.html.twig' %}
+{% extends 'base_admin.html.twig' %}
 
-{% block title %}Habitats{% endblock %}
+{% block title %}Habitats
+{% endblock %}
 
 {% block body %}
-    <h1>Habitats</h1>
+	<div class="d-flex justify-content-between align-items-center mb-4">
+		<h1>Habitats</h1>
+		<div class="d-flex">
+			<a href="{{ path('app_habitats_edit', {'id': habitat.id}) }}" class="btn btn-primary mr-2">
+				<i class="fas fa-edit"></i>
+				Modifier
+			</a>
+			{{ include('habitats/_delete_form.html.twig') }}
+		</div>
+	</div>
 
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ habitat.id }}</td>
-            </tr>
-            <tr>
-                <th>Nom</th>
-                <td>{{ habitat.Nom }}</td>
-            </tr>
-            <tr>
-                <th>Description</th>
-                <td>{{ habitat.Description }}</td>
-            </tr>
-            <tr>
-                <th>Images</th>
-                <td>{{ habitat.Images ? habitat.Images|json_encode : '' }}</td>
-            </tr>
-            <tr>
-                <th>CreationDate</th>
-                <td>{{ habitat.creationDate ? habitat.creationDate|date('Y-m-d H:i:s') : '' }}</td>
-            </tr>
-            <tr>
-                <th>ModificationDate</th>
-                <td>{{ habitat.modificationDate ? habitat.modificationDate|date('Y-m-d H:i:s') : '' }}</td>
-            </tr>
-        </tbody>
-    </table>
+	<table class="table">
+		<tbody>
+			<tr>
+				<th>Id</th>
+				<td>{{ habitat.id }}</td>
+			</tr>
+			<tr>
+				<th>Nom</th>
+				<td>{{ habitat.nom }}</td>
+			</tr>
+			<tr>
+				<th>Description</th>
+				<td>{{ habitat.description }}</td>
+			</tr>
+			<tr>
+				<th>Images</th>
+				<td>{{ habitat.images ? habitat.images|json_encode : '' }}</td>
+			</tr>
+			<tr>
+				<th>Date de création</th>
+				<td>{{ habitat.creationDate ? habitat.creationDate|date('Y-m-d H:i:s') : '' }}</td>
+			</tr>
+			<tr>
+				<th>Date de modification</th>
+				<td>{{ habitat.modificationDate ? habitat.modificationDate|date('Y-m-d H:i:s') : '' }}</td>
+			</tr>
+		</tbody>
+	</table>
 
-    <a href="{{ path('app_habitats_index') }}">back to list</a>
-
-    <a href="{{ path('app_habitats_edit', {'id': habitat.id}) }}">edit</a>
-
-    {{ include('habitats/_delete_form.html.twig') }}
+	<a href="{{ path('app_habitats_index') }}" class="btn btn-secondary mt-3">Retour à la liste</a>
 {% endblock %}

@@ -1,38 +1,44 @@
-{% extends 'base.html.twig' %}
+{% extends 'base_admin.html.twig' %}
 
-{% block title %}Avis{% endblock %}
+{% block title %}Avis
+{% endblock %}
 
 {% block body %}
-    <h1>Avis</h1>
+	<div class="d-flex justify-content-between align-items-center mb-4">
+		<h1>Avis</h1>
+		<div class="d-flex">
+			<a href="{{ path('app_avis_edit', {'id': avi.id}) }}" class="btn btn-primary mr-2">
+				<i class="fas fa-edit"></i>
+				Modifier
+			</a>
+			{{ include('avis/_delete_form.html.twig') }}
+		</div>
+	</div>
 
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ avi.id }}</td>
-            </tr>
-            <tr>
-                <th>Pseudo</th>
-                <td>{{ avi.Pseudo }}</td>
-            </tr>
-            <tr>
-                <th>Commentaire</th>
-                <td>{{ avi.Commentaire }}</td>
-            </tr>
-            <tr>
-                <th>CreationDate</th>
-                <td>{{ avi.creationDate ? avi.creationDate|date('Y-m-d H:i:s') : '' }}</td>
-            </tr>
-            <tr>
-                <th>ModificationDate</th>
-                <td>{{ avi.modificationDate ? avi.modificationDate|date('Y-m-d H:i:s') : '' }}</td>
-            </tr>
-        </tbody>
-    </table>
+	<table class="table">
+		<tbody>
+			<tr>
+				<th>Id</th>
+				<td>{{ avi.id }}</td>
+			</tr>
+			<tr>
+				<th>Pseudo</th>
+				<td>{{ avi.Pseudo }}</td>
+			</tr>
+			<tr>
+				<th>Commentaire</th>
+				<td>{{ avi.Commentaire }}</td>
+			</tr>
+			<tr>
+				<th>Date de création</th>
+				<td>{{ avi.creationDate ? avi.creationDate|date('Y-m-d H:i:s') : '' }}</td>
+			</tr>
+			<tr>
+				<th>Date de modification</th>
+				<td>{{ avi.modificationDate ? avi.modificationDate|date('Y-m-d H:i:s') : '' }}</td>
+			</tr>
+		</tbody>
+	</table>
 
-    <a href="{{ path('app_avis_index') }}">back to list</a>
-
-    <a href="{{ path('app_avis_edit', {'id': avi.id}) }}">edit</a>
-
-    {{ include('avis/_delete_form.html.twig') }}
+	<a href="{{ path('app_avis_index') }}" class="btn btn-secondary mt-3">Retour à la liste</a>
 {% endblock %}

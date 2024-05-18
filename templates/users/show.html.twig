@@ -1,10 +1,19 @@
-{% extends 'base.html.twig' %}
+{% extends 'base_admin.html.twig' %}
 
-{% block title %}Users
+{% block title %}Utilisateurs
 {% endblock %}
 
 {% block body %}
-	<h1>Users</h1>
+	<div class="d-flex justify-content-between align-items-center mb-4">
+		<h1>Utilisateurs</h1>
+		<div class="d-flex">
+			<a href="{{ path('app_users_edit', {'id': user.id}) }}" class="btn btn-primary mr-2">
+				<i class="fas fa-edit"></i>
+				Modifier
+			</a>
+			{{ include('users/_delete_form.html.twig') }}
+		</div>
+	</div>
 
 	<table class="table">
 		<tbody>
@@ -13,8 +22,8 @@
 				<td>{{ user.id }}</td>
 			</tr>
 			<tr>
-				<th>MemberType</th>
-				<td>{{ user.memberType }}</td>
+				<th>Role</th>
+				<td>{{ user.role }}</td>
 			</tr>
 			<tr>
 				<th>Email</th>
@@ -25,19 +34,15 @@
 				<td>{{ user.password }}</td>
 			</tr>
 			<tr>
-				<th>Creation_date</th>
+				<th>Date de création</th>
 				<td>{{ user.creationDate ? user.creationDate|date('Y-m-d H:i:s') : '' }}</td>
 			</tr>
 			<tr>
-				<th>Modification_date</th>
+				<th>Date de modification</th>
 				<td>{{ user.modificationDate ? user.modificationDate|date('Y-m-d H:i:s') : '' }}</td>
 			</tr>
 		</tbody>
 	</table>
 
-	<a href="{{ path('app_users_index') }}">back to list</a>
-
-	<a href="{{ path('app_users_edit', {'id': user.id}) }}">edit</a>
-
-	{{ include('users/_delete_form.html.twig') }}
+	<a href="{{ path('app_users_index') }}" class="btn btn-secondary mt-3">Retour à la liste</a>
 {% endblock %}

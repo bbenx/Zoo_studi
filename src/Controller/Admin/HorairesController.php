@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controller;
+namespace App\Controller\Admin;
 
 use App\Entity\Horaires;
 use App\Form\HorairesType;
@@ -11,10 +11,10 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 
-#[Route('/horaires')]
+#[Route('admin')]
 class HorairesController extends AbstractController
 {
-    #[Route('/', name: 'app_horaires_index', methods: ['GET'])]
+    #[Route('/horaires', name: 'app_horaires_index', methods: ['GET'])]
     public function index(HorairesRepository $horairesRepository): Response
     {
         return $this->render('horaires/index.html.twig', [
@@ -22,7 +22,7 @@ class HorairesController extends AbstractController
         ]);
     }
 
-    #[Route('/new', name: 'app_horaires_new', methods: ['GET', 'POST'])]
+    #[Route('/horaires/new', name: 'app_horaires_new', methods: ['GET', 'POST'])]
     public function new(Request $request, EntityManagerInterface $entityManager): Response
     {
 
@@ -46,7 +46,7 @@ class HorairesController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}', name: 'app_horaires_show', methods: ['GET'])]
+    #[Route('/horaires/{id}', name: 'app_horaires_show', methods: ['GET'])]
     public function show(Horaires $horaire): Response
     {
         return $this->render('horaires/show.html.twig', [
@@ -54,7 +54,7 @@ class HorairesController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}/edit', name: 'app_horaires_edit', methods: ['GET', 'POST'])]
+    #[Route('/horaires/{id}/edit', name: 'app_horaires_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Horaires $horaire, EntityManagerInterface $entityManager): Response
     {
         $form = $this->createForm(HorairesType::class, $horaire);
@@ -73,7 +73,7 @@ class HorairesController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}', name: 'app_horaires_delete', methods: ['POST'])]
+    #[Route('/horaires/{id}', name: 'app_horaires_delete', methods: ['POST'])]
     public function delete(Request $request, Horaires $horaire, EntityManagerInterface $entityManager): Response
     {
         if ($this->isCsrfTokenValid('delete' . $horaire->getId(), $request->getPayload()->get('_token'))) {

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controller;
+namespace App\Controller\Admin;
 
 use App\Entity\Habitats;
 use App\Form\HabitatsType;
@@ -11,10 +11,10 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 
-#[Route('/habitats')]
+#[Route('admin')]
 class HabitatsController extends AbstractController
 {
-    #[Route('/', name: 'app_habitats_index', methods: ['GET'])]
+    #[Route('/habitats', name: 'app_habitats_index', methods: ['GET'])]
     public function index(HabitatsRepository $habitatsRepository): Response
     {
         return $this->render('habitats/index.html.twig', [
@@ -22,7 +22,7 @@ class HabitatsController extends AbstractController
         ]);
     }
 
-    #[Route('/new', name: 'app_habitats_new', methods: ['GET', 'POST'])]
+    #[Route('/habitats/new', name: 'app_habitats_new', methods: ['GET', 'POST'])]
     public function new(Request $request, EntityManagerInterface $entityManager): Response
     {
         $habitat = new Habitats();
@@ -45,7 +45,7 @@ class HabitatsController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}', name: 'app_habitats_show', methods: ['GET'])]
+    #[Route('/habitats/{id}', name: 'app_habitats_show', methods: ['GET'])]
     public function show(Habitats $habitat): Response
     {
         return $this->render('habitats/show.html.twig', [
@@ -53,7 +53,7 @@ class HabitatsController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}/edit', name: 'app_habitats_edit', methods: ['GET', 'POST'])]
+    #[Route('/habitats/{id}/edit', name: 'app_habitats_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Habitats $habitat, EntityManagerInterface $entityManager): Response
     {
         $form = $this->createForm(HabitatsType::class, $habitat);
@@ -72,7 +72,7 @@ class HabitatsController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}', name: 'app_habitats_delete', methods: ['POST'])]
+    #[Route('/habitats/{id}', name: 'app_habitats_delete', methods: ['POST'])]
     public function delete(Request $request, Habitats $habitat, EntityManagerInterface $entityManager): Response
     {
         if ($this->isCsrfTokenValid('delete' . $habitat->getId(), $request->getPayload()->get('_token'))) {

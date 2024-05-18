@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controller;
+namespace App\Controller\Admin;
 
 use App\Entity\Animaux;
 use App\Form\AnimauxType;
@@ -11,18 +11,18 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 
-#[Route('/animaux')]
+#[Route('admin')]
 class AnimauxController extends AbstractController
 {
-    #[Route('/', name: 'app_animaux_index', methods: ['GET'])]
+    #[Route('/animaux', name: 'app_animaux_index', methods: ['GET'])]
     public function index(AnimauxRepository $animauxRepository): Response
     {
         return $this->render('animaux/index.html.twig', [
-            'animauxes' => $animauxRepository->findAll(),
+            'animaux' => $animauxRepository->findAll(),
         ]);
     }
 
-    #[Route('/new', name: 'app_animaux_new', methods: ['GET', 'POST'])]
+    #[Route('/animaux/new', name: 'app_animaux_new', methods: ['GET', 'POST'])]
     public function new(Request $request, EntityManagerInterface $entityManager): Response
     {
         $animaux = new Animaux();
@@ -44,7 +44,7 @@ class AnimauxController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}', name: 'app_animaux_show', methods: ['GET'])]
+    #[Route('/animaux/{id}', name: 'app_animaux_show', methods: ['GET'])]
     public function show(Animaux $animaux): Response
     {
         return $this->render('animaux/show.html.twig', [
@@ -52,7 +52,7 @@ class AnimauxController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}/edit', name: 'app_animaux_edit', methods: ['GET', 'POST'])]
+    #[Route('/animaux/{id}/edit', name: 'app_animaux_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Animaux $animaux, EntityManagerInterface $entityManager): Response
     {
         $form = $this->createForm(AnimauxType::class, $animaux);
@@ -71,7 +71,7 @@ class AnimauxController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}', name: 'app_animaux_delete', methods: ['POST'])]
+    #[Route('/animaux/{id}', name: 'app_animaux_delete', methods: ['POST'])]
     public function delete(Request $request, Animaux $animaux, EntityManagerInterface $entityManager): Response
     {
         if ($this->isCsrfTokenValid('delete' . $animaux->getId(), $request->getPayload()->get('_token'))) {

@@ -41,7 +41,7 @@ class ComptesRendusType extends AbstractType
             ])
             ->add('User', EntityType::class, [
                 'class' => Users::class,
-                'choice_label' => 'id',
+                'choice_label' => 'role',
             ]);
     }
 

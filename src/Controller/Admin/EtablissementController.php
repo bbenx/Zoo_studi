@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controller;
+namespace App\Controller\Admin;
 
 use App\Entity\Etablissement;
 use App\Form\EtablissementType;
@@ -11,10 +11,10 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 
-#[Route('/etablissement')]
+#[Route('/admin')]
 class EtablissementController extends AbstractController
 {
-    #[Route('/', name: 'app_etablissement_index', methods: ['GET'])]
+    #[Route('/etablissement', name: 'app_etablissement_index', methods: ['GET'])]
     public function index(EtablissementRepository $etablissementRepository): Response
     {
         return $this->render('etablissement/index.html.twig', [
@@ -22,7 +22,7 @@ class EtablissementController extends AbstractController
         ]);
     }
 
-    #[Route('/new', name: 'app_etablissement_new', methods: ['GET', 'POST'])]
+    #[Route('/etablissement/new', name: 'app_etablissement_new', methods: ['GET', 'POST'])]
     public function new(Request $request, EntityManagerInterface $entityManager): Response
     {
 
@@ -46,7 +46,7 @@ class EtablissementController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}', name: 'app_etablissement_show', methods: ['GET'])]
+    #[Route('/etablissement/{id}', name: 'app_etablissement_show', methods: ['GET'])]
     public function show(Etablissement $etablissement): Response
     {
         return $this->render('etablissement/show.html.twig', [
@@ -54,7 +54,7 @@ class EtablissementController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}/edit', name: 'app_etablissement_edit', methods: ['GET', 'POST'])]
+    #[Route('/etablissement/{id}/edit', name: 'app_etablissement_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Etablissement $etablissement, EntityManagerInterface $entityManager): Response
     {
         $form = $this->createForm(EtablissementType::class, $etablissement);
@@ -73,7 +73,7 @@ class EtablissementController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}', name: 'app_etablissement_delete', methods: ['POST'])]
+    #[Route('/etablissement/{id}', name: 'app_etablissement_delete', methods: ['POST'])]
     public function delete(Request $request, Etablissement $etablissement, EntityManagerInterface $entityManager): Response
     {
         if ($this->isCsrfTokenValid('delete' . $etablissement->getId(), $request->getPayload()->get('_token'))) {

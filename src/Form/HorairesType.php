@@ -36,7 +36,7 @@ class HorairesType extends AbstractType
             ])
             ->add('idEtablissement', EntityType::class, [
                 'class' => Etablissement::class,
-                'choice_label' => 'id',
+                'choice_label' => 'nom',
             ]);
     }
 

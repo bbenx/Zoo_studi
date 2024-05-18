@@ -1,42 +1,48 @@
-{% extends 'base.html.twig' %}
+{% extends 'base_admin.html.twig' %}
 
-{% block title %}Animaux{% endblock %}
+{% block title %}Animaux
+{% endblock %}
 
 {% block body %}
-    <h1>Animaux</h1>
+	<div class="d-flex justify-content-between align-items-center mb-4">
+		<h1>Animaux</h1>
+		<div class="d-flex">
+			<a href="{{ path('app_animaux_edit', {'id': animaux.id}) }}" class="btn btn-primary mr-2">
+				<i class="fas fa-edit"></i>
+				Modifier
+			</a>
+			{{ include('animaux/_delete_form.html.twig') }}
+		</div>
+	</div>
 
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ animaux.id }}</td>
-            </tr>
-            <tr>
-                <th>Prenom</th>
-                <td>{{ animaux.Prenom }}</td>
-            </tr>
-            <tr>
-                <th>Race</th>
-                <td>{{ animaux.Race }}</td>
-            </tr>
-            <tr>
-                <th>Images</th>
-                <td>{{ animaux.Images ? animaux.Images|json_encode : '' }}</td>
-            </tr>
-            <tr>
-                <th>CreationDate</th>
-                <td>{{ animaux.creationDate ? animaux.creationDate|date('Y-m-d H:i:s') : '' }}</td>
-            </tr>
-            <tr>
-                <th>ModificationDate</th>
-                <td>{{ animaux.modificationDate ? animaux.modificationDate|date('Y-m-d H:i:s') : '' }}</td>
-            </tr>
-        </tbody>
-    </table>
+	<table class="table">
+		<tbody>
+			<tr>
+				<th>Id</th>
+				<td>{{ animaux.id }}</td>
+			</tr>
+			<tr>
+				<th>Prénom</th>
+				<td>{{ animaux.Prenom }}</td>
+			</tr>
+			<tr>
+				<th>Race</th>
+				<td>{{ animaux.Race }}</td>
+			</tr>
+			<tr>
+				<th>Images</th>
+				<td>{{ animaux.Images ? animaux.Images|json_encode : '' }}</td>
+			</tr>
+			<tr>
+				<th>Date de création</th>
+				<td>{{ animaux.creationDate ? animaux.creationDate|date('Y-m-d H:i:s') : '' }}</td>
+			</tr>
+			<tr>
+				<th>Date de modification</th>
+				<td>{{ animaux.modificationDate ? animaux.modificationDate|date('Y-m-d H:i:s') : '' }}</td>
+			</tr>
+		</tbody>
+	</table>
 
-    <a href="{{ path('app_animaux_index') }}">back to list</a>
-
-    <a href="{{ path('app_animaux_edit', {'id': animaux.id}) }}">edit</a>
-
-    {{ include('animaux/_delete_form.html.twig') }}
+	<a href="{{ path('app_animaux_index') }}" class="btn btn-secondary mt-3">Retour à la liste</a>
 {% endblock %}

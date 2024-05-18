@@ -16,13 +16,13 @@ class UsersType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('memberType', ChoiceType::class, [
+            ->add('role', ChoiceType::class, [
                 'choices' => [
                     'Administrateur' => 'Administrateur',
                     'Employé' => 'Employé',
                     'Vétérinaire' => 'Vétérinaire'
                 ],
-                'label' => 'Member Type',
+                'label' => 'role',
             ])
             ->add('email')
             ->add('password')
@@ -40,7 +40,7 @@ class UsersType extends AbstractType
             ])
             ->add('Etablissement', EntityType::class, [
                 'class' => Etablissement::class,
-                'choice_label' => 'id',
+                'choice_label' => 'nom',
             ]);
     }
 

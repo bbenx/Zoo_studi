@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>
+			{% block title %}Welcome!
+			{% endblock %}
+		</title>
+		<link rel="icon" href="{{ asset('favicon.ico') }}">
+		{% block stylesheets %}
+			{{ encore_entry_link_tags('app') }}
+			<link rel="stylesheet" href="{{ asset('CSS/bootstrap.min.css') }}">
+			<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+			<link rel="stylesheet" href="{{ asset('CSS/dashboard.css') }}">
+		{% endblock %}
+	</head>
+	<body>
+		<!-- Barre de navigation en haut -->
+		<nav class="navbar navbar-dark bg-dark sticky-top flex-md-nowrap p-0 shadow">
+			<div class="container-fluid">
+				<button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
+					<span class="navbar-toggler-icon"></span>
+				</button>
+				<div class="navbar-brand mx-auto d-flex align-items-center">
+					<span class="text-center w-100">Zoo Arcadia</span>
+					<!-- Centrage du titre -->
+				</div>
+			</div>
+		</nav>
+		<!-- Conteneur principal -->
+		<div class="container-fluid">
+			<div
+				class="row">
+				<!-- Barre latérale -->
+				<nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
+					<div class="position-sticky pt-3">
+						<h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-body-secondary text-uppercase">
+							<span>Utilisateur : Admin</span>
+						</h6>
+						<ul class="nav flex-column mb-auto">
+							<li
+								class="nav-item">
+								<!-- Lien vers l'index des établissements -->
+								<a class="nav-link d-flex align-items-center gap-2" href="{{ path('app_etablissement_index') }}">
+									<i class="fas fa-school"></i>
+									Etablissement
+								</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link d-flex align-items-center gap-2" href="{{ path('app_horaires_index') }}">
+									<i class="fas fa-clock"></i>
+									Horaires
+								</a>
+							</li>
+							<li
+								class="nav-item">
+								<!-- Lien vers l'index des utilisateurs -->
+								<a class="nav-link d-flex align-items-center gap-2" href="{{ path('app_users_index') }}">
+									<i class="fas fa-users"></i>
+									Utilisateurs
+								</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link d-flex align-items-center gap-2" href="{{ path('app_services_index') }}">
+									<i class="fas fa-concierge-bell"></i>
+									Services
+								</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link d-flex align-items-center gap-2" href="{{ path('app_habitats_index') }}">
+									<i class="fas fa-home"></i>
+									Habitats
+								</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link d-flex align-items-center gap-2" href="{{ path('app_commentaires_habitats_index') }}">
+									<i class="fas fa-comments"></i>
+									Commentaires Habitats
+								</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link d-flex align-items-center gap-2" href="{{ path('app_animaux_index') }}">
+									<i class="fas fa-dog"></i>
+									Animaux
+								</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link d-flex align-items-center gap-2" href="{{ path('app_nourriture_index') }}">
+									<i class="fas fa-utensils"></i>
+									Nourriture
+								</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link d-flex align-items-center gap-2" href="{{ path('app_comptes_rendus_index') }}">
+									<i class="fas fa-file-alt"></i>
+									Comptes rendus
+								</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link d-flex align-items-center gap-2" href="{{ path('app_avis_index') }}">
+									<i class="fas fa-star"></i>
+									Avis
+								</a>
+							</li>
+						</ul>
+
+						<hr class="my-3">
+
+						<ul class="nav flex-column mb-auto">
+							<li class="nav-item">
+								<a class="nav-link d-flex align-items-center gap-2" href="#">
+									<i class="fas fa-cog"></i>
+									Paramètres
+								</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link d-flex align-items-center gap-2" href="#">
+									<i class="fas fa-sign-out-alt"></i>
+									Déconnexion
+								</a>
+							</li>
+						</ul>
+					</div>
+				</nav>
+				<!-- Contenu principal -->
+				<main class="col-md-9 ms-sm-auto col-lg-10 px-md-4"> {% block body %}{% endblock %}
+					</main>
+				</div>
+			</div>
+			{% block javascripts %}
+				{{ encore_entry_script_tags('app') }}
+			{% endblock %}
+		</body>
+	</html>

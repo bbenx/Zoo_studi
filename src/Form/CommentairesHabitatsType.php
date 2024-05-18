@@ -34,11 +34,7 @@ class CommentairesHabitatsType extends AbstractType
             ])
             ->add('habitat', EntityType::class, [
                 'class' => Habitats::class,
-                'choice_label' => 'id',
-            ])
-            ->add('user', EntityType::class, [
-                'class' => Users::class,
-                'choice_label' => 'id',
+                'choice_label' => 'Nom',
             ]);
     }
 

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controller;
+namespace App\Controller\Admin;
 
 use App\Entity\Services;
 use App\Form\ServicesType;
@@ -12,10 +12,10 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 
-#[Route('/services')]
+#[Route('/admin')]
 class ServicesController extends AbstractController
 {
-    #[Route('/', name: 'app_services_index', methods: ['GET'])]
+    #[Route('/services', name: 'app_services_index', methods: ['GET'])]
     public function index(ServicesRepository $servicesRepository): Response
     {
         return $this->render('services/index.html.twig', [
@@ -23,7 +23,7 @@ class ServicesController extends AbstractController
         ]);
     }
 
-    #[Route('/new', name: 'app_services_new', methods: ['GET', 'POST'])]
+    #[Route('/services/new', name: 'app_services_new', methods: ['GET', 'POST'])]
     public function new(Request $request, EntityManagerInterface $entityManager): Response
     {
         $service = new Services();
@@ -46,7 +46,7 @@ class ServicesController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}', name: 'app_services_show', methods: ['GET'])]
+    #[Route('/services/{id}', name: 'app_services_show', methods: ['GET'])]
     public function show(Services $service): Response
     {
         return $this->render('services/show.html.twig', [
@@ -54,7 +54,7 @@ class ServicesController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}/edit', name: 'app_services_edit', methods: ['GET', 'POST'])]
+    #[Route('/services/{id}/edit', name: 'app_services_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Services $service, EntityManagerInterface $entityManager): Response
     {
         $form = $this->createForm(ServicesType::class, $service);
@@ -73,7 +73,7 @@ class ServicesController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}', name: 'app_services_delete', methods: ['POST'])]
+    #[Route('/services/{id}', name: 'app_services_delete', methods: ['POST'])]
     public function delete(Request $request, Services $service, EntityManagerInterface $entityManager): Response
     {
         if ($this->isCsrfTokenValid('delete' . $service->getId(), $request->getPayload()->get('_token'))) {

@@ -1,11 +1,16 @@
-{% extends 'base.html.twig' %}
+{% extends 'base_admin.html.twig' %}
 
-{% block title %}New Avis{% endblock %}
+{% block title %}Nouvel Avis
+{% endblock %}
 
 {% block body %}
-    <h1>Create new Avis</h1>
+	<div class="d-flex justify-content-between align-items-center mb-4">
+		<h1>Créer un nouvel avis</h1>
+		<a href="{{ path('app_avis_index') }}" class="btn btn-secondary">
+			<i class="fas fa-arrow-left"></i>
+			Retour à la liste
+		</a>
+	</div>
 
-    {{ include('avis/_form.html.twig') }}
-
-    <a href="{{ path('app_avis_index') }}">back to list</a>
+	{{ include('avis/_form.html.twig', {'button_label': 'Créer'}) }}
 {% endblock %}

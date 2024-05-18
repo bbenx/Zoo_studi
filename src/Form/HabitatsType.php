@@ -33,7 +33,7 @@ class HabitatsType extends AbstractType
             ])
             ->add('Etablissement', EntityType::class, [
                 'class' => Etablissement::class,
-                'choice_label' => 'id',
+                'choice_label' => 'nom',
             ]);
     }
 

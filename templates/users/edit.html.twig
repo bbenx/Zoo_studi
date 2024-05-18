@@ -1,14 +1,16 @@
-{% extends 'base.html.twig' %}
+{% extends 'base_admin.html.twig' %}
 
-{% block title %}Edit Users
+{% block title %}Modifier Utilisateur
 {% endblock %}
 
 {% block body %}
-	<h1>Edit Users</h1>
+	<div class="d-flex justify-content-between align-items-center mb-4">
+		<h1>Modifier utilisateur</h1>
+		<div class="d-flex">
+			<a href="{{ path('app_users_index') }}" class="btn btn-secondary mr-2">Retour à la liste</a>
+			{{ include('users/_delete_form.html.twig') }}
+		</div>
+	</div>
 
-	{{ include('users/_form.html.twig', {'button_label': 'Update'}) }}
-
-	<a href="{{ path('app_users_index') }}">back to list</a>
-
-	{{ include('users/_delete_form.html.twig') }}
+	{{ include('users/_form.html.twig', {'button_label': 'Mettre à jour'}) }}
 {% endblock %}

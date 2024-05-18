@@ -21,7 +21,7 @@ class Users
     private ?Etablissement $Etablissement = null;
 
     #[ORM\Column(length: 255)]
-    private ?string $memberType = null;
+    private ?string $role = null;
 
     #[ORM\Column(length: 255)]
     private ?string $email = null;
@@ -52,14 +52,14 @@ class Users
         return $this;
     }
 
-    public function getMemberType(): ?string
+    public function getRole(): ?string
     {
-        return $this->memberType;
+        return $this->role;
     }
 
-    public function setMemberType(string $memberType): static
+    public function setRole(string $role): static
     {
-        $this->memberType = $memberType;
+        $this->role = $role;
 
         return $this;
     }

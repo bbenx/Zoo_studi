@@ -1,47 +1,58 @@
-{% extends 'base.html.twig' %}
+{% extends 'base_admin.html.twig' %}
 
-{% block title %}ComptesRendus index{% endblock %}
+{% block title %}Comptes Rendus index
+{% endblock %}
 
 {% block body %}
-    <h1>ComptesRendus index</h1>
+	<div class="d-flex justify-content-between align-items-center mb-4">
+		<h1>Comptes Rendus</h1>
+		<a href="{{ path('app_comptes_rendus_new') }}" class="btn btn-success">
+			<i class="fas fa-plus"></i>
+			Ajouter un nouveau compte rendu
+		</a>
+	</div>
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>EtatAnimal</th>
-                <th>DetailEtat</th>
-                <th>TypeNourriture</th>
-                <th>GrammageNourriture</th>
-                <th>DatePassage</th>
-                <th>CreationDate</th>
-                <th>ModificationDate</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for comptes_rendu in comptes_renduses %}
-            <tr>
-                <td>{{ comptes_rendu.id }}</td>
-                <td>{{ comptes_rendu.EtatAnimal }}</td>
-                <td>{{ comptes_rendu.DetailEtat }}</td>
-                <td>{{ comptes_rendu.TypeNourriture }}</td>
-                <td>{{ comptes_rendu.GrammageNourriture }}</td>
-                <td>{{ comptes_rendu.DatePassage ? comptes_rendu.DatePassage|date('Y-m-d H:i:s') : '' }}</td>
-                <td>{{ comptes_rendu.creationDate ? comptes_rendu.creationDate|date('Y-m-d H:i:s') : '' }}</td>
-                <td>{{ comptes_rendu.modificationDate ? comptes_rendu.modificationDate|date('Y-m-d H:i:s') : '' }}</td>
-                <td>
-                    <a href="{{ path('app_comptes_rendus_show', {'id': comptes_rendu.id}) }}">show</a>
-                    <a href="{{ path('app_comptes_rendus_edit', {'id': comptes_rendu.id}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="9">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
-
-    <a href="{{ path('app_comptes_rendus_new') }}">Create new</a>
+	<table class="table table-striped">
+		<thead>
+			<tr>
+				<th>Id</th>
+				<th>Etat de l'animal</th>
+				<th>Détail de l'état</th>
+				<th>Type de nourriture</th>
+				<th>Grammage de nourriture</th>
+				<th>Date de passage</th>
+				<th>Date de création</th>
+				<th>Date de modification</th>
+				<th>Actions</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for comptes_rendu in comptes_rendus %}
+				<tr>
+					<td>{{ comptes_rendu.id }}</td>
+					<td>{{ comptes_rendu.EtatAnimal }}</td>
+					<td>{{ comptes_rendu.DetailEtat }}</td>
+					<td>{{ comptes_rendu.TypeNourriture }}</td>
+					<td>{{ comptes_rendu.GrammageNourriture }}</td>
+					<td>{{ comptes_rendu.DatePassage ? comptes_rendu.DatePassage|date('Y-m-d H:i:s') : '' }}</td>
+					<td>{{ comptes_rendu.creationDate ? comptes_rendu.creationDate|date('Y-m-d H:i:s') : '' }}</td>
+					<td>{{ comptes_rendu.modificationDate ? comptes_rendu.modificationDate|date('Y-m-d H:i:s') : '' }}</td>
+					<td>
+						<a href="{{ path('app_comptes_rendus_show', {'id': comptes_rendu.id}) }}" class="btn btn-info btn-sm mr-2">
+							<i class="fas fa-eye"></i>
+							Voir
+						</a>
+						<a href="{{ path('app_comptes_rendus_edit', {'id': comptes_rendu.id}) }}" class="btn btn-primary btn-sm">
+							<i class="fas fa-edit"></i>
+							Modifier
+						</a>
+					</td>
+				</tr>
+			{% else %}
+				<tr>
+					<td colspan="9">Aucun enregistrement trouvé</td>
+				</tr>
+			{% endfor %}
+		</tbody>
+	</table>
 {% endblock %}

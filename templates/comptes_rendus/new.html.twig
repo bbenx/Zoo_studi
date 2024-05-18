@@ -1,11 +1,16 @@
-{% extends 'base.html.twig' %}
+{% extends 'base_admin.html.twig' %}
 
-{% block title %}New ComptesRendus{% endblock %}
+{% block title %}Nouveau Compte Rendu
+{% endblock %}
 
 {% block body %}
-    <h1>Create new ComptesRendus</h1>
+	<div class="d-flex justify-content-between align-items-center mb-4">
+		<h1>Créer un nouveau compte rendu</h1>
+		<a href="{{ path('app_comptes_rendus_index') }}" class="btn btn-secondary">
+			<i class="fas fa-arrow-left"></i>
+			Retour à la liste
+		</a>
+	</div>
 
-    {{ include('comptes_rendus/_form.html.twig') }}
-
-    <a href="{{ path('app_comptes_rendus_index') }}">back to list</a>
+	{{ include('comptes_rendus/_form.html.twig', {'button_label': 'Créer'}) }}
 {% endblock %}

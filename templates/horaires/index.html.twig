@@ -1,17 +1,18 @@
-{% extends 'base.html.twig' %}
-
-{% block stylesheets %}
-	{{ parent() }}
-	<link rel="stylesheet" href="{{ asset('CSS/etablissement.css') }}">
-{% endblock %}
+{% extends 'base_admin.html.twig' %}
 
 {% block title %}Horaires index
 {% endblock %}
 
 {% block body %}
-	<h1>Horaires index</h1>
+	<div class="d-flex justify-content-between align-items-center mb-4">
+		<h1>Horaires</h1>
+		<a href="{{ path('app_horaires_new') }}" class="btn btn-success">
+			<i class="fas fa-plus"></i>
+			Ajouter un nouvel horaire
+		</a>
+	</div>
 
-	<table class="table">
+	<table class="table table-striped">
 		<thead>
 			<tr>
 				<th>Id</th>
@@ -22,9 +23,9 @@
 				<th>Vendredi</th>
 				<th>Samedi</th>
 				<th>Dimanche</th>
-				<th>CreationDate</th>
-				<th>ModificationDate</th>
-				<th>actions</th>
+				<th>Date de création</th>
+				<th>Date de modification</th>
+				<th>Actions</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -38,20 +39,24 @@
 					<td>{{ horaire.Vendredi }}</td>
 					<td>{{ horaire.Samedi }}</td>
 					<td>{{ horaire.Dimanche }}</td>
-					<td>{{ horaire.creationDate |date('Y-m-d H:i:s') }}</td>
+					<td>{{ horaire.creationDate ? horaire.creationDate|date('Y-m-d H:i:s') : '' }}</td>
 					<td>{{ horaire.modificationDate ? horaire.modificationDate|date('Y-m-d H:i:s') : '' }}</td>
 					<td>
-						<a href="{{ path('app_horaires_show', {'id': horaire.id}) }}">show</a>
-						<a href="{{ path('app_horaires_edit', {'id': horaire.id}) }}">edit</a>
+						<a href="{{ path('app_horaires_show', {'id': horaire.id}) }}" class="btn btn-info btn-sm mr-2">
+							<i class="fas fa-eye"></i>
+							Voir
+						</a>
+						<a href="{{ path('app_horaires_edit', {'id': horaire.id}) }}" class="btn btn-primary btn-sm">
+							<i class="fas fa-edit"></i>
+							Modifier
+						</a>
 					</td>
 				</tr>
 			{% else %}
 				<tr>
-					<td colspan="11">no records found</td>
+					<td colspan="11">Aucun enregistrement trouvé</td>
 				</tr>
 			{% endfor %}
 		</tbody>
 	</table>
-
-	<a href="{{ path('app_horaires_new') }}">Create new</a>
 {% endblock %}

@@ -1,50 +1,59 @@
-{% extends 'base.html.twig' %}
+{% extends 'base_admin.html.twig' %}
 
-{% block title %}ComptesRendus{% endblock %}
+{% block title %}ComptesRendus
+{% endblock %}
 
 {% block body %}
-    <h1>ComptesRendus</h1>
+	<div class="d-flex justify-content-between align-items-center mb-4">
+		<h1>Comptes Rendus</h1>
+		<div class="d-flex">
+			<a href="{{ path('app_comptes_rendus_edit', {'id': comptes_rendu.id}) }}" class="btn btn-primary mr-2">
+				<i class="fas fa-edit"></i>
+				Modifier
+			</a>
+			{{ include('comptes_rendus/_delete_form.html.twig') }}
+		</div>
+	</div>
 
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ comptes_rendu.id }}</td>
-            </tr>
-            <tr>
-                <th>EtatAnimal</th>
-                <td>{{ comptes_rendu.EtatAnimal }}</td>
-            </tr>
-            <tr>
-                <th>DetailEtat</th>
-                <td>{{ comptes_rendu.DetailEtat }}</td>
-            </tr>
-            <tr>
-                <th>TypeNourriture</th>
-                <td>{{ comptes_rendu.TypeNourriture }}</td>
-            </tr>
-            <tr>
-                <th>GrammageNourriture</th>
-                <td>{{ comptes_rendu.GrammageNourriture }}</td>
-            </tr>
-            <tr>
-                <th>DatePassage</th>
-                <td>{{ comptes_rendu.DatePassage ? comptes_rendu.DatePassage|date('Y-m-d H:i:s') : '' }}</td>
-            </tr>
-            <tr>
-                <th>CreationDate</th>
-                <td>{{ comptes_rendu.creationDate ? comptes_rendu.creationDate|date('Y-m-d H:i:s') : '' }}</td>
-            </tr>
-            <tr>
-                <th>ModificationDate</th>
-                <td>{{ comptes_rendu.modificationDate ? comptes_rendu.modificationDate|date('Y-m-d H:i:s') : '' }}</td>
-            </tr>
-        </tbody>
-    </table>
+	<table class="table">
+		<tbody>
+			<tr>
+				<th>Id</th>
+				<td>{{ comptes_rendu.id }}</td>
+			</tr>
+			<tr>
+				<th>Etat de l'animal</th>
+				<td>{{ comptes_rendu.EtatAnimal }}</td>
+			</tr>
+			<tr>
+				<th>Détail de l'état</th>
+				<td>{{ comptes_rendu.DetailEtat }}</td>
+			</tr>
+			<tr>
+				<th>Type de nourriture</th>
+				<td>{{ comptes_rendu.TypeNourriture }}</td>
+			</tr>
+			<tr>
+				<th>Grammage de nourriture</th>
+				<td>{{ comptes_rendu.GrammageNourriture }}</td>
+			</tr>
+			<tr>
+				<th>Date de passage</th>
+				<td>{{ comptes_rendu.DatePassage ? comptes_rendu.DatePassage|date('Y-m-d H:i:s') : '' }}</td>
+			</tr>
+			<tr>
+				<th>Date de création</th>
+				<td>{{ comptes_rendu.creationDate ? comptes_rendu.creationDate|date('Y-m-d H:i:s') : '' }}</td>
+			</tr>
+			<tr>
+				<th>Date de modification</th>
+				<td>{{ comptes_rendu.modificationDate ? comptes_rendu.modificationDate|date('Y-m-d H:i:s') : '' }}</td>
+			</tr>
+		</tbody>
+	</table>
 
-    <a href="{{ path('app_comptes_rendus_index') }}">back to list</a>
-
-    <a href="{{ path('app_comptes_rendus_edit', {'id': comptes_rendu.id}) }}">edit</a>
-
-    {{ include('comptes_rendus/_delete_form.html.twig') }}
+	<a href="{{ path('app_comptes_rendus_index') }}" class="btn btn-secondary mt-3">
+		<i class="fas fa-arrow-left"></i>
+		Retour à la liste
+	</a>
 {% endblock %}
