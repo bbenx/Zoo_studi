@@ -7,14 +7,17 @@ use App\Form\ComptesRendusType;
 use App\Repository\ComptesRendusRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\ExpressionLanguage\Expression;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Http\Attribute\IsGranted;
 
 #[Route('/admin')]
 class ComptesRendusController extends AbstractController
 {
     #[Route('/comptes/rendus', name: 'app_comptes_rendus_index', methods: ['GET'])]
+    #[IsGranted(new Expression('is_granted("ROLE_VETERINAIRE") or is_granted("ROLE_ADMIN")'))]
     public function index(ComptesRendusRepository $comptesRendusRepository): Response
     {
         return $this->render('comptes_rendus/index.html.twig', [
