@@ -7,11 +7,14 @@ use App\Form\AnimauxType;
 use App\Repository\AnimauxRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\ExpressionLanguage\Expression;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
+use Symfony\Component\Security\Http\Attribute\IsGranted;
 
 #[Route('admin')]
+#[IsGranted(new Expression('is_granted("ROLE_ADMIN") or is_granted("ROLE_EMPLOYE") or is_granted ("ROLE_VETERINAIRE")'))]
 class AnimauxController extends AbstractController
 {
     #[Route('/animaux', name: 'app_animaux_index', methods: ['GET'])]
