@@ -1,48 +1,75 @@
 {% extends 'base_admin.html.twig' %}
 
-{% block title %}Habitats
-{% endblock %}
+{% block title %}Habitats{% endblock %}
 
 {% block body %}
-	<div class="d-flex justify-content-between align-items-center mb-4">
-		<h1>Habitats</h1>
-		<div class="d-flex">
-			<a href="{{ path('app_habitats_edit', {'id': habitat.id}) }}" class="btn btn-primary mr-2">
-				<i class="fas fa-edit"></i>
-				Modifier
-			</a>
-			{{ include('habitats/_delete_form.html.twig') }}
-		</div>
-	</div>
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h1>Habitats</h1>
+        <div class="d-flex">
+            <a href="{{ path('app_habitats_edit', {'id': habitat.id}) }}" class="btn btn-primary mr-2">
+                <i class="fas fa-edit"></i>
+                Modifier
+            </a>
+            {{ include('habitats/_delete_form.html.twig') }}
+        </div>
+    </div>
 
-	<table class="table">
-		<tbody>
-			<tr>
-				<th>Id</th>
-				<td>{{ habitat.id }}</td>
-			</tr>
-			<tr>
-				<th>Nom</th>
-				<td>{{ habitat.nom }}</td>
-			</tr>
-			<tr>
-				<th>Description</th>
-				<td>{{ habitat.description }}</td>
-			</tr>
-			<tr>
-				<th>Images</th>
-				<td>{{ habitat.images ? habitat.images|json_encode : '' }}</td>
-			</tr>
-			<tr>
-				<th>Date de création</th>
-				<td>{{ habitat.creationDate ? habitat.creationDate|date('Y-m-d H:i:s') : '' }}</td>
-			</tr>
-			<tr>
-				<th>Date de modification</th>
-				<td>{{ habitat.modificationDate ? habitat.modificationDate|date('Y-m-d H:i:s') : '' }}</td>
-			</tr>
-		</tbody>
-	</table>
-
-	<a href="{{ path('app_habitats_index') }}" class="btn btn-secondary mt-3">Retour à la liste</a>
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ habitat.id }}</td>
+            </tr>
+            <tr>
+                <th>Nom</th>
+                <td>{{ habitat.nom }}</td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>{{ habitat.description }}</td>
+            </tr>
+            <tr>
+                <th>Images</th>
+                <td>{{ habitat.images ? habitat.images|json_encode : '' }}</td>
+            </tr>
+            <tr>
+                <th>Date de création</th>
+                <td>{{ habitat.creationDate ? habitat.creationDate|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Date de modification</th>
+                <td>{{ habitat.modificationDate ? habitat.modificationDate|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+        </tbody>
+    </table>
+    <a href="{{ path('app_habitats_index') }}" class="btn btn-secondary mt-3">Retour à la liste</a>
+	<br>
+	<br>	
+    <h2>Commentaires :</h2>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th class="comment-column">Avis</th>
+                <th>Etat</th>
+                <th>Amélioration</th>
+                <th>Date de création</th>
+                <th>Date de modification</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for commentaire_habitat in commentaires|reverse %}
+                <tr>
+                    <td class="comment-column">{{ commentaire_habitat.avis }}</td>
+                    <td>{{ commentaire_habitat.etat|capitalize }}</td>
+                    <td>{{ commentaire_habitat.amelioration|capitalize }}</td>
+                    <td>{{ commentaire_habitat.creationDate ? commentaire_habitat.creationDate|date('Y-m-d H:i:s') : '' }}</td>
+                    <td>{{ commentaire_habitat.modificationDate ? commentaire_habitat.modificationDate|date('Y-m-d H:i:s') : '' }}</td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="7">Aucun commentaire trouvé</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
 {% endblock %}

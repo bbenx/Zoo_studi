@@ -26,6 +26,7 @@ class ComptesRendusController extends AbstractController
     }
 
     #[Route('/comptes/rendus/new', name: 'app_comptes_rendus_new', methods: ['GET', 'POST'])]
+    #[IsGranted ('ROLE_VETERINAIRE')]
     public function new(Request $request, EntityManagerInterface $entityManager): Response
     {
         $comptesRendu = new ComptesRendus();

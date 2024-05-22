@@ -18,16 +18,19 @@
 {% block body %}
 	<div class="d-flex justify-content-between align-items-center mb-4">
 		<h1>Commentaires Habitats</h1>
+		{% if is_granted('ROLE_VETERINAIRE')%}
 		<a href="{{ path('app_commentaires_habitats_new') }}" class="btn btn-success">
 			<i class="fas fa-plus"></i>
 			Ajouter un nouveau commentaire
 		</a>
+		{% endif %}
 	</div>
 
 	<table class="table table-striped">
 		<thead>
 			<tr>
 				<th>Id</th>
+				<th>Habitat</th>
 				<th class="comment-column">Avis</th>
 				<th>Etat</th>
 				<th>Amélioration</th>
@@ -40,9 +43,10 @@
 			{% for commentaires_habitat in commentaires_habitats %}
 				<tr>
 					<td>{{ commentaires_habitat.id }}</td>
+					<td>{{ commentaires_habitat.habitat.nom }}</td>
 					<td class="comment-column">{{ commentaires_habitat.avis }}</td>
-					<td>{{ commentaires_habitat.etat }}</td>
-					<td>{{ commentaires_habitat.amelioration }}</td>
+					<td>{{ commentaires_habitat.etat|capitalize }}</td>
+					<td>{{ commentaires_habitat.amelioration|capitalize }}</td>
 					<td>{{ commentaires_habitat.creationDate ? commentaires_habitat.creationDate|date('Y-m-d H:i:s') : '' }}</td>
 					<td>{{ commentaires_habitat.modificationDate ? commentaires_habitat.modificationDate|date('Y-m-d H:i:s') : '' }}</td>
 					<td>
@@ -50,10 +54,12 @@
 							<i class="fas fa-eye"></i>
 							Voir
 						</a>
+					{% if is_granted('ROLE_VETERINAIRE')%}
 						<a href="{{ path('app_commentaires_habitats_edit', {'id': commentaires_habitat.id}) }}" class="btn btn-primary btn-sm">
 							<i class="fas fa-edit"></i>
 							Modifier
 						</a>
+					{% endif %}
 					</td>
 				</tr>
 			{% else %}

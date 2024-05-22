@@ -1,62 +1,61 @@
 {% extends 'base_admin.html.twig' %}
 
-{% block title %}Horaires index
-{% endblock %}
+{% block title %}Horaires index{% endblock %}
 
 {% block body %}
-	<div class="d-flex justify-content-between align-items-center mb-4">
-		<h1>Horaires</h1>
-		<a href="{{ path('app_horaires_new') }}" class="btn btn-success">
-			<i class="fas fa-plus"></i>
-			Ajouter un nouvel horaire
-		</a>
-	</div>
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h1 class="align-middle">Horaires</h1>
+    <a href="{{ path('app_horaires_new') }}" class="btn btn-success">
+        <i class="fas fa-plus"></i>
+        Ajouter un nouvel horaire
+    </a>
+</div>
 
-	<table class="table table-striped">
-		<thead>
-			<tr>
-				<th>Id</th>
-				<th>Lundi</th>
-				<th>Mardi</th>
-				<th>Mercredi</th>
-				<th>Jeudi</th>
-				<th>Vendredi</th>
-				<th>Samedi</th>
-				<th>Dimanche</th>
-				<th>Date de création</th>
-				<th>Date de modification</th>
-				<th>Actions</th>
-			</tr>
-		</thead>
-		<tbody>
-			{% for horaire in horaires %}
-				<tr>
-					<td>{{ horaire.id }}</td>
-					<td>{{ horaire.Lundi }}</td>
-					<td>{{ horaire.Mardi }}</td>
-					<td>{{ horaire.Mercredi }}</td>
-					<td>{{ horaire.Jeudi }}</td>
-					<td>{{ horaire.Vendredi }}</td>
-					<td>{{ horaire.Samedi }}</td>
-					<td>{{ horaire.Dimanche }}</td>
-					<td>{{ horaire.creationDate ? horaire.creationDate|date('Y-m-d H:i:s') : '' }}</td>
-					<td>{{ horaire.modificationDate ? horaire.modificationDate|date('Y-m-d H:i:s') : '' }}</td>
-					<td>
-						<a href="{{ path('app_horaires_show', {'id': horaire.id}) }}" class="btn btn-info btn-sm mr-2">
-							<i class="fas fa-eye"></i>
-							Voir
-						</a>
-						<a href="{{ path('app_horaires_edit', {'id': horaire.id}) }}" class="btn btn-primary btn-sm">
-							<i class="fas fa-edit"></i>
-							Modifier
-						</a>
-					</td>
-				</tr>
-			{% else %}
-				<tr>
-					<td colspan="11">Aucun enregistrement trouvé</td>
-				</tr>
-			{% endfor %}
-		</tbody>
-	</table>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th class="align-middle">Id</th>
+            <th class="align-middle">Lundi</th>
+            <th class="align-middle">Mardi</th>
+            <th class="align-middle">Mercredi</th>
+            <th class="align-middle">Jeudi</th>
+            <th class="align-middle">Vendredi</th>
+            <th class="align-middle">Samedi</th>
+            <th class="align-middle">Dimanche</th>
+            <th class="align-middle">Date de création</th>
+            <th class="align-middle">Date de modification</th>
+            <th class="align-middle">Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for horaire in horaires %}
+        <tr>
+            <td>{{ horaire.id }}</td>
+            <td>{{ horaire.Lundi }}</td>
+            <td>{{ horaire.Mardi }}</td>
+            <td>{{ horaire.Mercredi }}</td>
+            <td>{{ horaire.Jeudi }}</td>
+            <td>{{ horaire.Vendredi }}</td>
+            <td>{{ horaire.Samedi }}</td>
+            <td>{{ horaire.Dimanche }}</td>
+            <td>{{ horaire.creationDate ? horaire.creationDate|date('Y-m-d H:i:s') : '' }}</td>
+            <td>{{ horaire.modificationDate ? horaire.modificationDate|date('Y-m-d H:i:s') : '' }}</td>
+            <td>
+                <a href="{{ path('app_horaires_show', {'id': horaire.id}) }}" class="btn btn-info btn-sm">
+                    <i class="fas fa-eye"></i>
+                    Voir
+                </a>
+                <a href="{{ path('app_horaires_edit', {'id': horaire.id}) }}" class="btn btn-primary btn-sm">
+                    <i class="fas fa-edit"></i>
+                    Modifier
+                </a>
+            </td>
+        </tr>
+        {% else %}
+        <tr>
+            <td colspan="11">Aucun enregistrement trouvé</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
 {% endblock %}

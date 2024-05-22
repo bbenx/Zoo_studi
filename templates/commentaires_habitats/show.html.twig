@@ -7,12 +7,17 @@
 	<div class="d-flex justify-content-between align-items-center mb-4">
 		<h1>Commentaires Habitats</h1>
 		<div class="d-flex">
+			{% if is_granted('ROLE_VETERINAIRE')%}
 			<a href="{{ path('app_commentaires_habitats_edit', {'id': commentaires_habitat.id}) }}" class="btn btn-primary mr-2">
 				<i class="fas fa-edit"></i>
 				Modifier
 			</a>
+			{% endif %}
+			{# {% if is_granted('ROLE_ADMIN')%}
 			{{ include('commentaires_habitats/_delete_form.html.twig') }}
+			{% endif %} #}
 		</div>
+		
 	</div>
 
 	<table class="table">
@@ -22,16 +27,20 @@
 				<td>{{ commentaires_habitat.id }}</td>
 			</tr>
 			<tr>
+				<th>Habitat</th>
+				<td>{{ commentaires_habitat.habitat.nom }}</td>
+				</tr>
+			<tr>
 				<th>Avis</th>
 				<td>{{ commentaires_habitat.avis }}</td>
 			</tr>
 			<tr>
 				<th>État</th>
-				<td>{{ commentaires_habitat.etat }}</td>
+				<td>{{ commentaires_habitat.etat|capitalize }}</td>
 			</tr>
 			<tr>
 				<th>Amélioration</th>
-				<td>{{ commentaires_habitat.amelioration }}</td>
+				<td>{{ commentaires_habitat.amelioration|capitalize }}</td>
 			</tr>
 			<tr>
 				<th>Date de création</th>
