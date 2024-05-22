@@ -23,6 +23,7 @@ class AvisController extends AbstractController
     }
 
     #[Route('/avis/new', name: 'app_avis_new', methods: ['GET', 'POST'])]
+    #[IsGranted("ROLE_EMPLOYE")]
     public function new(Request $request, EntityManagerInterface $entityManager): Response
     {
         $avi = new Avis();
