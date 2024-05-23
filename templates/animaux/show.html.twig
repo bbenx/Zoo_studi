@@ -67,7 +67,7 @@
                     <td>{{ comptes_rendu.DetailEtat }}</td>
                     <td>{{ comptes_rendu.TypeNourriture }}</td>
 					<td>{{ comptes_rendu.GrammageNourriture }}</td>
-					<td>{{ comptes_rendu.DatePassage ? comptes_rendu.DatePassage|date('Y-m-d H:i:s') : '' }}</td>
+					<td>{{ comptes_rendu.DatePassage ? comptes_rendu.DatePassage|date('d-m-Y H:i:s') : '' }}</td>
                 </tr>
             {% else %}
                 <tr>

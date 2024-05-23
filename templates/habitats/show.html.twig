@@ -34,11 +34,11 @@
             </tr>
             <tr>
                 <th>Date de création</th>
-                <td>{{ habitat.creationDate ? habitat.creationDate|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ habitat.creationDate ? habitat.creationDate|date('d-m-Y H:i:s') : '' }}</td>
             </tr>
             <tr>
                 <th>Date de modification</th>
-                <td>{{ habitat.modificationDate ? habitat.modificationDate|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ habitat.modificationDate ? habitat.modificationDate|date('d-m-Y H:i:s') : '' }}</td>
             </tr>
         </tbody>
     </table>
@@ -65,8 +65,8 @@
                     <td class="comment-column">{{ commentaire_habitat.avis }}</td>
                     <td>{{ commentaire_habitat.etat|capitalize }}</td>
                     <td>{{ commentaire_habitat.amelioration|capitalize }}</td>
-                    <td>{{ commentaire_habitat.creationDate ? commentaire_habitat.creationDate|date('Y-m-d H:i:s') : '' }}</td>
-                    <td>{{ commentaire_habitat.modificationDate ? commentaire_habitat.modificationDate|date('Y-m-d H:i:s') : '' }}</td>
+                    <td>{{ commentaire_habitat.creationDate ? commentaire_habitat.creationDate|date('d-m-Y H:i:s') : '' }}</td>
+                    <td>{{ commentaire_habitat.modificationDate ? commentaire_habitat.modificationDate|date('d-m-Y H:i:s') : '' }}</td>
                 </tr>
             {% else %}
                 <tr>
