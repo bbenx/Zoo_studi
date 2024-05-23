@@ -2,52 +2,6 @@
 
 {% block title %}Commentaires Habitats Index{% endblock %}
 
-{% block stylesheets %}
-    {{ parent() }}
-    <style>
-        body {
-            background-color: #f0f9f0; /* Vert très clair pour le fond */
-        }
-        .table {
-            border-color: #b3ddb3; /* Bordure verte pâle */
-        }
-        .table thead {
-            background-color: #4caf50; /* Vert pour l'en-tête */
-            color: white; /* Texte blanc */
-        }
-        .table tbody tr {
-            background-color: #e8f5e9; /* Vert très pâle pour les lignes */
-        }
-        .table tbody tr:nth-child(odd) {
-            background-color: #c8e6c9; /* Vert pâle pour les lignes impaires */
-        }
-        .table tbody tr:hover {
-            background-color: #a5d6a7; /* Vert plus foncé au survol */
-        }
-        .btn-success {
-            background-color: #4caf50; /* Vert pour les boutons de succès */
-            border-color: #4caf50;
-        }
-        .btn-info {
-            background-color: #8bc34a; /* Vert clair pour les boutons d'info */
-            border-color: #8bc34a;
-        }
-        .btn-primary {
-            background-color: #388e3c; /* Vert foncé pour les boutons primaires */
-            border-color: #388e3c;
-        }
-        .btn {
-            color: white; /* Texte blanc pour tous les boutons */
-        }
-        .comment-column {
-            max-width: 200px; /* Ajustez cette valeur selon vos besoins */
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-        }
-    </style>
-{% endblock %}
-
 {% block body %}
     <div class="d-flex justify-content-between align-items-center mb-4">
         <h1>Commentaires Habitats</h1>

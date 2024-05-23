@@ -37,9 +37,9 @@
             <td class="align-middle">{{ comptes_rendu.DetailEtat }}</td>
             <td class="align-middle">{{ comptes_rendu.TypeNourriture }}</td>
             <td class="align-middle">{{ comptes_rendu.GrammageNourriture }}</td>
-            <td class="align-middle">{{ comptes_rendu.DatePassage ? comptes_rendu.DatePassage|date('Y-m-d H:i:s') : '' }}</td>
-            <td class="align-middle">{{ comptes_rendu.creationDate ? comptes_rendu.creationDate|date('Y-m-d H:i:s') : '' }}</td>
-            <td class="align-middle">{{ comptes_rendu.modificationDate ? comptes_rendu.modificationDate|date('Y-m-d H:i:s') : '' }}</td>
+            <td class="align-middle">{{ comptes_rendu.DatePassage ? comptes_rendu.DatePassage|date('d-m-Y H:i:s') : '' }}</td>
+            <td class="align-middle">{{ comptes_rendu.creationDate ? comptes_rendu.creationDate|date('d-m-Y H:i:s') : '' }}</td>
+            <td class="align-middle">{{ comptes_rendu.modificationDate ? comptes_rendu.modificationDate|date('d-m-Y H:i:s') : '' }}</td>
             <td class="align-middle">
                 <a href="{{ path('app_comptes_rendus_show', {'id': comptes_rendu.id}) }}" class="btn btn-info btn-sm mr-2">
                     <i class="fas fa-eye"></i>

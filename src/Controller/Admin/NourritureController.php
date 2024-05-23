@@ -17,7 +17,7 @@ class NourritureController extends AbstractController
 {
     #[Route('/nourriture', name: 'app_nourriture_index', methods: ['GET'])]
     #[IsGranted('ROLE_EMPLOYE')]
-    public function index(NourritureRepository $nourritureRepository): Response
+    public function index(nourritureRepository $nourritureRepository): Response
     {
         return $this->render('nourriture/index.html.twig', [
             'nourritures' => $nourritureRepository->findAll(),

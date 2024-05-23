@@ -20,6 +20,10 @@ class ComptesRendusType extends AbstractType
         ->add('Animal', EntityType::class, [
             'class' => Animaux::class,
             'choice_label' => 'Prenom',
+            'query_builder' => function (\Doctrine\ORM\EntityRepository $er) {
+                return $er->createQueryBuilder('a')
+                    ->orderBy('a.Prenom', 'ASC');
+            }
             ])
             ->add('EtatAnimal')
             ->add('DetailEtat', TextareaType::class,[

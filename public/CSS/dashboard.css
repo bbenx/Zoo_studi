@@ -8,6 +8,15 @@
  * Sidebar
  */
 
+/* Barre latérale */
+#sidebarMenu {
+  height: 100vh; /* Définit la hauteur de la barre latérale à 100% de la hauteur de la fenêtre */
+}
+
+.position-sticky {
+  top: 0; /* Pour que la barre latérale reste fixée en haut même lors du défilement */
+}
+
 @media (min-width: 768px) {
   .sidebar .offcanvas-lg {
     position: -webkit-sticky;
@@ -19,22 +28,37 @@
   }
 }
 
+.sidebar {
+  background-color: #f0f9f0; /* Vert très pâle pour la barre latérale */
+  border-right: 1px solid #b3ddb3; /* Bordure verte pâle */
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 100; /* Assurez-vous qu'elle est au-dessus du contenu principal */
+  padding: 48px 0; /* Ajustez le rembourrage comme vous le souhaitez */
+  box-shadow: inset -1px 0 0 rgba(0, 0, 0, 0.1);
+}
+
 .sidebar .nav-link {
   font-size: .875rem;
   font-weight: 500;
-  color: #2470dc; /* Couleur des liens par défaut */
+  color: #388e3c; /* Vert foncé pour les liens de la barre latérale */
 }
 
 .sidebar .nav-link:hover {
-  text-decoration: underline;
+  background-color: #a5d6a7; /* Vert plus foncé au survol */
+  color: white; /* Texte blanc au survol */
 }
 
 .sidebar .nav-link.active {
-  color: blueviolet; /* Couleur des liens actifs */
+  color: #2e7d32; /* Vert encore plus foncé pour les liens actifs */
 }
 
 .sidebar-heading {
   font-size: .75rem;
+  font-weight: bold;
+  color: #2e7d32; /* Vert foncé pour les titres de section */
 }
 
 /*
@@ -44,7 +68,7 @@
 .navbar-brand {
   padding-top: .75rem;
   padding-bottom: .75rem;
-  background-color: rgba(0, 0, 0, .25);
+  background-color: inset -1px 0 0 rgba(0, 0, 0, .25);; /* Vert pour la barre de navigation */
   box-shadow: inset -1px 0 0 rgba(0, 0, 0, .25);
 }
 
@@ -55,4 +79,104 @@
 .comment-column {
   white-space: normal; /* Permet au texte de s'afficher sur plusieurs lignes */
   word-wrap: break-word; /* Permet de couper les mots trop longs */
+}
+
+/*
+ * Buttons
+ */
+
+./* Couleur pour le bouton success en accord avec le thème de l'écologie */
+.btn-success {
+  background-color: #8BC34A; /* Light Green */
+  border-color: #8BC34A;
+}
+.btn-success:hover {
+  background-color: rgb(11, 236, 30); /* Darker Green */
+  border-color: white;
+  color: black; /* Texte noir pour un bon contraste */
+}
+
+/* Couleur pour le bouton info en accord avec le thème de l'écologie */
+.btn-info {
+  background-color: #009688; /* Teal */
+  border-color: #009688;
+}
+.btn-info:hover {
+  background-color: #A5D6A7; /* Lighter Teal */
+  border-color: #A5D6A7;
+}
+
+/* Couleur pour le bouton primary en accord avec le thème de l'écologie */
+.btn-primary {
+  background-color: #4CAF50; /* Green */
+  border-color: #4CAF50;
+}
+.btn-primary:hover {
+  background-color: #FFEB3B; /* Yellow */
+  border-color: #FFEB3B;
+  color: black; /* Texte noir pour un bon contraste */
+}
+
+/* Couleur pour le bouton secondary en accord avec le thème de l'écologie */
+.btn-secondary {
+  background-color: #8ac2aa; /* Green */
+  border-color: #8ac2aa;
+}
+.btn-secondary:hover {
+  background-color: #8ac2aa; /* Green */
+  color: black; /* Texte noir pour un bon contraste */
+}
+
+
+.btn-danger {
+  background-color: #FF7043; /* Deep Orange */
+  border-color: #FF7043;
+}
+.btn-danger:hover {
+  background-color: #e61919; /* Dark Deep Orange */
+  border-color: #e61919;
+}
+
+.btn {
+  color: white; /* Texte blanc pour tous les boutons */
+}
+
+/*
+ * Other styles
+ */
+
+hr {
+  border-color: #b3ddb3; /* Bordure verte pâle pour les lignes de séparation */
+}
+
+body {
+  background-color: #f0f9f0; /* Vert très clair pour le fond */
+}
+
+/*
+ * tables
+ */
+.table {
+  border-color: #b3ddb3; /* Bordure verte pâle */
+}
+.table thead {
+  background-color: #4caf50; /* Vert pour l'en-tête */
+  color: white; /* Texte blanc */
+}
+.table tbody tr {
+  background-color: #e8f5e9; /* Vert très pâle pour les lignes */
+}
+.table tbody tr:nth-child(odd) {
+  background-color: #c8e6c9; /* Vert pâle pour les lignes impaires */
+}
+.table tbody tr:hover {
+  background-color: #a5d6a7; /* Vert plus foncé au survol */
+}
+
+
+.comment-column {
+  max-width: 200px; 
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }

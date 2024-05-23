@@ -6,6 +6,7 @@ use App\Entity\Animaux;
 use App\Form\AnimauxType;
 use App\Repository\AnimauxRepository;
 use App\Repository\ComptesRendusRepository;
+use App\Repository\NourritureRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\ExpressionLanguage\Expression;
@@ -49,10 +50,9 @@ class AnimauxController extends AbstractController
     }
 
     #[Route('/animaux/{id}', name: 'app_animaux_show', methods: ['GET'])]
-    public function show(Animaux $animaux, ComptesRendusRepository $comptesRendusRepository): Response
+    public function show(Animaux $animaux, ComptesRendusRepository $comptesRendusRepository,): Response
     {
         $comptesRendus = $comptesRendusRepository->findBy(['Animal' => $animaux], ['creationDate' => 'DESC']);
-
         return $this->render('animaux/show.html.twig', [
             'animaux' => $animaux,
             'comptes_rendus' => $comptesRendus,
