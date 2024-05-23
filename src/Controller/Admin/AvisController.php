@@ -19,34 +19,38 @@ class AvisController extends AbstractController
     #[IsGranted("ROLE_EMPLOYE")]
     public function index(AvisRepository $avisRepository): Response
     {
+        $avisAValider = $avisRepository->findBy(['statut' => 'en attente']);
+        $avisValides = $avisRepository->findBy(['valide' => true]);
+
         return $this->render('avis/index.html.twig', [
-            'avis' => $avisRepository->findAll(),
+            'avisAValider' => $avisAValider,
+            'avisValides' => $avisValides,
         ]);
     }
 
-    #[Route('/avis/new', name: 'app_avis_new', methods: ['GET', 'POST'])]
-    #[IsGranted('ROLE_EMPLOYE')]
-    public function new(Request $request, EntityManagerInterface $entityManager): Response
-    {
-        $avi = new Avis();
-        $avi->setCreationDate(new \DateTimeImmutable());
-        $avi->setModificationDate(new \DateTime());
+    // #[Route('/avis/new', name: 'app_avis_new', methods: ['GET', 'POST'])]
+    // #[IsGranted('ROLE_EMPLOYE')]
+    // public function new(Request $request, EntityManagerInterface $entityManager): Response
+    // {
+    //     $avi = new Avis();
+    //     $avi->setCreationDate(new \DateTimeImmutable());
+    //     $avi->setModificationDate(new \DateTime());
 
-        $form = $this->createForm(AvisType::class, $avi);
-        $form->handleRequest($request);
+    //     $form = $this->createForm(AvisType::class, $avi);
+    //     $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            $entityManager->persist($avi);
-            $entityManager->flush();
+    //     if ($form->isSubmitted() && $form->isValid()) {
+    //         $entityManager->persist($avi);
+    //         $entityManager->flush();
 
-            return $this->redirectToRoute('app_avis_index', [], Response::HTTP_SEE_OTHER);
-        }
+    //         return $this->redirectToRoute('app_avis_index', [], Response::HTTP_SEE_OTHER);
+    //     }
 
-        return $this->render('avis/new.html.twig', [
-            'avi' => $avi,
-            'form' => $form,
-        ]);
-    }
+    //     return $this->render('avis/new.html.twig', [
+    //         'avi' => $avi,
+    //         'form' => $form,
+    //     ]);
+    // }
 
     #[Route('/avis/{id}', name: 'app_avis_show', methods: ['GET'])]
     #[IsGranted('ROLE_EMPLOYE')]
@@ -88,4 +92,16 @@ class AvisController extends AbstractController
 
         return $this->redirectToRoute('app_avis_index', [], Response::HTTP_SEE_OTHER);
     }
+
+    // #[Route('/avis/{id}/valider', name: 'app_avis_valider', methods: ['POST'])]
+    // #[IsGranted('ROLE_EMPLOYE')]
+    // public function valider(Request $request, Avis $avis, EntityManagerInterface $entityManager): Response
+    // {
+    //     if ($this->isCsrfTokenValid('valider' . $avis->getId(), $request->request->get('_token'))) {
+    //         $avis->setValide(true);
+    //         $entityManager->flush();
+    //     }
+
+    //     return $this->redirectToRoute('app_avis_index', [], Response::HTTP_SEE_OTHER);
+    // }
 }

@@ -8,11 +8,11 @@
     <link rel="stylesheet" href="{{ asset('CSS/home.css') }}">
     <style>
         .navbar-custom {
-            background-color: #d1e8e2; /* Light green to match the logo background */
+            background-color: #d1e8e2;
             transition: background-color 0.5s ease;
         }
         .navbar-custom.scrolled {
-            background-color: #d1e8e2; /* Keeping it consistent on scroll */
+            background-color: #d1e8e2;
         }
         .navbar-custom .navbar-brand img {
             max-height: 40px;
@@ -25,33 +25,45 @@
             font-size: 1.5em;
         }
         .navbar-custom .navbar-nav .nav-link {
-            color: #343a40; /* Dark grey text */
+            color: #343a40;
             font-size: 1.2em;
         }
         .navbar-custom .navbar-nav .nav-link.auth-button {
-            background-color: #ffc107; /* Yellow button */
+            background-color: #ffc107;
             border-color: #ffc107;
-            color: #343a40; /* Dark grey text */
+            color: #343a40;
             border-radius: .25rem;
             padding: .5rem 1rem;
         }
         .navbar-custom .navbar-nav .nav-link.auth-button:hover {
-            background-color: #e0a800; /* Darker yellow on hover */
+            background-color: #e0a800;
             border-color: #e0a800;
         }
 
+        .flash-message {
+            width: 60%;
+            text-align: center;
+            margin: auto;
+            position: fixed;
+            bottom: 50px; /* Ajustez cette valeur selon vos préférences */
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 100;
+            display: none;
+        }
+
         .hero-section {
-            background-image: url('/path/to/your/banner-image.jpg'); /* Change this URL to your banner image */
+            background-image: url('/path/to/your/banner-image.jpg');
             background-size: cover;
             background-position: center;
             color: white;
             padding: 50px 0;
             text-align: center;
+            margin-top : 20px
         }
         .hero-section h1 {
             font-size: 4em;
             font-weight: bold;
-            margin-top: 80px; /* Adjust margin to compensate for navbar height */
         }
         .hero-section p {
             font-size: 1.5em;
@@ -60,18 +72,17 @@
             padding: 60px 0;
         }
         .footer-custom {
-         	background-color: #d1e8e2; /* Light green to match the logo background */
+            background-color: #d1e8e2;
             transition: background-color 0.5s ease;
         }
     </style>
 {% endblock %}
 
-
 {% block body %}
 <nav class="navbar navbar-expand-lg navbar-dark navbar-custom fixed-top w-100">
     <div class="container-fluid">
         <a class="navbar-brand d-flex align-items-center" href="#">
-            <h2 class="text-secondary"> ZOO ARCADIA </h2>
+            <h2 class="text-secondary">ZOO ARCADIA</h2>
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -127,7 +138,7 @@
         <div class="row">
             <div class="col-md-4 mb-4">
                 <div class="card">
-                    <img src="Img_animaux/Lion.jpg" class="card-img-top" alt="Lion d'Afrique">
+                    <img src="Images/Img_animaux/Lion.jpg" class="card-img-top" alt="Lion d'Afrique">
                     <div class="card-body">
                         <h5 class="card-title">Lions d'Afrique</h5>
                     </div>
@@ -135,7 +146,7 @@
             </div>
             <div class="col-md-4 mb-4">
                 <div class="card">
-                    <img src="Img_animaux/Elephant.jpg" class="card-img-top" alt="Éléphant d'Asie">
+                    <img src="Images/Img_animaux/Elephant.jpg" class="card-img-top" alt="Éléphant d'Asie">
                     <div class="card-body">
                         <h5 class="card-title">Éléphants d'Asie</h5>
                     </div>
@@ -143,7 +154,7 @@
             </div>
             <div class="col-md-4 mb-4">
                 <div class="card">
-                    <img src="Img_animaux/Gorille.jpg" class="card-img-top" alt="Gorille des montagnes">
+                    <img src="Images/Img_animaux/Gorille.jpg" class="card-img-top" alt="Gorille des montagnes">
                     <div class="card-body">
                         <h5 class="card-title">Gorilles des montagnes</h5>
                     </div>
@@ -151,7 +162,7 @@
             </div>
             <div class="col-md-4 mb-4">
                 <div class="card">
-                    <img src="Img_animaux/Tigre.jpg" class="card-img-top" alt="Tigre du Bengale">
+                    <img src="Images/Img_animaux/Tigre.jpg" class="card-img-top" alt="Tigre du Bengale">
                     <div class="card-body">
                         <h5 class="card-title">Tigres du Bengale</h5>
                     </div>
@@ -159,7 +170,7 @@
             </div>
             <div class="col-md-4 mb-4">
                 <div class="card">
-                    <img src="Img_animaux/Panda.jpg" class="card-img-top" alt="Panda géant">
+                    <img src="Images/Img_animaux/Panda.jpg" class="card-img-top" alt="Panda géant">
                     <div class="card-body">
                         <h5 class="card-title">Pandas géants</h5>
                     </div>
@@ -167,7 +178,7 @@
             </div>
             <div class="col-md-4 mb-4">
                 <div class="card">
-                    <img src="Img_animaux/Ours.jpg" class="card-img-top" alt="Ours polaire">
+                    <img src="Images/Img_animaux/Ours.jpg" class="card-img-top" alt="Ours polaire">
                     <div class="card-body">
                         <h5 class="card-title">Ours polaires</h5>
                     </div>
@@ -175,9 +186,9 @@
             </div>
             <div class="col-md-4 mb-4">
                 <div class="card">
-                    <img src="Img_animaux/Pingouin.jpg" class="card-img-top" alt="Pingouin empereur">
+                    <img src="Images/Img_animaux/Pingouin.jpg" class="card-img-top" alt="Pingouin empereur">
                     <div class="card-body">
-                        <h5 class="card-title">Pingouins empereurs</h>
+                        <h5 class="card-title">Pingouins empereurs</h5>
                     </div>
                 </div>
             </div>
@@ -196,16 +207,48 @@
         </ul>
     </section>
 
-    <section id="services" class="services text-center">
-        <h2 class="mb-4">Nos Services</h2>
-        <p class="lead">Le Zoo Arcadia offre une gamme de services pour garantir une expérience inoubliable à nos visiteurs :</p>
-        <ul class="list-group">
-            <li class="list-group-item">Visite guidée des habitats avec guide</li>
-            <li class="list-group-item">Visite du Zoo en petit train</li>
-            <li class="list-group-item">Restauration sur place</li>
-        </ul>
+        <section id="avis-validés" class="avis text-center">
+            <h2 class="mb-4">Ce qu'ils en pensent</h2>
+            <div class="row">
+                {% for avis in avisValidés %}
+                    <div class="col-md-3">
+                        <div class="card mb-4">
+                            <div class="card-body">
+                                <h5 class="card-title">{{ avis.Pseudo }}</h5>
+                                <p class="card-text">{{ avis.Commentaire }}</p>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </section>
+
+
+    <section id="section-avis" class="avis text-center">
+        <h2 class="mb-4">Ajouter un avis</h2>
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                {{ form_start(form) }}
+                    <div class="form-group">
+                        {{ form_label(form.Pseudo, 'Entrez votre pseudo') }}
+                        {{ form_widget(form.Pseudo, {'attr': {'class': 'form-control'}}) }}
+                    </div>
+                    <div class="form-group">
+                        {{ form_label(form.Commentaire, 'Partagez votre expérience concernant le zoo') }}
+                        {{ form_widget(form.Commentaire, {'attr': {'class': 'form-control', 'rows': '5'}}) }}
+                    </div>
+                    <button type="submit" class="btn btn-primary">Envoyer</button>
+                {{ form_end(form) }}
+            </div>
+        </div>
     </section>
 </div>
+
+<div id="confirmation-message" class="flash-message alert alert-success text-center">
+    <p>Votre avis a été soumis avec succès et est en attente de validation.</p>
+</div>
+
+
 
 <footer class="footer-custom text-center mt-4 py-3">
     <p>&copy; {{ 'now' | date('Y') }} Zoo Studi. Tous droits réservés.</p>
@@ -222,6 +265,33 @@
             $('.navbar').removeClass('scrolled');
         }
     });
+
+
+
+document.addEventListener('DOMContentLoaded', function() {
+    document.querySelector('form').addEventListener('submit', function(event) {
+        // Empêcher l'envoi du formulaire par défaut
+        event.preventDefault();
+
+        // Masquer le formulaire après la soumission
+        document.querySelector('form').style.display = 'none';
+
+        // Masquer le titre "Ajouter un avis"
+        document.getElementById('section-avis').style.display = 'none';
+
+        // Afficher le message de confirmation
+        document.getElementById('confirmation-message').style.display = 'block';
+
+        // Masquer le message après 3 secondes
+        setTimeout(function() {
+            document.getElementById('confirmation-message').style.display = 'none';
+        }, 3000);
+    });
+});
+
+
+
+
 </script>
 
 {% endblock %}

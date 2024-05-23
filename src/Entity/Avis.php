@@ -37,6 +37,17 @@ class Avis
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
     private ?DateTimeInterface $modificationDate = null;
 
+    #[ORM\Column(length: 255)]
+    private ?string $statut = null;
+
+    #[ORM\Column(type: "boolean")]
+    private $valide;
+
+    public function __construct()
+    {
+        $this->valide = false; // Par défaut, un avis n'est pas valide
+    }
+
     public function getId(): ?Uuid
     {
         return $this->id;
@@ -98,6 +109,30 @@ class Avis
     public function setModificationDate(\DateTimeInterface $modificationDate): static
     {
         $this->modificationDate = $modificationDate;
+
+        return $this;
+    }
+
+    public function getStatut(): ?string
+    {
+        return $this->statut;
+    }
+
+    public function setStatut(string $statut): self
+    {
+        $this->statut = $statut;
+
+        return $this;
+    }
+
+    public function getValide(): ?bool
+    {
+        return $this->valide;
+    }
+
+    public function setValide(bool $valide): self
+    {
+        $this->valide = $valide;
 
         return $this;
     }
