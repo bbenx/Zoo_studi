@@ -1,72 +1,105 @@
 {% extends 'base_admin.html.twig' %}
 
-{% block title %}Commentaires Habitats Index
-{% endblock %}
+{% block title %}Commentaires Habitats Index{% endblock %}
 
 {% block stylesheets %}
-	{{ parent() }}
-	<style>
-		.comment-column {
-			max-width: 200px; /* Ajustez cette valeur selon vos besoins */
-			white-space: nowrap;
-			overflow: hidden;
-			text-overflow: ellipsis;
-		}
-	</style>
+    {{ parent() }}
+    <style>
+        body {
+            background-color: #f0f9f0; /* Vert très clair pour le fond */
+        }
+        .table {
+            border-color: #b3ddb3; /* Bordure verte pâle */
+        }
+        .table thead {
+            background-color: #4caf50; /* Vert pour l'en-tête */
+            color: white; /* Texte blanc */
+        }
+        .table tbody tr {
+            background-color: #e8f5e9; /* Vert très pâle pour les lignes */
+        }
+        .table tbody tr:nth-child(odd) {
+            background-color: #c8e6c9; /* Vert pâle pour les lignes impaires */
+        }
+        .table tbody tr:hover {
+            background-color: #a5d6a7; /* Vert plus foncé au survol */
+        }
+        .btn-success {
+            background-color: #4caf50; /* Vert pour les boutons de succès */
+            border-color: #4caf50;
+        }
+        .btn-info {
+            background-color: #8bc34a; /* Vert clair pour les boutons d'info */
+            border-color: #8bc34a;
+        }
+        .btn-primary {
+            background-color: #388e3c; /* Vert foncé pour les boutons primaires */
+            border-color: #388e3c;
+        }
+        .btn {
+            color: white; /* Texte blanc pour tous les boutons */
+        }
+        .comment-column {
+            max-width: 200px; /* Ajustez cette valeur selon vos besoins */
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+    </style>
 {% endblock %}
 
 {% block body %}
-	<div class="d-flex justify-content-between align-items-center mb-4">
-		<h1>Commentaires Habitats</h1>
-		{% if is_granted('ROLE_VETERINAIRE')%}
-		<a href="{{ path('app_commentaires_habitats_new') }}" class="btn btn-success">
-			<i class="fas fa-plus"></i>
-			Ajouter un nouveau commentaire
-		</a>
-		{% endif %}
-	</div>
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h1>Commentaires Habitats</h1>
+        {% if is_granted('ROLE_VETERINAIRE') %}
+        <a href="{{ path('app_commentaires_habitats_new') }}" class="btn btn-success">
+            <i class="fas fa-plus"></i>
+            Ajouter un nouveau commentaire
+        </a>
+        {% endif %}
+    </div>
 
-	<table class="table table-striped">
-		<thead>
-			<tr>
-				<th>Id</th>
-				<th>Habitat</th>
-				<th class="comment-column">Avis</th>
-				<th>Etat</th>
-				<th>Amélioration</th>
-				<th>Date de création</th>
-				<th>Date de modification</th>
-				<th>Actions</th>
-			</tr>
-		</thead>
-		<tbody>
-			{% for commentaires_habitat in commentaires_habitats %}
-				<tr>
-					<td>{{ commentaires_habitat.id }}</td>
-					<td>{{ commentaires_habitat.habitat.nom }}</td>
-					<td class="comment-column">{{ commentaires_habitat.avis }}</td>
-					<td>{{ commentaires_habitat.etat|capitalize }}</td>
-					<td>{{ commentaires_habitat.amelioration|capitalize }}</td>
-					<td>{{ commentaires_habitat.creationDate ? commentaires_habitat.creationDate|date('Y-m-d H:i:s') : '' }}</td>
-					<td>{{ commentaires_habitat.modificationDate ? commentaires_habitat.modificationDate|date('Y-m-d H:i:s') : '' }}</td>
-					<td>
-						<a href="{{ path('app_commentaires_habitats_show', {'id': commentaires_habitat.id}) }}" class="btn btn-info btn-sm mr-2">
-							<i class="fas fa-eye"></i>
-							Voir
-						</a>
-					{% if is_granted('ROLE_VETERINAIRE')%}
-						<a href="{{ path('app_commentaires_habitats_edit', {'id': commentaires_habitat.id}) }}" class="btn btn-primary btn-sm">
-							<i class="fas fa-edit"></i>
-							Modifier
-						</a>
-					{% endif %}
-					</td>
-				</tr>
-			{% else %}
-				<tr>
-					<td colspan="7">Aucun enregistrement trouvé</td>
-				</tr>
-			{% endfor %}
-		</tbody>
-	</table>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Habitat</th>
+                <th class="comment-column">Avis</th>
+                <th>Etat</th>
+                <th>Amélioration</th>
+                <th>Date de création</th>
+                <th>Date de modification</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for commentaires_habitat in commentaires_habitats %}
+                <tr>
+                    <td>{{ commentaires_habitat.id }}</td>
+                    <td>{{ commentaires_habitat.habitat.nom }}</td>
+                    <td class="comment-column">{{ commentaires_habitat.avis }}</td>
+                    <td>{{ commentaires_habitat.etat|capitalize }}</td>
+                    <td>{{ commentaires_habitat.amelioration|capitalize }}</td>
+                    <td>{{ commentaires_habitat.creationDate ? commentaires_habitat.creationDate|date('Y-m-d H:i:s') : '' }}</td>
+                    <td>{{ commentaires_habitat.modificationDate ? commentaires_habitat.modificationDate|date('Y-m-d H:i:s') : '' }}</td>
+                    <td>
+                        <a href="{{ path('app_commentaires_habitats_show', {'id': commentaires_habitat.id}) }}" class="btn btn-info btn-sm mr-2">
+                            <i class="fas fa-eye"></i>
+                            Voir
+                        </a>
+                    {% if is_granted('ROLE_VETERINAIRE') %}
+                        <a href="{{ path('app_commentaires_habitats_edit', {'id': commentaires_habitat.id}) }}" class="btn btn-primary btn-sm">
+                            <i class="fas fa-edit"></i>
+                            Modifier
+                        </a>
+                    {% endif %}
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="8">Aucun enregistrement trouvé</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
 {% endblock %}
