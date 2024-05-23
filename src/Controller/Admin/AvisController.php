@@ -93,15 +93,15 @@ class AvisController extends AbstractController
         return $this->redirectToRoute('app_avis_index', [], Response::HTTP_SEE_OTHER);
     }
 
-    // #[Route('/avis/{id}/valider', name: 'app_avis_valider', methods: ['POST'])]
-    // #[IsGranted('ROLE_EMPLOYE')]
-    // public function valider(Request $request, Avis $avis, EntityManagerInterface $entityManager): Response
-    // {
-    //     if ($this->isCsrfTokenValid('valider' . $avis->getId(), $request->request->get('_token'))) {
-    //         $avis->setValide(true);
-    //         $entityManager->flush();
-    //     }
+    #[Route('/avis/{id}/valider', name: 'app_avis_valider', methods: ['POST'])]
+    #[IsGranted('ROLE_EMPLOYE')]
+    public function valider(Request $request, Avis $avis, EntityManagerInterface $entityManager): Response
+    {
+        if ($this->isCsrfTokenValid('valider' . $avis->getId(), $request->request->get('_token'))) {
+            $avis->setValide(true);
+            $entityManager->flush();
+        }
 
-    //     return $this->redirectToRoute('app_avis_index', [], Response::HTTP_SEE_OTHER);
-    // }
+        return $this->redirectToRoute('app_avis_index', [], Response::HTTP_SEE_OTHER);
+    }
 }

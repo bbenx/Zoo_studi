@@ -7,6 +7,7 @@ use App\Form\ComptesRendusType;
 use App\Repository\ComptesRendusRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Bundle\SecurityBundle\Security;
 use Symfony\Component\ExpressionLanguage\Expression;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -16,6 +17,13 @@ use Symfony\Component\Security\Http\Attribute\IsGranted;
 #[Route('/admin')]
 class ComptesRendusController extends AbstractController
 {
+    private $security;
+
+    public function __construct(Security $security)
+    {
+        $this->security = $security;
+    }
+
     #[Route('/comptes/rendus', name: 'app_comptes_rendus_index', methods: ['GET'])]
     #[IsGranted(new Expression('is_granted("ROLE_VETERINAIRE") or is_granted("ROLE_ADMIN")'))]
     public function index(ComptesRendusRepository $comptesRendusRepository): Response
@@ -30,6 +38,8 @@ class ComptesRendusController extends AbstractController
     public function new(Request $request, EntityManagerInterface $entityManager): Response
     {
         $comptesRendu = new ComptesRendus();
+        $user = $this->security->getUser();
+        $comptesRendu->setUser($user);
         $comptesRendu->setCreationDate(new \DateTimeImmutable());
         $comptesRendu->setModificationDate(new \DateTime());
         $form = $this->createForm(ComptesRendusType::class, $comptesRendu);

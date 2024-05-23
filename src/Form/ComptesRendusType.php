@@ -10,14 +10,21 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 
 class ComptesRendusType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
+        ->add('Animal', EntityType::class, [
+            'class' => Animaux::class,
+            'choice_label' => 'Prenom',
+            ])
             ->add('EtatAnimal')
-            ->add('DetailEtat')
+            ->add('DetailEtat', TextareaType::class,[
+                'required' => false,
+            ])
             ->add('TypeNourriture')
             ->add('GrammageNourriture')
             ->add('DatePassage', null, [
@@ -35,13 +42,15 @@ class ComptesRendusType extends AbstractType
                 'required' => false,
                 'label' => 'Date de modification',
             ])
-            ->add('Animal', EntityType::class, [
-                'class' => Animaux::class,
-                'choice_label' => 'id',
-            ])
             ->add('User', EntityType::class, [
                 'class' => Users::class,
-                'choice_label' => 'role',
+                'choice_label' => 'Id',
+                'attr' => [
+                    'style' => 'display:none',
+                ],
+                'label_attr' => [
+                    'style' => 'display:none',
+                ],
             ]);
     }
 

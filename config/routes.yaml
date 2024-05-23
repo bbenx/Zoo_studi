@@ -3,3 +3,9 @@ controllers:
         path: ../src/Controller/
         namespace: App\Controller
     type: attribute
+
+# routes.yaml
+app_avis_valider:
+    path: '/avis/{id}/valider'
+    controller: 'App\Controller\Admin\AvisController::valider'
+    methods: ['POST']

@@ -20,10 +20,6 @@
 	<table class="table">
 		<tbody>
 			<tr>
-				<th>Id</th>
-				<td>{{ comptes_rendu.id }}</td>
-			</tr>
-			<tr>
 				<th>Prenom de l'animal</th>
 				<td>{{ comptes_rendu.animal.prenom }}</td>
 			</tr>
@@ -46,14 +42,6 @@
 			<tr>
 				<th>Date de passage</th>
 				<td>{{ comptes_rendu.DatePassage ? comptes_rendu.DatePassage|date('Y-m-d H:i:s') : '' }}</td>
-			</tr>
-			<tr>
-				<th>Date de création</th>
-				<td>{{ comptes_rendu.creationDate ? comptes_rendu.creationDate|date('Y-m-d H:i:s') : '' }}</td>
-			</tr>
-			<tr>
-				<th>Date de modification</th>
-				<td>{{ comptes_rendu.modificationDate ? comptes_rendu.modificationDate|date('Y-m-d H:i:s') : '' }}</td>
 			</tr>
 		</tbody>
 	</table>

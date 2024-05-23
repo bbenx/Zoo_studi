@@ -39,14 +39,6 @@
                         Supprimer
                     </a>
                 </td>
-										<a href="{{ path('app_habitats_show', {'id': habitat.id}) }}" class="btn btn-info btn-sm mr-2">
-							<i class="fas fa-eye"></i>
-							Voir
-						</a>
-						<a href="{{ path('app_habitats_edit', {'id': habitat.id}) }}" class="btn btn-primary btn-sm">
-							<i class="fas fa-edit"></i>
-							Modifier
-						</a>
             </tr>
         {% else %}
             <tr>
@@ -69,25 +61,33 @@
         </tr>
     </thead>
     <tbody>
-        {% for avi in avisValides %}
-            <tr>
-                <td>{{ avi.id }}</td>
-                <td>{{ avi.Pseudo }}</td>
-                <td class="comment-column">{{ avi.Commentaire }}</td>
-                <td>{{ avi.creationDate ? avi.creationDate|date('Y-m-d H:i:s') : '' }}</td>
-                <td>{{ avi.modificationDate ? avi.modificationDate|date('Y-m-d H:i:s') : '' }}</td>
-                <td>
-                    <a href="{{ path('app_avis_show', {'id': avi.id}) }}" class="btn btn-info btn-sm mr-2">
-                        <i class="fas fa-eye"></i>
-                        Voir
-                    </a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="6">Aucun avis validé</td>
-            </tr>
-        {% endfor %}
+        {% for avi in avisAValider %}
+    <tr>
+        <td>{{ avi.id }}</td>
+        <td>{{ avi.Pseudo }}</td>
+        <td class="comment-column">{{ avi.Commentaire }}</td>
+        <td>{{ avi.creationDate ? avi.creationDate|date('Y-m-d H:i:s') : '' }}</td>
+        <td>{{ avi.modificationDate ? avi.modificationDate|date('Y-m-d H:i:s') : '' }}</td>
+        <td>
+            <form method="POST" action="{{ path('app_avis_valider', {'id': avi.id}) }}" class="d-inline">
+                <input type="hidden" name="_token" value="{{ csrf_token('valider' ~ avi.id) }}">
+                <button type="submit" class="btn btn-success btn-sm mr-2">
+                    <i class="fas fa-check"></i>
+                    Valider
+                </button>
+            </form>
+            <a href="{{ path('app_avis_delete', {'id': avi.id, '_token': csrf_token('delete' ~ avi.id)}) }}" class="btn btn-danger btn-sm">
+                <i class="fas fa-trash"></i>
+                Supprimer
+            </a>
+        </td>
+    </tr>
+{% else %}
+    <tr>
+        <td colspan="6">Aucun avis à valider</td>
+    </tr>
+{% endfor %}
+
     </tbody>
 </table>
 {% endblock %}

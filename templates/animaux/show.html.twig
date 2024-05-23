@@ -44,5 +44,36 @@
 		</tbody>
 	</table>
 
-	<a href="{{ path('app_animaux_index') }}" class="btn btn-secondary mt-3">Retour à la liste</a>
+	<a href="{{ path('app_animaux_index') }}" class="btn btn-secondary mt-3">
+	<i class="fas fa-arrow-left"></i>
+	Retour à la liste</a>
+	<br>
+	<br>	
+    <h2>Avis du Vétérinaire :</h2>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Etat de l'animal</th>
+                <th>Détails</th>
+				<th>Type de nourriture</th>
+				<th>Grammage</th>
+				<th>Date de passage</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for comptes_rendu in comptes_rendus|reverse %}
+                <tr>
+                    <td>{{ comptes_rendu.EtatAnimal }}</td>
+                    <td>{{ comptes_rendu.DetailEtat }}</td>
+                    <td>{{ comptes_rendu.TypeNourriture }}</td>
+					<td>{{ comptes_rendu.GrammageNourriture }}</td>
+					<td>{{ comptes_rendu.DatePassage ? comptes_rendu.DatePassage|date('Y-m-d H:i:s') : '' }}</td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="7">Aucun avis trouvé</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
 {% endblock %}

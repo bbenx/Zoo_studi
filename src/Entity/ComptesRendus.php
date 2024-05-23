@@ -16,7 +16,7 @@ class ComptesRendus
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\OneToOne(cascade: ['persist', 'remove'])]
+    #[ORM\ManyToOne(cascade: ['persist'])]
     #[ORM\JoinColumn(nullable: false)]
     private ?Animaux $Animal = null;
 
@@ -27,7 +27,7 @@ class ComptesRendus
     #[ORM\Column(length: 255)]
     private ?string $EtatAnimal = null;
 
-    #[ORM\Column(type: Types::TEXT)]
+    #[ORM\Column(type: Types::TEXT, nullable: true)]
     private ?string $DetailEtat = null;
 
     #[ORM\Column(length: 255)]
