@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controller\Admin;
+namespace App\Controller;
 
 use App\Entity\Nourriture;
 use App\Form\NourritureType;
@@ -10,14 +10,12 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
-use Symfony\Component\Security\Http\Attribute\IsGranted;
 
-#[Route('admin')]
+#[Route('/admin')]
 class NourritureController extends AbstractController
 {
     #[Route('/nourriture', name: 'app_nourriture_index', methods: ['GET'])]
-    #[IsGranted('ROLE_EMPLOYE')]
-    public function index(nourritureRepository $nourritureRepository): Response
+    public function index(NourritureRepository $nourritureRepository): Response
     {
         return $this->render('nourriture/index.html.twig', [
             'nourritures' => $nourritureRepository->findAll(),
@@ -25,13 +23,9 @@ class NourritureController extends AbstractController
     }
 
     #[Route('/nourriture/new', name: 'app_nourriture_new', methods: ['GET', 'POST'])]
-    #[IsGranted('ROLE_EMPLOYE')]
     public function new(Request $request, EntityManagerInterface $entityManager): Response
     {
         $nourriture = new Nourriture();
-        $nourriture->setCreationDate(new \DateTimeImmutable());
-        $nourriture->setModificationDate(new \DateTime());
-
         $form = $this->createForm(NourritureType::class, $nourriture);
         $form->handleRequest($request);
 
@@ -49,7 +43,6 @@ class NourritureController extends AbstractController
     }
 
     #[Route('/nourriture/{id}', name: 'app_nourriture_show', methods: ['GET'])]
-    #[IsGranted('ROLE_EMPLOYE')]
     public function show(Nourriture $nourriture): Response
     {
         return $this->render('nourriture/show.html.twig', [
@@ -58,14 +51,12 @@ class NourritureController extends AbstractController
     }
 
     #[Route('/nourriture/{id}/edit', name: 'app_nourriture_edit', methods: ['GET', 'POST'])]
-    #[IsGranted('ROLE_EMPLOYE')]
     public function edit(Request $request, Nourriture $nourriture, EntityManagerInterface $entityManager): Response
     {
         $form = $this->createForm(NourritureType::class, $nourriture);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $nourriture->setModificationDateValue();
             $entityManager->flush();
 
             return $this->redirectToRoute('app_nourriture_index', [], Response::HTTP_SEE_OTHER);
@@ -78,10 +69,9 @@ class NourritureController extends AbstractController
     }
 
     #[Route('/nourriture/{id}', name: 'app_nourriture_delete', methods: ['POST'])]
-    #[IsGranted('ROLE_EMPLOYE')]
     public function delete(Request $request, Nourriture $nourriture, EntityManagerInterface $entityManager): Response
     {
-        if ($this->isCsrfTokenValid('delete' . $nourriture->getId(), $request->getPayload()->get('_token'))) {
+        if ($this->isCsrfTokenValid('delete'.$nourriture->getId(), $request->getPayload()->get('_token'))) {
             $entityManager->remove($nourriture);
             $entityManager->flush();
         }
