@@ -43,11 +43,11 @@
         </tbody>
     </table>
     <a href="{{ path('app_habitats_index') }}" class="btn btn-secondary mt-3">
-    <i class="fas fa-arrow-left"></i>
-    Retour à la liste
+        <i class="fas fa-arrow-left"></i>
+        Retour à la liste
     </a>
-	<br>
-	<br>	
+    <br>
+    <br>
     <h2>Commentaires :</h2>
     <table class="table table-striped">
         <thead>
@@ -60,19 +60,49 @@
             </tr>
         </thead>
         <tbody>
-            {% for commentaire_habitat in commentaires|reverse %}
-                <tr>
-                    <td class="comment-column">{{ commentaire_habitat.avis }}</td>
-                    <td>{{ commentaire_habitat.etat|capitalize }}</td>
-                    <td>{{ commentaire_habitat.amelioration|capitalize }}</td>
-                    <td>{{ commentaire_habitat.creationDate ? commentaire_habitat.creationDate|date('d-m-Y H:i:s') : '' }}</td>
-                    <td>{{ commentaire_habitat.modificationDate ? commentaire_habitat.modificationDate|date('d-m-Y H:i:s') : '' }}</td>
-                </tr>
-            {% else %}
-                <tr>
-                    <td colspan="7">Aucun commentaire trouvé</td>
-                </tr>
+            {% for group in commentaires|batch(4) %}
+                {% for commentaire_habitat in group %}
+                    <tr class="comment-row {% if not loop.parent.loop.first %}d-none{% endif %}">
+                        <td class=>{{ commentaire_habitat.avis }}</td>
+                        <td>{{ commentaire_habitat.etat|capitalize }}</td>
+                        <td>{{ commentaire_habitat.amelioration|capitalize }}</td>
+                        <td>{{ commentaire_habitat.creationDate ? commentaire_habitat.creationDate|date('d-m-Y H:i:s') : '' }}</td>
+                        <td>{{ commentaire_habitat.modificationDate ? commentaire_habitat.modificationDate|date('d-m-Y H:i:s') : '' }}</td>
+                    </tr>
+                {% endfor %}
             {% endfor %}
         </tbody>
     </table>
+    {% if commentaires|length > 4 %}
+        <div class="text-center mt-3">
+            <button id="load-more-comments" class="btn btn-primary">Voir plus</button>
+        </div>
+    {% endif %}
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            let loadMoreButtonComments = document.getElementById('load-more-comments');
+            if (loadMoreButtonComments) {
+                let hiddenRowsComments = document.querySelectorAll('.comment-row.d-none');
+                let currentIndexComments = 0;
+                const batchSize = 4;
+
+                loadMoreButtonComments.addEventListener('click', function() {
+                    console.log('Voir plus commentaires clicked');
+                    for (let i = 0; i < batchSize && currentIndexComments < hiddenRowsComments.length; i++, currentIndexComments++) {
+                        console.log('Showing row:', hiddenRowsComments[currentIndexComments]);
+                        hiddenRowsComments[currentIndexComments].classList.remove('d-none');
+                    }
+
+                    if (currentIndexComments >= hiddenRowsComments.length) {
+                        console.log('Hiding button voir plus commentaires');
+                        loadMoreButtonComments.style.display = 'none';
+                    }
+                });
+            }
+        });
+    </script>
 {% endblock %}

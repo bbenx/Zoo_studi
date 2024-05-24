@@ -38,6 +38,11 @@ class Nourriture
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
     private ?\DateTimeInterface $dateModification = null;
 
+    public function __construct()
+    {
+        $this->datePassage = new \DateTime();
+    }
+
     public function getId(): ?int
     {
         return $this->id;
@@ -131,7 +136,10 @@ class Nourriture
     public function setCreationDateValue(): void
     {
         $this->dateCreation = new DateTimeImmutable();
+        $this->datePassage = new \DateTime();
+
     }
+
 
     #[ORM\PreUpdate]
     public function setModificationDateValue(): void

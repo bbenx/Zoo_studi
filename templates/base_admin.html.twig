@@ -85,7 +85,7 @@
                                 </a>
                             </li>
                         {% endif %}
-                        {% if is_granted('ROLE_EMPLOYE') or is_granted('ROLE_ADMIN') %}
+                        {% if is_granted('ROLE_ADMIN') or is_granted('ROLE_VETERINAIRE') %}
                             <li class="nav-item">
                                 <a class="nav-link d-flex align-items-center gap-2" href="{{ path('app_animaux_index') }}">
                                     <i class="fas fa-dog"></i>
@@ -93,7 +93,7 @@
                                 </a>
                             </li>
                         {% endif %}
-                        {% if is_granted('ROLE_EMPLOYE') %}
+                        {% if is_granted('ROLE_EMPLOYE') or is_granted('ROLE_VETERINAIRE') %}
                             <li class="nav-item">
                                 <a class="nav-link d-flex align-items-center gap-2" href="{{ path('app_nourriture_index') }}">
                                     <i class="fas fa-utensils"></i>

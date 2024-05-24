@@ -11,6 +11,8 @@ use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Security\Core\Security;
 
 class AvisType extends AbstractType
@@ -25,8 +27,8 @@ class AvisType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('Pseudo')
-            ->add('Commentaire');
+            ->add('Pseudo', TextType::class)
+            ->add('Commentaire', TextareaType::class);
             
         if ($this->security->isGranted('ROLE_EMPLOYE')) {
             $builder
