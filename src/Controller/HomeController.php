@@ -41,12 +41,12 @@ class HomeController extends AbstractController
             $formSubmitted = true;
         }
 
-        $avisValidés = $avisRepository->findBy(['statut' => 'validé'], ['creationDate' => 'DESC'], 4);
+        $avisValides = $avisRepository->findBy(['statut' => 'validé'], ['creationDate' => 'DESC'], 4);
 
         return $this->render('home/home.html.twig', [
             'form' => $form->createView(),
             'formSubmitted' => $formSubmitted,
-            'avisValidés' => $avisValidés,
+            'avisValidés' => $avisValides,
         ]);
     }
 }

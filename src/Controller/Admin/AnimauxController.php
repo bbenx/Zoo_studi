@@ -16,7 +16,7 @@ use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Component\Security\Http\Attribute\IsGranted;
 
 #[Route('admin')]
-#[IsGranted(new Expression('is_granted("ROLE_ADMIN") or is_granted("ROLE_EMPLOYE")'))]
+#[IsGranted(new Expression('is_granted("ROLE_ADMIN") or is_granted("ROLE_VETERINAIRE")'))]
 class AnimauxController extends AbstractController
 {
     #[Route('/animaux', name: 'app_animaux_index', methods: ['GET'])]
@@ -28,6 +28,7 @@ class AnimauxController extends AbstractController
     }
 
     #[Route('/animaux/new', name: 'app_animaux_new', methods: ['GET', 'POST'])]
+    #[IsGranted('ROLE_ADMIN')]
     public function new(Request $request, EntityManagerInterface $entityManager): Response
     {
         $animaux = new Animaux();
@@ -50,16 +51,19 @@ class AnimauxController extends AbstractController
     }
 
     #[Route('/animaux/{id}', name: 'app_animaux_show', methods: ['GET'])]
-    public function show(Animaux $animaux, ComptesRendusRepository $comptesRendusRepository,): Response
+    public function show(Animaux $animaux, ComptesRendusRepository $comptesRendusRepository, NourritureRepository $nourritureRepository): Response
     {
         $comptesRendus = $comptesRendusRepository->findBy(['Animal' => $animaux], ['creationDate' => 'DESC']);
+        $nourriture = $nourritureRepository->findBy(['Animal' => $animaux], ['dateCreation' => 'DESC']);
         return $this->render('animaux/show.html.twig', [
             'animaux' => $animaux,
             'comptes_rendus' => $comptesRendus,
+            'nourritures' => $nourriture,
         ]);
     }
 
     #[Route('/animaux/{id}/edit', name: 'app_animaux_edit', methods: ['GET', 'POST'])]
+    #[IsGranted('ROLE_ADMIN')]
     public function edit(Request $request, Animaux $animaux, EntityManagerInterface $entityManager): Response
     {
         $form = $this->createForm(AnimauxType::class, $animaux);
@@ -79,6 +83,7 @@ class AnimauxController extends AbstractController
     }
 
     #[Route('/animaux/{id}', name: 'app_animaux_delete', methods: ['POST'])]
+    #[IsGranted('ROLE_ADMIN')]
     public function delete(Request $request, Animaux $animaux, EntityManagerInterface $entityManager): Response
     {
         if ($this->isCsrfTokenValid('delete' . $animaux->getId(), $request->getPayload()->get('_token'))) {

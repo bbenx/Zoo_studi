@@ -45,6 +45,11 @@ class ComptesRendus
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
     private ?DateTimeInterface $modificationDate = null;
 
+    public function __construct()
+    {
+        $this->DatePassage = new \DateTime();
+    }
+
     public function getId(): ?int
     {
         return $this->id;

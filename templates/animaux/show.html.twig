@@ -1,79 +1,163 @@
 {% extends 'base_admin.html.twig' %}
 
-{% block title %}Animaux
-{% endblock %}
+{% block title %}{{animaux.Prenom}}{% endblock %}
 
 {% block body %}
-	<div class="d-flex justify-content-between align-items-center mb-4">
-		<h1>Animaux</h1>
-		<div class="d-flex">
-			<a href="{{ path('app_animaux_edit', {'id': animaux.id}) }}" class="btn btn-primary mr-2">
-				<i class="fas fa-edit"></i>
-				Modifier
-			</a>
-			{{ include('animaux/_delete_form.html.twig') }}
-		</div>
-	</div>
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h1>{{animaux.prenom}}</h1>
+        {% if is_granted('ROLE_ADMIN')%}
 
-	<table class="table">
-		<tbody>
-			<tr>
-				<th>Id</th>
-				<td>{{ animaux.id }}</td>
-			</tr>
-			<tr>
-				<th>Prénom</th>
-				<td>{{ animaux.Prenom }}</td>
-			</tr>
-			<tr>
-				<th>Race</th>
-				<td>{{ animaux.Race }}</td>
-			</tr>
-			<tr>
-				<th>Images</th>
-				<td>{{ animaux.Images ? animaux.Images|json_encode : '' }}</td>
-			</tr>
-			<tr>
-				<th>Date de création</th>
-				<td>{{ animaux.creationDate ? animaux.creationDate|date('Y-m-d H:i:s') : '' }}</td>
-			</tr>
-			<tr>
-				<th>Date de modification</th>
-				<td>{{ animaux.modificationDate ? animaux.modificationDate|date('Y-m-d H:i:s') : '' }}</td>
-			</tr>
-		</tbody>
-	</table>
+        <div class="d-flex">
+            <a href="{{ path('app_animaux_edit', {'id': animaux.id}) }}" class="btn btn-primary mr-2">
+                <i class="fas fa-edit"></i> Modifier
+            </a>
+            {{ include('animaux/_delete_form.html.twig') }}
+        </div>
+        {% endif %}
+    </div>
 
-	<a href="{{ path('app_animaux_index') }}" class="btn btn-secondary mt-3">
-	<i class="fas fa-arrow-left"></i>
-	Retour à la liste</a>
-	<br>
-	<br>	
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ animaux.id }}</td>
+            </tr>
+            <tr>
+                <th>Prénom</th>
+                <td>{{ animaux.Prenom }}</td>
+            </tr>
+            <tr>
+                <th>Race</th>
+                <td>{{ animaux.Race }}</td>
+            </tr>
+            <tr>
+                <th>Images</th>
+                <td>{{ animaux.Images ? animaux.Images|json_encode : '' }}</td>
+            </tr>
+            <tr>
+                <th>Date de création</th>
+                <td>{{ animaux.creationDate ? animaux.creationDate|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Date de modification</th>
+                <td>{{ animaux.modificationDate ? animaux.modificationDate|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_animaux_index') }}" class="btn btn-secondary mt-3">
+        <i class="fas fa-arrow-left"></i> Retour à la liste
+    </a>
+    <br>
+    <br>
+        <h2>Nourriture donnée :</h2>
+    <table class="table table-striped text-center">
+        <thead>
+            <tr>
+                <th>Utilisateur</th>
+                <th>Type</th>
+                <th>Quantité</th>
+                <th>Date de passage</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for group in nourritures|batch(4) %}
+                {% for nourriture in group %}
+                    <tr class="nourriture-row {% if not loop.parent.loop.first %}d-none{% endif %}">
+                        <td>{{ nourriture.user.email }}</td>
+                        <td>{{ nourriture.type }}</td>
+                        <td>{{ nourriture.quantite }}</td>
+                        <td>{{ nourriture.DatePassage ? nourriture.DatePassage|date('d-m-Y H:i:s') : '' }}</td>
+                    </tr>
+                {% endfor %}
+            {% endfor %}
+        </tbody>
+    </table>
+   {% if nourritures|length > 4 %}
+        <div class="text-center mt-3">
+            <button id="load-more-nourriture" class="btn btn-primary">Voir plus</button>
+        </div>
+    {% endif %}
+    <br>
+    <br>
     <h2>Avis du Vétérinaire :</h2>
-    <table class="table table-striped">
+    <table class="table table-striped text-center">
         <thead>
             <tr>
                 <th>Etat de l'animal</th>
                 <th>Détails</th>
-				<th>Type de nourriture</th>
-				<th>Grammage</th>
-				<th>Date de passage</th>
+                <th>Type de nourriture</th>
+                <th>Grammage</th>
+                <th>Date de passage</th>
             </tr>
         </thead>
         <tbody>
-            {% for comptes_rendu in comptes_rendus|reverse %}
-                <tr>
-                    <td>{{ comptes_rendu.EtatAnimal }}</td>
-                    <td>{{ comptes_rendu.DetailEtat }}</td>
-                    <td>{{ comptes_rendu.TypeNourriture }}</td>
-					<td>{{ comptes_rendu.GrammageNourriture }}</td>
-					<td>{{ comptes_rendu.DatePassage ? comptes_rendu.DatePassage|date('d-m-Y H:i:s') : '' }}</td>
-                </tr>
-            {% else %}
-                <tr>
-                    <td colspan="7">Aucun avis trouvé</td>
-                </tr>
+            {% for group in comptes_rendus|batch(4) %}
+                {% for comptes_rendu in group %}
+                    <tr class="comptes-rendu-row {% if not loop.parent.loop.first %}d-none{% endif %}">
+                        <td>{{ comptes_rendu.EtatAnimal }}</td>
+                        <td>{{ comptes_rendu.DetailEtat }}</td>
+                        <td>{{ comptes_rendu.TypeNourriture }}</td>
+                        <td>{{ comptes_rendu.GrammageNourriture }}</td>
+                        <td>{{ comptes_rendu.DatePassage ? comptes_rendu.DatePassage|date('d-m-Y H:i:s') : '' }}</td>
+                    </tr>
+                {% endfor %}
             {% endfor %}
         </tbody>
     </table>
+    {% if comptes_rendus|length > 4 %}
+        <div class="text-center mt-3">
+            <button id="load-more-comptes-rendu" class="btn btn-primary">Voir plus</button>
+        </div>
+    {% endif %}
+
 {% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            let loadMoreButtonComptesRendu = document.getElementById('load-more-comptes-rendu');
+            if (loadMoreButtonComptesRendu) {
+                let hiddenRowsComptesRendu = document.querySelectorAll('.comptes-rendu-row.d-none');
+                let currentIndexComptesRendu = 0;
+                const batchSize = 4;
+
+                loadMoreButtonComptesRendu.addEventListener('click', function() {
+                    console.log('Voir plus comptes rendus clicked');
+                    for (let i = 0; i < batchSize && currentIndexComptesRendu < hiddenRowsComptesRendu.length; i++, currentIndexComptesRendu++) {
+                        console.log('Showing row:', hiddenRowsComptesRendu[currentIndexComptesRendu]);
+                        hiddenRowsComptesRendu[currentIndexComptesRendu].classList.remove('d-none');
+                    }
+
+                    if (currentIndexComptesRendu >= hiddenRowsComptesRendu.length) {
+                        console.log('Hiding button voir plus comptes rendus');
+                        loadMoreButtonComptesRendu.style.display = 'none';
+                    }
+                });
+            }
+
+            let loadMoreButtonNourriture = document.getElementById('load-more-nourriture');
+            if (loadMoreButtonNourriture) {
+                let hiddenRowsNourriture = document.querySelectorAll('.nourriture-row.d-none');
+                let currentIndexNourriture = 0;
+                const batchSize = 4;
+
+
+                loadMoreButtonNourriture.addEventListener('click', function() {
+                    console.log('Voir plus nourriture clicked');
+                    for (let i = 0; i < batchSize && currentIndexNourriture < hiddenRowsNourriture.length; i++, currentIndexNourriture++) {
+                        console.log('Showing row:', hiddenRowsNourriture[currentIndexNourriture]);
+                        hiddenRowsNourriture[currentIndexNourriture].classList.remove('d-none');
+                    }
+
+                    if (currentIndexNourriture >= hiddenRowsNourriture.length) {
+                        console.log('Hiding button voir plus nourriture');
+                        loadMoreButtonNourriture.style.display = 'none';
+                    }
+                });
+            }
+        });
+    </script>
+{% endblock %}
+
