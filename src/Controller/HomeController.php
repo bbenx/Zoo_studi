@@ -29,8 +29,6 @@ class HomeController extends AbstractController
 
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
-            $avis->setCreationDate(new \DateTimeImmutable());
-            $avis->setModificationDate(new \DateTime());
             $avis->setStatut('en attente');
             $entityManager->persist($avis);
             $entityManager->flush();

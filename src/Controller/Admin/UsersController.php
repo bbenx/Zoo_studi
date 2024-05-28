@@ -9,8 +9,11 @@ use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Mailer\MailerInterface;
+use Symfony\Component\Mime\Email;
 use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Component\Security\Http\Attribute\IsGranted;
+use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
 #[Route('/admin')]
 class UsersController extends AbstractController
@@ -26,27 +29,48 @@ class UsersController extends AbstractController
 
     #[Route('/users/new', name: 'app_users_new', methods: ['GET', 'POST'])]
     #[IsGranted('ROLE_ADMIN')]
-    public function new(Request $request, EntityManagerInterface $entityManager): Response
+    public function new(MailerInterface $mailer, Request $request, EntityManagerInterface $entityManager, UserPasswordHasherInterface $passwordHasher): Response
     {
         $user = new Users();
         $form = $this->createForm(UsersType::class, $user);
         $form->handleRequest($request);
-
+    
         if ($form->isSubmitted() && $form->isValid()) {
+            $plainPassword = $form->get('plainPassword')->getData();
+    
+            if ($plainPassword === null) {
+                $this->addFlash('error', 'Le mot de passe ne peut pas être nul.');
+                return $this->redirectToRoute('app_users_new');
+            }
+    
+            $hashedPassword = $passwordHasher->hashPassword(
+                $user,
+                $plainPassword
+            );
+            $user->setPassword($hashedPassword);
             $entityManager->persist($user);
             $entityManager->flush();
-
+    
+            $email = (new Email())
+                ->from('zooarcadia@gmail.com')
+                ->to($user->getEmail())
+                ->subject('Bienvenue !!')
+                ->text("Votre compte a bien été créé \n Pour vous connecter, rendez-vous sur 'http://127.0.0.1:8000/login' 
+                Rapprochez-vous de votre responsable pour obtenir votre mot de passe");
+    
+            $mailer->send($email);
+    
             $this->addFlash('success', 'Utilisateur ajouté avec succès.');
-
-
+    
             return $this->redirectToRoute('app_users_index', [], Response::HTTP_SEE_OTHER);
         }
-
+    
         return $this->render('users/new.html.twig', [
             'user' => $user,
             'form' => $form,
         ]);
     }
+    
 
     #[Route('/users/{id}', name: 'app_users_show', methods: ['GET'])]
     #[IsGranted('ROLE_ADMIN')]

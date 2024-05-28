@@ -8,6 +8,8 @@ use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
+use Symfony\Component\Form\Extension\Core\Type\PasswordType;
+use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -18,15 +20,19 @@ class UsersType extends AbstractType
         $builder
             ->add('roles', ChoiceType::class, [
                 'choices' => [
-                    'Employé' => 'Employé',
-                    'Vétérinaire' => 'Vétérinaire',
+                    'Employé' => 'ROLE_EMPLOYE',
+                    'Vétérinaire' => 'ROLE_VETERINAIRE',
                 ],
                 'multiple' => true,
                 'expanded' => true,
                 'label' => 'Rôles',
             ])
             ->add('email')
-            ->add('password')
+            ->add('plainPassword', PasswordType::class, [
+                'mapped' => false, // Important pour ne pas mapper directement à l'entité
+                'required' => false,
+                'label' => 'Mot de passe',
+            ])
             ->add('creationDate', DateTimeType::class, [
                 'widget' => 'single_text',
                 'disabled' => true,

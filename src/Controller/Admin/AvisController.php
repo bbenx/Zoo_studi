@@ -45,7 +45,6 @@ class AvisController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $avi->setModificationDateValue();
             $entityManager->flush();
 
             return $this->redirectToRoute('app_avis_index', [], Response::HTTP_SEE_OTHER);

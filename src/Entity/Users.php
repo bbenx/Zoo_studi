@@ -9,10 +9,12 @@ use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 use DateTimeImmutable;
 use DateTimeInterface;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: UsersRepository::class)]
 #[ORM\HasLifecycleCallbacks]
 #[ORM\UniqueConstraint(name: 'UNIQ_IDENTIFIER_EMAIL', fields: ['email'])]
+#[ORM\EntityListeners(['App\EntityListener\UsersListener'])]
 class Users implements UserInterface, PasswordAuthenticatedUserInterface
 {
     #[ORM\Id]
@@ -35,10 +37,13 @@ class Users implements UserInterface, PasswordAuthenticatedUserInterface
      */
 
     #[ORM\Column(length: 255)]
+    #[Assert\Email()]
     private ?string $email = null;
 
+    private ?string $plainPassword = null;
+
     #[ORM\Column(length: 255)]
-    private ?string $password = null;
+    private ?string $password = 'password';
 
     #[ORM\Column(type: Types::DATETIME_IMMUTABLE)]
     private ?DateTimeImmutable $creationDate = null;
@@ -114,6 +119,22 @@ class Users implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
+    /**
+     * Get the value of plainPassword
+     */
+    public function getPlainPassword(){
+        return $this->plainPassword;
+    }
+    
+    /**
+     * Set the value of plainPassword
+     * 
+     * @return self
+     */
+    Public function setPlainPassword($plainPassword){
+        $this->plainPassword = $plainPassword;
+        return $this;
+    }
     /**
      * @see PasswordAuthenticatedUserInterface
      */
