@@ -12,6 +12,7 @@ use DateTimeInterface;
 
 #[ORM\Entity(repositoryClass: UsersRepository::class)]
 #[ORM\UniqueConstraint(name: 'UNIQ_IDENTIFIER_EMAIL', fields: ['email'])]
+#[ORM\HasLifecycleCallbacks]
 class Users implements UserInterface, PasswordAuthenticatedUserInterface
 {
     #[ORM\Id]
@@ -161,6 +162,7 @@ class Users implements UserInterface, PasswordAuthenticatedUserInterface
         $this->creationDate = new DateTimeImmutable();
     }
 
+    #[ORM\PrePersist]
     #[ORM\PreUpdate]
     public function setModificationDateValue(): void
     {
