@@ -40,14 +40,15 @@ class NourritureController extends AbstractController
         $nourriture = new Nourriture();
         $user = $this->security->getUser();
         $nourriture->setUser($user);
-        $nourriture->setdateCreation(new \DateTimeImmutable());
-        $nourriture->setdateModification(new \DateTime());
         $form = $this->createForm(NourritureType::class, $nourriture);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager->persist($nourriture);
             $entityManager->flush();
+
+            $this->addFlash('success', 'Nourriture ajoutée avec succès.');
+
 
             return $this->redirectToRoute('app_nourriture_index', [], Response::HTTP_SEE_OTHER);
         }
@@ -75,8 +76,10 @@ class NourritureController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $nourriture->setdateModification(new \DateTime());
             $entityManager->flush();
+
+            $this->addFlash('success', 'Nourriture modifiée avec succès.');
+
 
             return $this->redirectToRoute('app_nourriture_index', [], Response::HTTP_SEE_OTHER);
         }

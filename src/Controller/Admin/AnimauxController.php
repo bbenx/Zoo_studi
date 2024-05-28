@@ -32,14 +32,14 @@ class AnimauxController extends AbstractController
     public function new(Request $request, EntityManagerInterface $entityManager): Response
     {
         $animaux = new Animaux();
-        $animaux->setCreationDate(new \DateTimeImmutable());
-        $animaux->setModificationDate(new \DateTime());
         $form = $this->createForm(AnimauxType::class, $animaux);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager->persist($animaux);
             $entityManager->flush();
+
+            $this->addFlash('success', 'Animal ajouté avec succès.');
 
             return $this->redirectToRoute('app_animaux_index', [], Response::HTTP_SEE_OTHER);
         }
@@ -70,8 +70,10 @@ class AnimauxController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $animaux->setModificationDateValue();
             $entityManager->flush();
+
+            $this->addFlash('success', 'Animal modifié avec succès.');
+
 
             return $this->redirectToRoute('app_animaux_index', [], Response::HTTP_SEE_OTHER);
         }

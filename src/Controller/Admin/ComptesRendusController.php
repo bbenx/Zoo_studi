@@ -40,14 +40,15 @@ class ComptesRendusController extends AbstractController
         $comptesRendu = new ComptesRendus();
         $user = $this->security->getUser();
         $comptesRendu->setUser($user);
-        $comptesRendu->setCreationDate(new \DateTimeImmutable());
-        $comptesRendu->setModificationDate(new \DateTime());
         $form = $this->createForm(ComptesRendusType::class, $comptesRendu);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager->persist($comptesRendu);
             $entityManager->flush();
+
+            $this->addFlash('success', 'Compte rendu ajouté avec succès.');
+
 
             return $this->redirectToRoute('app_comptes_rendus_index', [], Response::HTTP_SEE_OTHER);
         }
@@ -75,6 +76,9 @@ class ComptesRendusController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $comptesRendu->setModificationDate(new \DateTime());
             $entityManager->flush();
+
+            $this->addFlash('success', 'Compte rendu modifié avec succès.');
+
 
             return $this->redirectToRoute('app_comptes_rendus_index', [], Response::HTTP_SEE_OTHER);
         }

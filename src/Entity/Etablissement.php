@@ -30,6 +30,12 @@ class Etablissement
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
     private ?DateTimeInterface $modificationDate = null;
 
+    public function __construct()
+    {
+        $this->setcreationDate(new \DateTimeImmutable());
+        $this->setmodificationDate(new \DateTime());
+    }
+
     public function getId(): ?int
     {
         return $this->id;

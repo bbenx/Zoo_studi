@@ -29,15 +29,15 @@ class UsersController extends AbstractController
     public function new(Request $request, EntityManagerInterface $entityManager): Response
     {
         $user = new Users();
-        $user->setCreationDate(new \DateTimeImmutable());
-        $user->setModificationDate(new \DateTime());
-
         $form = $this->createForm(UsersType::class, $user);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager->persist($user);
             $entityManager->flush();
+
+            $this->addFlash('success', 'Utilisateur ajouté avec succès.');
+
 
             return $this->redirectToRoute('app_users_index', [], Response::HTTP_SEE_OTHER);
         }
@@ -65,8 +65,10 @@ class UsersController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $user->setModificationDateValue();
             $entityManager->flush();
+
+            $this->addFlash('success', 'Utilisateur modifié avec succès.');
+
 
             return $this->redirectToRoute('app_users_index', [], Response::HTTP_SEE_OTHER);
         }
