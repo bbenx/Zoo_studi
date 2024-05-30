@@ -13,6 +13,7 @@ use DateTimeInterface;
 use Symfony\Bridge\Doctrine\Types\UuidType;
 
 #[ORM\Entity(repositoryClass: AvisRepository::class)]
+#[ORM\HasLifecycleCallbacks]
 class Avis
 {
     #[ORM\Id]
@@ -144,10 +145,10 @@ class Avis
     {
         $this->creationDate = new DateTimeImmutable();
     }
-
+    #[ORM\PrePersist]
     #[ORM\PreUpdate]
     public function setModificationDateValue(): void
-    {
+    {  
         $this->modificationDate = new \DateTime();
     }
 }

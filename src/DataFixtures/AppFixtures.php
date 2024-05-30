@@ -21,16 +21,14 @@ class AppFixtures extends Fixture
     public function load(ObjectManager $manager): void
     {
         // Récupérer l'établissement 
-        $etablissement = $manager->getRepository(Etablissement::class)->find(2);
+        $etablissement = $manager->getRepository(Etablissement::class)->findOneEtablissement();
 
        // Users
        for ($i = 0; $i<10; $i++){
         $user = new Users();
         $user->setEmail($this->faker->email())
         ->setEtablissement($etablissement)
-        ->setCreationDate(new \DateTimeImmutable())
-        ->setModificationDate(new \DateTime())
-        ->setRoles(['ROLE_USER'])
+        ->setRoles(['ROLE_USER', 'ROLE_EMPLOYE', 'ROLE_ADMIN'])
         ->setPlainPassword('password');
 
         $manager->persist($user);

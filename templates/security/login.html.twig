@@ -1,4 +1,4 @@
-{% extends 'base.html.twig' %}
+{% extends 'base_admin.html.twig' %}
 
 {% block title %}Log in!
 {% endblock %}
@@ -22,7 +22,6 @@
 		<input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" required autofocus>
 		<label for="inputPassword">Password</label>
 		<input type="password" name="password" id="inputPassword" class="form-control" required>
-
 		<input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
 
 		<div class="checkbox mb-3">

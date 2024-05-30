@@ -54,7 +54,7 @@ class AvisType extends AbstractType
         else {
             $builder
             ->add('Pseudo', TextType::class, [
-                 'attr' => ['maxlength' => 10],
+                'attr' => ['maxlength' => 10],
             ])
             ->add('Commentaire', TextareaType::class,[
                 'label' => 'Partagez votre expérience concernant le zoo',

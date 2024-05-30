@@ -16,8 +16,7 @@ use Symfony\Component\Security\Http\Attribute\IsGranted;
 #[Route('/admin')]
 class AdminController extends AbstractController
 {
-    #[IsGranted(new Expression('is_granted("ROLE_VETERINAIRE") or is_granted("ROLE_ADMIN") 
-    or is_granted("ROLE_EMPLOYE")'))]
+    #[IsGranted(new Expression('is_granted("ROLE_VETERINAIRE") or is_granted("ROLE_ADMIN") or is_granted("ROLE_EMPLOYE")'))]
     #[Route('/', name: 'app_admin_dashboard', methods: ['GET'])]
     public function dashboard(): Response
     {

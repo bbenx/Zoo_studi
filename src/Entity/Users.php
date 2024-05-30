@@ -32,10 +32,6 @@ class Users implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column]
     private array $roles = [];
 
-    /**
-     * @var string The hashed password
-     */
-
     #[ORM\Column(length: 255)]
     #[Assert\Email()]
     private ?string $email = null;
