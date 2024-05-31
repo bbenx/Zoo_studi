@@ -28,25 +28,32 @@ class HomeController extends AbstractController
         $form = $this->createForm(AvisType::class, $avis);
 
         $form->handleRequest($request);
-        $formSubmitted = false;
-
         if ($form->isSubmitted() && $form->isValid()) {
-            $avis->setCreationDate(new \DateTimeImmutable());
-            $avis->setModificationDate(new \DateTime());
             $avis->setStatut('en attente');
             $entityManager->persist($avis);
             $entityManager->flush();
 
             $this->addFlash('success', 'Votre avis a été soumis avec succès et est en attente de validation.');
-            $formSubmitted = true;
+            setcookie (
+                'avisForm',
+                'success',
+                time() + 60*60*24*365,
+                '/',
+            );
+            return $this->redirectToRoute('home');
         }
+        
+        $avisForm = !empty($_COOKIE['avisForm']);
 
         $avisValides = $avisRepository->findBy(['statut' => 'validé'], ['creationDate' => 'DESC'], 4);
 
+        $current_page = 'home';
+
         return $this->render('home/home.html.twig', [
             'form' => $form->createView(),
-            'formSubmitted' => $formSubmitted,
+            'avisForm' => $avisForm,
             'avisValidés' => $avisValides,
+            'current_page' => $current_page,
         ]);
     }
 }

@@ -31,8 +31,6 @@ class EtablissementController extends AbstractController
     {
 
         $etablissement = new Etablissement();
-        $etablissement->setCreationDate(new \DateTimeImmutable());
-        $etablissement->setModificationDate(new \DateTime());
 
         $form = $this->createForm(EtablissementType::class, $etablissement);
         $form->handleRequest($request);
@@ -40,6 +38,9 @@ class EtablissementController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager->persist($etablissement);
             $entityManager->flush();
+
+            $this->addFlash('success', 'Établissement ajouté avec succès.');
+
 
             return $this->redirectToRoute('app_etablissement_index', [], Response::HTTP_SEE_OTHER);
         }
@@ -67,8 +68,10 @@ class EtablissementController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $etablissement->setModificationDateValue();
             $entityManager->flush();
+
+            $this->addFlash('success', 'Établissement modifié avec succès.');
+
 
             return $this->redirectToRoute('app_etablissement_index', [], Response::HTTP_SEE_OTHER);
         }

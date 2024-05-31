@@ -8,6 +8,7 @@ use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: NourritureRepository::class)]
+#[ORM\HasLifecycleCallbacks]
 class Nourriture
 {
     #[ORM\Id]
@@ -41,6 +42,8 @@ class Nourriture
     public function __construct()
     {
         $this->datePassage = new \DateTime();
+        $this->setdateCreation(new \DateTimeImmutable());
+        $this->setdateModification(new \DateTime());
     }
 
     public function getId(): ?int
@@ -136,10 +139,7 @@ class Nourriture
     public function setCreationDateValue(): void
     {
         $this->dateCreation = new DateTimeImmutable();
-        $this->datePassage = new \DateTime();
-
     }
-
 
     #[ORM\PreUpdate]
     public function setModificationDateValue(): void

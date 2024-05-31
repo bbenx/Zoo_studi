@@ -28,11 +28,14 @@
         <div class="row">
             <!-- Barre latérale -->
             <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block sidebar collapse">
+            
                 <div class="position-sticky pt-3">
+                {% if app.user %}
                     <h6 class="sidebar-heading px-3 mt-4 mb-1 text-body-secondary">
                         <span class="text-uppercase">Utilisateur :</span>
                         {{ app.user.email ?? '' }}
                     </h6>
+                {% endif %}
                     <ul class="nav flex-column mb-auto">
                         {% if is_granted('ROLE_ADMIN') %}
                             <li class="nav-item">
@@ -123,21 +126,23 @@
 
                     <ul class="nav flex-column mb-auto">
                         <li class="nav-item">
-                            <a class="nav-link d-flex align-items-center gap-2" href="#">
-                                <i class="fas fa-cog"></i>
-                                Paramètres
+                            <a class="nav-link d-flex align-items-center gap-2" href="{{ path('home') }}">
+                                <i class="fas fa-home"></i>
+                                Zoo Arcadia
                             </a>
                         </li>
+                        {% if app.user %}
                         <li class="nav-item">
                             <a class="nav-link d-flex align-items-center gap-2" href="{{ path('app_logout') }}">
                                 <i class="fas fa-sign-out-alt"></i>
                                 Déconnexion
                             </a>
                         </li>
+                        {% endif %}
                     </ul>
                 </div>
             </nav>
-            <!-- Contenu principal -->
+
             <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
                 {% block body %}{% endblock %}
             </main>

@@ -26,9 +26,6 @@ class AvisType extends AbstractType
 
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
-        $builder
-            ->add('Pseudo', TextType::class)
-            ->add('Commentaire', TextareaType::class);
             
         if ($this->security->isGranted('ROLE_EMPLOYE')) {
             $builder
@@ -54,8 +51,17 @@ class AvisType extends AbstractType
                         'Validé' => 'validé',
                 ]]);
         }
+        else {
+            $builder
+            ->add('Pseudo', TextType::class, [
+                'attr' => ['maxlength' => 10],
+            ])
+            ->add('Commentaire', TextareaType::class,[
+                'label' => 'Partagez votre expérience concernant le zoo',
+                'attr' => ['maxlength' => 130],
+            ]);
+        }
     }
-
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([

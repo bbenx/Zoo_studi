@@ -31,8 +31,6 @@ class HabitatsController extends AbstractController
     public function new(Request $request, EntityManagerInterface $entityManager): Response
     {
         $habitat = new Habitats();
-        $habitat->setCreationDate(new \DateTimeImmutable());
-        $habitat->setModificationDate(new \DateTime());
 
         $form = $this->createForm(HabitatsType::class, $habitat);
         $form->handleRequest($request);
@@ -40,6 +38,9 @@ class HabitatsController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager->persist($habitat);
             $entityManager->flush();
+
+            $this->addFlash('success', 'Habitat ajouté avec succès.');
+
 
             return $this->redirectToRoute('app_habitats_index', [], Response::HTTP_SEE_OTHER);
         }
@@ -69,8 +70,10 @@ class HabitatsController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $habitat->setModificationDateValue();
             $entityManager->flush();
+
+            $this->addFlash('success', 'Habitat modifié avec succès.');
+
 
             return $this->redirectToRoute('app_habitats_index', [], Response::HTTP_SEE_OTHER);
         }

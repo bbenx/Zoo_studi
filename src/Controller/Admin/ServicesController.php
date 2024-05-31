@@ -32,15 +32,15 @@ class ServicesController extends AbstractController
     public function new(Request $request, EntityManagerInterface $entityManager): Response
     {
         $service = new Services();
-        $service->setCreationDate(new \DateTimeImmutable());
-        $service->setModificationDate(new \DateTime());
-
         $form = $this->createForm(ServicesType::class, $service);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager->persist($service);
             $entityManager->flush();
+
+            $this->addFlash('success', 'Service ajouté avec succès.');
+
 
             return $this->redirectToRoute('app_services_index', [], Response::HTTP_SEE_OTHER);
         }
@@ -68,8 +68,10 @@ class ServicesController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $service->setModificationDateValue();
             $entityManager->flush();
+
+            $this->addFlash('success', 'Service modifié avec succès.');
+
 
             return $this->redirectToRoute('app_services_index', [], Response::HTTP_SEE_OTHER);
         }

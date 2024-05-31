@@ -9,9 +9,12 @@ use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 use DateTimeImmutable;
 use DateTimeInterface;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: UsersRepository::class)]
+#[ORM\HasLifecycleCallbacks]
 #[ORM\UniqueConstraint(name: 'UNIQ_IDENTIFIER_EMAIL', fields: ['email'])]
+#[ORM\EntityListeners(['App\EntityListener\UsersListener'])]
 class Users implements UserInterface, PasswordAuthenticatedUserInterface
 {
     #[ORM\Id]
@@ -29,21 +32,26 @@ class Users implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column]
     private array $roles = [];
 
-    /**
-     * @var string The hashed password
-     */
-
     #[ORM\Column(length: 255)]
+    #[Assert\Email()]
     private ?string $email = null;
 
+    private ?string $plainPassword = null;
+
     #[ORM\Column(length: 255)]
-    private ?string $password = null;
+    private ?string $password = 'password';
 
     #[ORM\Column(type: Types::DATETIME_IMMUTABLE)]
     private ?DateTimeImmutable $creationDate = null;
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
     private ?DateTimeInterface $modificationDate = null;
+
+    public function __construct()
+    {
+        $this->setcreationDate(new \DateTimeImmutable());
+        $this->setmodificationDate(new \DateTime());
+    }
 
     public function getId(): ?int
     {
@@ -108,6 +116,22 @@ class Users implements UserInterface, PasswordAuthenticatedUserInterface
     }
 
     /**
+     * Get the value of plainPassword
+     */
+    public function getPlainPassword(){
+        return $this->plainPassword;
+    }
+    
+    /**
+     * Set the value of plainPassword
+     * 
+     * @return self
+     */
+    Public function setPlainPassword($plainPassword){
+        $this->plainPassword = $plainPassword;
+        return $this;
+    }
+    /**
      * @see PasswordAuthenticatedUserInterface
      */
     public function getPassword(): string
@@ -161,6 +185,7 @@ class Users implements UserInterface, PasswordAuthenticatedUserInterface
         $this->creationDate = new DateTimeImmutable();
     }
 
+    #[ORM\PrePersist]
     #[ORM\PreUpdate]
     public function setModificationDateValue(): void
     {

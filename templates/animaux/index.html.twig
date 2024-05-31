@@ -4,6 +4,17 @@
 {% endblock %}
 
 {% block body %}
+
+        {% for label, messages in app.flashes %}
+            {% for message in messages %}
+                {% set alertClass = label == 'success' ? 'alert-success' : (label == 'error' ? 'alert-danger' : 'alert-info') %}
+                <div class="alert text-center {{ alertClass }} custom-alert alert-dismissible fade show" role="alert">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        {% endfor %}
+
+	
 	<div class="d-flex justify-content-between align-items-center mb-4">
 		<h1>Animaux</h1>
 		{% if is_granted('ROLE_ADMIN') %}
@@ -56,4 +67,18 @@
 			{% endfor %}
 		</tbody>
 	</table>
+{% endblock %}
+{% block javascripts %}
+	{{ parent() }}
+	<script>
+		// Supprimer l'alerte après 3 secondes
+		document.addEventListener("DOMContentLoaded", function() {
+			var alerts = document.querySelectorAll('.custom-alert');
+			alerts.forEach(function(alert) {
+				setTimeout(function() {
+					alert.remove();
+				}, 3000);
+			});
+		});
+	</script>
 {% endblock %}

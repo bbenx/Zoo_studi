@@ -48,6 +48,8 @@ class ComptesRendus
     public function __construct()
     {
         $this->DatePassage = new \DateTime();
+        $this->setcreationDate(new \DateTimeImmutable());
+        $this->setmodificationDate(new \DateTime());
     }
 
     public function getId(): ?int

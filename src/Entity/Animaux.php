@@ -35,6 +35,12 @@ class Animaux
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
     private ?DateTimeInterface $modificationDate = null;
 
+    public function __construct()
+    {
+        $this->setCreationDate(new \DateTimeImmutable());
+        $this->setModificationDate(new \DateTime());
+    }
+
     public function getId(): ?int
     {
         return $this->id;

@@ -13,6 +13,7 @@ use DateTimeInterface;
 use Symfony\Bridge\Doctrine\Types\UuidType;
 
 #[ORM\Entity(repositoryClass: AvisRepository::class)]
+#[ORM\HasLifecycleCallbacks]
 class Avis
 {
     #[ORM\Id]
@@ -46,6 +47,8 @@ class Avis
     public function __construct()
     {
         $this->valide = false; // Par défaut, un avis n'est pas valide
+        $this->setcreationDate(new \DateTimeImmutable());
+        $this->setmodificationDate(new \DateTime());
     }
 
     public function getId(): ?Uuid
@@ -142,10 +145,10 @@ class Avis
     {
         $this->creationDate = new DateTimeImmutable();
     }
-
+    #[ORM\PrePersist]
     #[ORM\PreUpdate]
     public function setModificationDateValue(): void
-    {
+    {  
         $this->modificationDate = new \DateTime();
     }
 }

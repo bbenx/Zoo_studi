@@ -30,8 +30,6 @@ class HorairesController extends AbstractController
     {
 
         $horaire = new Horaires();
-        $horaire->setCreationDate(new \DateTimeImmutable());
-        $horaire->setModificationDate(new \DateTime());
 
         $form = $this->createForm(HorairesType::class, $horaire);
         $form->handleRequest($request);
@@ -39,6 +37,9 @@ class HorairesController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager->persist($horaire);
             $entityManager->flush();
+
+            $this->addFlash('success', 'Horaires ajoutés avec succès.');
+
 
             return $this->redirectToRoute('app_horaires_index', [], Response::HTTP_SEE_OTHER);
         }
@@ -66,8 +67,10 @@ class HorairesController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $horaire->setModificationDateValue();
             $entityManager->flush();
+
+            $this->addFlash('success', 'Horaires modifiés avec succès.');
+
 
             return $this->redirectToRoute('app_horaires_index', [], Response::HTTP_SEE_OTHER);
         }

@@ -30,8 +30,6 @@ class CommentairesHabitatsController extends AbstractController
     public function new(Request $request, EntityManagerInterface $entityManager): Response
     {
         $commentairesHabitat = new CommentairesHabitats();
-        $commentairesHabitat->setCreationDate(new \DateTimeImmutable());
-        $commentairesHabitat->setModificationDate(new \DateTime());
         $commentairesHabitat->setUser($this->getUser());
 
         $form = $this->createForm(CommentairesHabitatsType::class, $commentairesHabitat);
@@ -40,6 +38,9 @@ class CommentairesHabitatsController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager->persist($commentairesHabitat);
             $entityManager->flush();
+
+            $this->addFlash('success', 'Commentaire ajouté avec succès.');
+
 
             return $this->redirectToRoute('app_commentaires_habitats_index', [], Response::HTTP_SEE_OTHER);
         }
@@ -67,8 +68,9 @@ class CommentairesHabitatsController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $commentairesHabitat->setModificationDateValue();
             $entityManager->flush();
+            $this->addFlash('success', 'Commentaire modifié avec succès.');
+
 
             return $this->redirectToRoute('app_commentaires_habitats_index', [], Response::HTTP_SEE_OTHER);
         }
@@ -80,7 +82,7 @@ class CommentairesHabitatsController extends AbstractController
     }
 
     #[Route('/commentaires/habitats/{id}', name: 'app_commentaires_habitats_delete', methods: ['POST'])]
-    #[IsGranted('ROLE_VETERINAIRE')]
+    #[IsGranted('ROLE_ADMIN')]
     public function delete(Request $request, CommentairesHabitats $commentairesHabitat, EntityManagerInterface $entityManager): Response
     {
         if ($this->isCsrfTokenValid('delete' . $commentairesHabitat->getId(), $request->getPayload()->get('_token'))) {
