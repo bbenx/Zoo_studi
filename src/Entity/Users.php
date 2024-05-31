@@ -185,6 +185,7 @@ class Users implements UserInterface, PasswordAuthenticatedUserInterface
         $this->creationDate = new DateTimeImmutable();
     }
 
+    #[ORM\PrePersist]
     #[ORM\PreUpdate]
     public function setModificationDateValue(): void
     {

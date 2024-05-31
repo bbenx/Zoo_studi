@@ -37,8 +37,8 @@ class Animaux
 
     public function __construct()
     {
-        $this->setcreationDate(new \DateTimeImmutable());
-        $this->setmodificationDate(new \DateTime());
+        $this->setCreationDate(new \DateTimeImmutable());
+        $this->setModificationDate(new \DateTime());
     }
 
     public function getId(): ?int

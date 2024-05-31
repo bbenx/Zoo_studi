@@ -94,7 +94,8 @@ class Etablissement
     {
         $this->creationDate = new DateTimeImmutable();
     }
-
+    
+    #[ORM\PrePersist]
     #[ORM\PreUpdate]
     public function setModificationDateValue(): void
     {
