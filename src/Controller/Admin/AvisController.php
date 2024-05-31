@@ -30,18 +30,18 @@ class AvisController extends AbstractController
 
     #[Route('/avis/{id}', name: 'app_avis_show', methods: ['GET'])]
     #[IsGranted('ROLE_EMPLOYE')]
-    public function show(Avis $avi): Response
+    public function show(Avis $avis): Response
     {
         return $this->render('avis/show.html.twig', [
-            'avi' => $avi,
+            'avi' => $avis,
         ]);
     }
 
     #[Route('/avis/{id}/edit', name: 'app_avis_edit', methods: ['GET', 'POST'])]
     #[IsGranted('ROLE_EMPLOYE')]
-    public function edit(Request $request, Avis $avi, EntityManagerInterface $entityManager): Response
+    public function edit(Request $request, Avis $avis, EntityManagerInterface $entityManager): Response
     {
-        $form = $this->createForm(AvisType::class, $avi);
+        $form = $this->createForm(AvisType::class, $avis);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -51,7 +51,7 @@ class AvisController extends AbstractController
         }
 
         return $this->render('avis/edit.html.twig', [
-            'avi' => $avi,
+            'avis' => $avis,
             'form' => $form,
         ]);
     }
@@ -61,7 +61,7 @@ class AvisController extends AbstractController
     public function delete(Request $request, Avis $avi, EntityManagerInterface $entityManager): Response
     {
         if ($this->isCsrfTokenValid('delete' . $avi->getId(), $request->getPayload()->get('_token'))) {
-            $entityManager->remove($avi);
+            $entityManager->remove($avis);
             $entityManager->flush();
         }
 

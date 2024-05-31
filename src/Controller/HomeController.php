@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Avis;
 use App\Form\AvisType;
 use App\Repository\AvisRepository;
+use App\Repository\EspeceAnimauxRepository;
 use App\Repository\EtablissementRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
@@ -20,8 +21,10 @@ class HomeController extends AbstractController
         Request $request,
         EntityManagerInterface $entityManager,
         AvisRepository $avisRepository,
-        EtablissementRepository $etablissementRepository
+        EtablissementRepository $etablissementRepository,
+        EspeceAnimauxRepository $especesAnimauxRepository
     ): Response {
+        $especes = $especesAnimauxRepository->findAll();
         $avis = new Avis();
         $etablissement = $etablissementRepository->find(2); // Assurez-vous que cet ID existe
         $avis->setEtablissement($etablissement); // Définir l'établissement par défaut dans l'entité
@@ -52,8 +55,9 @@ class HomeController extends AbstractController
         return $this->render('home/home.html.twig', [
             'form' => $form->createView(),
             'avisForm' => $avisForm,
-            'avisValidés' => $avisValides,
+            'avisValides' => $avisValides,
             'current_page' => $current_page,
+            'especes' => $especes,
         ]);
     }
 }
