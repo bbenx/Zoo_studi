@@ -91,6 +91,9 @@ class AnimauxController extends AbstractController
         if ($this->isCsrfTokenValid('delete' . $animaux->getId(), $request->getPayload()->get('_token'))) {
             $entityManager->remove($animaux);
             $entityManager->flush();
+
+            $this->addFlash('success', 'Animal supprimé avec succès.');
+
         }
 
         return $this->redirectToRoute('app_animaux_index', [], Response::HTTP_SEE_OTHER);

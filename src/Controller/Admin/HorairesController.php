@@ -88,6 +88,9 @@ class HorairesController extends AbstractController
         if ($this->isCsrfTokenValid('delete' . $horaire->getId(), $request->getPayload()->get('_token'))) {
             $entityManager->remove($horaire);
             $entityManager->flush();
+
+            $this->addFlash('success', 'Horaires supprimés avec succès.');
+
         }
 
         return $this->redirectToRoute('app_horaires_index', [], Response::HTTP_SEE_OTHER);

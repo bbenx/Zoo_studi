@@ -91,6 +91,9 @@ class HabitatsController extends AbstractController
         if ($this->isCsrfTokenValid('delete' . $habitat->getId(), $request->getPayload()->get('_token'))) {
             $entityManager->remove($habitat);
             $entityManager->flush();
+
+            $this->addFlash('success', 'Habitat supprimé avec succès.');
+
         }
 
         return $this->redirectToRoute('app_habitats_index', [], Response::HTTP_SEE_OTHER);

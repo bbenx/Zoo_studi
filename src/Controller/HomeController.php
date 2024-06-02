@@ -58,6 +58,30 @@ class HomeController extends AbstractController
             'avisValides' => $avisValides,
             'current_page' => $current_page,
             'especes' => $especes,
+            'current_page' => "home",
+        ]);
+    }
+    #[Route('/habitats', name: 'home_habitats', methods: ['GET'])]
+    public function habitats(): Response
+    {
+        return $this->render('home/habitats.html.twig', [
+            'current_page' => 'habitats',
+        ]);
+    }
+
+    #[Route('/services', name: 'home_services', methods: ['GET'])]
+    public function services(): Response
+    {
+        return $this->render('home/services.html.twig', [
+            'current_page' => 'services',
+        ]);
+    }
+
+    #[Route('/contact', name: 'home_contact', methods: ['GET'])]
+    public function contact(): Response
+    {
+        return $this->render('home/contact.html.twig', [
+            'current_page' => 'contact',
         ]);
     }
 }

@@ -95,6 +95,9 @@ class ComptesRendusController extends AbstractController
         if ($this->isCsrfTokenValid('delete' . $comptesRendu->getId(), $request->request->get('_token'))) {
             $entityManager->remove($comptesRendu);
             $entityManager->flush();
+
+            $this->addFlash('success', 'Compte rendu supprimé avec succès.');
+
         }
 
         return $this->redirectToRoute('app_comptes_rendus_index', [], Response::HTTP_SEE_OTHER);

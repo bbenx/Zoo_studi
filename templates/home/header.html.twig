@@ -1,0 +1,101 @@
+{% block body %}
+    <header>
+        <div class="navbar">
+            <div class="logo">
+                <a href="{{ path('home') }}">Zoo Arcadia</a>
+            </div>
+            <ul class="links">
+                <li>
+                    <a class="{% if current_page == 'home' %}active{% endif %}" href="{{ path('home') }}">Accueil</a>
+                </li>
+                <li>
+                    <a class="{% if current_page == 'habitats' %}active{% endif %}" href="{{ path('home_habitats') }}">Habitats</a>
+                </li>
+                <li>
+                    <a class="{% if current_page == 'services' %}active{% endif %}" href="{{ path('home_services') }}">Services</a>
+                </li>
+                <li>
+                    <a class="{% if current_page == 'contact' %}active{% endif %}" href="{{ path('home_contact') }}">Contact</a>
+                </li>
+            </ul>
+            <div class="user-actions">
+                {% if app.user %}
+                    <a href="{{ path('app_admin_dashboard') }}" class="action_btn">Dashboard</a>
+                    <a href="{{ path('app_logout') }}" class="action_btn">
+                        <i class="fas fa-power-off" style="color:red"></i>
+                    </a>
+                {% else %}
+                    <a href="{{ path('app_login') }}" class="action_btn">Connexion</a>
+                {% endif %}
+            </div>
+            <div class="toggle_btn">
+                <i class="fa-solid fa-bars"></i>
+            </div>
+        </div>
+        <div class="dropdown_menu">
+            <ul>
+                <li>
+                    <a class="{% if current_page == 'home' %}active{% endif %}" href="{{ path('home') }}">Accueil</a>
+                </li>
+                <li>
+                    <a class="{% if current_page == 'habitats' %}active{% endif %}" href="{{ path('home_habitats') }}">Habitats</a>
+                </li>
+                <li>
+                    <a class="{% if current_page == 'services' %}active{% endif %}" href="{{ path('home_services') }}">Services</a>
+                </li>
+                <li>
+                    <a class="{% if current_page == 'contact' %}active{% endif %}" href="{{ path('home_contact') }}">Contact</a>
+                </li>
+            </ul>
+            <div class="user-actions-dropdown">
+                {% if app.user %}
+                    <a href="{{ path('app_admin_dashboard') }}" class="action_btn full-width">Dashboard</a>
+                    <a href="{{ path('app_logout') }}" class="logout_btn">
+                        <i class="fas fa-power-off" style="color:red"></i>
+                    </a>
+                {% else %}
+                    <a href="{{ path('app_login') }}" class="action_btn">Connexion</a>
+                {% endif %}
+            </div>
+        </div>
+    </header>
+{% endblock %}
+
+{% block javascripts %}
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const toggleBtn = document.querySelector('.toggle_btn');
+        const toggleBtnIcon = document.querySelector('.toggle_btn i');
+        const dropDownMenu = document.querySelector('.dropdown_menu');
+        const header = document.querySelector('header');
+
+        toggleBtn.onclick = function () {
+            dropDownMenu.classList.toggle('open');
+            const isOpen = dropDownMenu.classList.contains('open');
+            toggleBtnIcon.classList = isOpen ? 'fa-solid fa-xmark' : 'fa-solid fa-bars';
+            if (isOpen) {
+                header.classList.add('dropdown-open');
+            } else {
+                header.classList.remove('dropdown-open');
+            }
+        };
+
+        window.addEventListener('scroll', function () {
+            if (window.scrollY > 0) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+    });
+</script>
+{% endblock %}
+
+
+
+
+
+
+
+
+

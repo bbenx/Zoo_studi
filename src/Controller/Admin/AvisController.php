@@ -61,7 +61,7 @@ class AvisController extends AbstractController
     public function delete(Request $request, Avis $avi, EntityManagerInterface $entityManager): Response
     {
         if ($this->isCsrfTokenValid('delete' . $avi->getId(), $request->getPayload()->get('_token'))) {
-            $entityManager->remove($avis);
+            $entityManager->remove($avi);
             $entityManager->flush();
         }
 

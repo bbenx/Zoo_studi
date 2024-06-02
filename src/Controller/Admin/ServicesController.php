@@ -89,6 +89,9 @@ class ServicesController extends AbstractController
         if ($this->isCsrfTokenValid('delete' . $service->getId(), $request->getPayload()->get('_token'))) {
             $entityManager->remove($service);
             $entityManager->flush();
+
+            $this->addFlash('success', 'Service supprimé avec succès.');
+
         }
 
         return $this->redirectToRoute('app_services_index', [], Response::HTTP_SEE_OTHER);

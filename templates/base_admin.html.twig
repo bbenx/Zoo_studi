@@ -23,6 +23,16 @@
             </div>
         </div>
     </nav>
+
+    {% for label, messages in app.flashes %}
+        {% for message in messages %}
+            {% set alertClass = label == 'success' ? 'alert-success' : (label == 'error' ? 'alert-danger' : 'alert-info') %}
+            <div class="alert text-center {{ alertClass }} custom-alert alert-dismissible fade show" role="alert">
+                {{ message }}
+            </div>
+        {% endfor %}
+    {% endfor %}
+
     <!-- Conteneur principal -->
     <div class="container-fluid">
         <div class="row">
@@ -39,14 +49,12 @@
                     <ul class="nav flex-column mb-auto">
                         {% if is_granted('ROLE_ADMIN') %}
                             <li class="nav-item">
-                                <!-- Lien vers l'index des établissements -->
                                 <a class="nav-link d-flex align-items-center gap-2" href="{{ path('app_etablissement_index') }}">
                                     <i class="fas fa-school"></i>
                                     Etablissement
                                 </a>
                             </li>
                         {% endif %}
-                        <!-- Ajoutez vos autres liens de navigation ici -->
                         {% if is_granted('ROLE_ADMIN') %}
                             <li class="nav-item">
                                 <a class="nav-link d-flex align-items-center gap-2" href="{{ path('app_horaires_index') }}">
@@ -57,7 +65,6 @@
                             {% endif %}
                             {% if is_granted('ROLE_ADMIN') %}
                             <li class="nav-item">
-                                <!-- Lien vers l'index des utilisateurs -->
                                 <a class="nav-link d-flex align-items-center gap-2" href="{{ path('app_users_index') }}">
                                     <i class="fas fa-users"></i>
                                     Utilisateurs

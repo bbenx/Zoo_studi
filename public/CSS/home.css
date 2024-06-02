@@ -20,10 +20,12 @@
 
 body {
     background-color: #5e8153;
+    background-image: url('https://my-zoo-images.s3.eu-north-1.amazonaws.com/Images-divers/pexels-katarzyna-modrzejewska-495044-1466434.jpg');
     background-blend-mode: multiply;
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
+
 }
 
 .custom-bg {
@@ -34,6 +36,9 @@ body {
     text-decoration: underline;
 }
 
+.nav-link.active{
+    text-decoration: underline;
+}
 .dashboard-btn {
     background-color: #5e8153;
 }

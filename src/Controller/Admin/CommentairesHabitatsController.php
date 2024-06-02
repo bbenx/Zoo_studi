@@ -88,6 +88,9 @@ class CommentairesHabitatsController extends AbstractController
         if ($this->isCsrfTokenValid('delete' . $commentairesHabitat->getId(), $request->getPayload()->get('_token'))) {
             $entityManager->remove($commentairesHabitat);
             $entityManager->flush();
+
+            $this->addFlash('success', 'commentaire supprimé avec succès.');
+
         }
 
         return $this->redirectToRoute('app_commentaires_habitats_index', [], Response::HTTP_SEE_OTHER);

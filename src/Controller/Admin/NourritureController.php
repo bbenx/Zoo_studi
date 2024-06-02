@@ -98,6 +98,9 @@ class NourritureController extends AbstractController
         if ($this->isCsrfTokenValid('delete'.$nourriture->getId(), $request->getPayload()->get('_token'))) {
             $entityManager->remove($nourriture);
             $entityManager->flush();
+
+            $this->addFlash('success', 'Nourriture supprimée avec succès.');
+
         }
 
         return $this->redirectToRoute('app_nourriture_index', [], Response::HTTP_SEE_OTHER);

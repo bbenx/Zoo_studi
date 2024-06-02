@@ -89,6 +89,9 @@ class EtablissementController extends AbstractController
         if ($this->isCsrfTokenValid('delete' . $etablissement->getId(), $request->getPayload()->get('_token'))) {
             $entityManager->remove($etablissement);
             $entityManager->flush();
+
+            $this->addFlash('success', 'Etablissement supprimé avec succès.');
+
         }
 
         return $this->redirectToRoute('app_etablissement_index', [], Response::HTTP_SEE_OTHER);
