@@ -9,6 +9,7 @@ use DateTimeImmutable;
 use DateTimeInterface;
 
 #[ORM\Entity(repositoryClass: CommentairesHabitatsRepository::class)]
+#[ORM\HasLifecycleCallbacks]
 class CommentairesHabitats
 {
     #[ORM\Id]
