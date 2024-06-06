@@ -1,0 +1,12 @@
+footer {
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(15px);
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+footer p {
+    margin: 0; 
+}

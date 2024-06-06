@@ -58,7 +58,7 @@ class AvisType extends AbstractType
             ])
             ->add('Commentaire', TextareaType::class,[
                 'label' => 'Partagez votre expérience concernant le zoo',
-                'attr' => ['maxlength' => 130],
+                'attr' => ['maxlength' => 100],
             ]);
         }
     }
