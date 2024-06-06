@@ -1,3 +1,6 @@
+html{
+    height:100%
+}
 
 body {
     height: 100vh;
@@ -351,6 +354,9 @@ h1.logo{
         height: 300px;
         width: 300px;
     } 
+    .lead{
+        padding-top:1rem;
+    }
   }
 
 @media (max-width: 576px) {
@@ -363,10 +369,10 @@ h1.logo{
         padding-right: 3rem;
     }
     h1.logo{
-        font-size:2.5rem;
+        font-size:3.5rem;
     }
     .lead{
-        font-size:0.8rem;
+        font-size:1rem;
     }
     .custom-size{
         width:90%;
@@ -391,6 +397,12 @@ h1.logo{
     }
     .custom-size{
         width:80%;
+    }
+    h1.logo{
+        font-size:2rem;
+    }
+    .lead{
+        font-size:1rem;
     }
 
 }

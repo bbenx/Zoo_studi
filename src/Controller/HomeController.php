@@ -78,9 +78,11 @@ class HomeController extends AbstractController
     }
 
     #[Route('/services', name: 'home_services', methods: ['GET'])]
-    public function services(): Response
+    public function services(ServicesRepository $servicesRepository): Response
     {
+        $services = $servicesRepository->findAll();
         return $this->render('home/services.html.twig', [
+            'services' => $services,
             'current_page' => 'services',
         ]);
     }
