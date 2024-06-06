@@ -31,7 +31,7 @@
 					<td>{{ habitat.id }}</td>
 					<td>{{ habitat.nom }}</td>
 					<td class="comment-column">{{ habitat.description }}</td>
-					<td>{{ habitat.images ? habitat.images|json_encode : '' }}</td>
+					<td>{{ habitat.image }}</td>
 					<td>{{ habitat.creationDate ? habitat.creationDate|date('Y-m-d H:i:s') : '' }}</td>
 					<td>{{ habitat.modificationDate ? habitat.modificationDate|date('Y-m-d H:i:s') : '' }}</td>
 					<td>

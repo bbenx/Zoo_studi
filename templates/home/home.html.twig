@@ -24,7 +24,7 @@
 		</section>
 
 
-		<div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+		<div id="carouselExampleControls" class="carousel slide pb-4" data-bs-ride="carousel">
 			<div class="carousel-inner">
 				<div class="carousel-item active">
 					<img class="d-block mx-auto custom-size img-zoo" src="{{ asset('Images/img_zoo/Oiseau.jpg') }}" alt="oiseau">
@@ -44,7 +44,7 @@
 		</div>
 
 
-		<div id="about" class="container pt-3 mt-1 text-white">
+		<div id="about" class="container pt-3 pb-3 mt-1 text-white">
 			<section id="about" class="about text-center grey-background">
 				<h2 class="mb-4">À propos de nous</h2>
 				<p>Arcadia est un zoo situé en France, près de la forêt de Brocéliande en Bretagne, fondé en 1960. Nous offrons une expérience unique avec une variété d'animaux exotiques et indigènes répartis par habitats naturels : savane, jungle et marais.</p>
@@ -70,8 +70,9 @@
 
 
 		<section id="services">
-			<div class="container px-4 py-5 text-white">
+			<div class="container px-4 py-2 text-white">
 				<h2 class="pb-2 fw-bold text-white border-bottom">Découvrez nos services</h2>
+				<br>
 				<div
 					class="row">
 					<!-- Colonne pour le texte à gauche -->
@@ -97,7 +98,7 @@
 			</div>
 		</section>
 
-		<section id="animaux" class="container px-4 py-2 text-white">
+		<section id="animaux" class="container px-4 py-5 text-white">
 			<h2 class="pb-2 fw-bold text-white border-bottom">Nos Amis du Zoo</h2>
 			<br>
 			<h4 class="text-center">Découvrez quelques-unes des espèces fascinantes que vous pouvez
@@ -117,9 +118,6 @@
 					</div>
 				{% endfor %}
 			</div>
-			{% if especes|length > 8 %}
-				<button id="see-more-btn" class="btn btn-primary mt-4">Voir plus</button>
-			{% endif %}
 		</seciton>
 
 		<section id="testimonials" class="px-4 py-5">
@@ -225,22 +223,7 @@ window.scrollTo(0, scrollPosition);
 localStorage.removeItem('scrollPosition');
 }
 });
-
-const seeMoreBtn = document.getElementById('see-more-btn');
-if (seeMoreBtn) {
-seeMoreBtn.addEventListener('click', function () {
-const hiddenCards = document.querySelectorAll('.animal-card.d-none');
-hiddenCards.forEach((card, index) => {
-if (index < 8) {
-card.classList.remove('d-none');
 }
-});
-
-if (hiddenCards.length <= 8) {
-this.style.display = 'none';
-}
-});
-}
-});
+);
 </script>
 <script src="{{ asset('JS/bootstrap.min.js') }}"></script>{% endblock %}

@@ -18,7 +18,7 @@ class HabitatsType extends AbstractType
         $builder
             ->add('Nom')
             ->add('Description')
-            ->add('Images')
+            ->add('Image')
             ->add('creationDate', DateTimeType::class, [
                 'widget' => 'single_text',
                 'disabled' => true,

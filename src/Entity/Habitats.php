@@ -9,6 +9,7 @@ use DateTimeImmutable;
 use DateTimeInterface;
 
 #[ORM\Entity(repositoryClass: HabitatsRepository::class)]
+#[ORM\HasLifecycleCallbacks]
 class Habitats
 {
     #[ORM\Id]
@@ -26,8 +27,8 @@ class Habitats
     #[ORM\Column(type: Types::TEXT)]
     private ?string $Description = null;
 
-    #[ORM\Column(nullable: true)]
-    private ?array $Images = null;
+    #[ORM\Column(length: 255)]
+    private ?string $image = null;
 
     #[ORM\Column(type: Types::DATETIME_IMMUTABLE)]
     private ?DateTimeImmutable $creationDate = null;
@@ -37,8 +38,8 @@ class Habitats
 
     public function __construct()
     {
-        $this->setcreationDate(new \DateTimeImmutable());
-        $this->setmodificationDate(new \DateTime());
+        $this->setCreationDate(new \DateTimeImmutable());
+        $this->setModificationDate(new \DateTime());
     }
 
     public function getId(): ?int
@@ -82,14 +83,14 @@ class Habitats
         return $this;
     }
 
-    public function getImages(): ?array
+    public function getImage(): ?string
     {
-        return $this->Images;
+        return $this->image;
     }
 
-    public function setImages(?array $Images): static
+    public function setImage(string $image): static
     {
-        $this->Images = $Images;
+        $this->image = $image;
 
         return $this;
     }
@@ -118,13 +119,15 @@ class Habitats
         return $this;
     }
 
-
     #[ORM\PrePersist]
     public function setCreationDateValue(): void
     {
-        $this->creationDate = new DateTimeImmutable();
+        if ($this->creationDate === null) {
+            $this->creationDate = new DateTimeImmutable();
+        }
     }
 
+    #[ORM\PrePersist]
     #[ORM\PreUpdate]
     public function setModificationDateValue(): void
     {

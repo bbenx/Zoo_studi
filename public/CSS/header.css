@@ -184,8 +184,8 @@ h1.logo{
 
 .habitat-circle {
     position: relative;
-    width: 100px;
-    height: 100px;
+    width: 200px;
+    height: 200px;
     margin: 0 auto;
     overflow: hidden;
     border-radius: 50%;
@@ -201,12 +201,30 @@ h1.logo{
 }
 
 .habitat-circle h5 {
-    position: absolute;
-    bottom: 10px;
-    width: 100%;
+    display: inline-block; /* Permet au fond de s'adapter à la taille du texte */
+    background-color: rgba(0, 0, 0, 0.5); /* Fond semi-transparent */
+    padding: 5px 10px; 
     text-align: center;
     color: white;
     margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 15px;
+}
+
+
+.row.g-4 {
+    gap: 60px; /* Ajustez cette valeur pour augmenter ou diminuer l'espace entre les cercles */
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.col-6 {
+    padding-left: 0;
+    padding-right: 0;
 }
 
 .avis-border {
@@ -224,8 +242,8 @@ h1.logo{
 }
 
 .card {
-    height: 300px;
-    width: 300px; 
+    height: 250px;
+    width: 250px; 
     margin: auto;
     display: flex;
     flex-direction: column;
@@ -261,7 +279,7 @@ h1.logo{
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: #4caf50;
+    background-color: rgba(76, 175, 80, 0.8);
     color: white;
     border: 2px solid white;
     border-radius: 8px;
@@ -270,9 +288,7 @@ h1.logo{
     margin: 20px; 
     box-sizing: border-box;
     flex-shrink: 0; 
-
-
-
+}
 
 /* RESPONSIVE DESIGN */
 @media (max-width: 992px) {
@@ -309,29 +325,32 @@ h1.logo{
     }
     .card {
         height: 200px;
-        width: 200px; 
-        margin: auto;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-    }
-}
-
-@media (min-width: 768px) {
-    .bd-placeholder-img-lg {
-      font-size: 3.5rem;
-    }
-    .col.d-flex {
-        justify-content: center; /* Centre les éléments sur les écrans de taille moyenne ou plus petits */
-      }
-      .custom-size{
-        width:40%;
+        width: 200px;
+    } 
+    .card-body{
+        width: 100%;
     }
     #btn-know {
         font-size: 0.8rem; 
         padding: 0.5rem 1rem;
         width: auto; 
     }
+}
+
+@media (max-width: 768px) {
+    .bd-placeholder-img-lg {
+      font-size: 3.5rem;
+    }
+    .col.d-flex {
+        justify-content: center; 
+      }
+      .custom-size{
+        width:60%;
+    }
+    .card {
+        height: 300px;
+        width: 300px;
+    } 
   }
 
 @media (max-width: 576px) {
@@ -359,11 +378,6 @@ h1.logo{
         margin: 10px auto; 
         width: 80%; 
     }
-    #btn-know {
-        font-size: 0.8rem; 
-        padding: 0.5rem 1rem;
-        width: auto; 
-    }
 }
 
 @media (max-width: 375px) {
@@ -376,14 +390,7 @@ h1.logo{
         font-size: medium;
     }
     .custom-size{
-        width:100%;
+        width:80%;
     }
-    .card-body{
-        width: 100%;
-    }
-    #btn-know {
-        font-size: 0.8rem; 
-        padding: 0.5rem 1rem;
-        width: auto; 
-    }
+
 }
