@@ -2,6 +2,7 @@
 
 namespace App\DataFixtures;
 
+use App\Entity\Contact;
 use App\Entity\Etablissement;
 use App\Entity\Users;
 use Doctrine\Bundle\FixturesBundle\Fixture;
@@ -33,6 +34,17 @@ class AppFixtures extends Fixture
 
         $manager->persist($user);
        }
+
+               // contact
+               for($i = 0; $i < 5; $i++){
+                $contact = new Contact();
+                $contact->setEmail($this->faker->email())
+                        ->setSubject('Demande n°' . $i +1)
+                        ->setMessage($this->faker->text());
+
+                $manager->persist($contact);
+            }
         $manager->flush();
     }
+
 }

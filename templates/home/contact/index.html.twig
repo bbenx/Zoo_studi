@@ -1,0 +1,86 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}ZOO Arcadia - Contact
+{% endblock %}
+
+{% block stylesheets %}
+	{{ parent() }}
+	<link rel="stylesheet" href="{{ asset('CSS/bootstrap.min.css') }}">
+	<link rel="stylesheet" href="{{ asset('CSS/header.css') }}">
+    <link rel="stylesheet" href="{{ asset('CSS/contact.css') }}">
+    <style>
+            html, body {
+            height: 100%;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .page-container {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        main {
+            flex: 1;
+        }
+
+        footer {
+            background: rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(15px);
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            color: white; 
+        }
+
+        footer * {
+            background: none;
+            color: inherit;
+        }
+    </style>
+{% endblock %}
+
+{% block body %}
+    
+    <main role="main" class="content-wrap">
+        <section id="header-services" class="pt-5 text-center container text-dark">
+            <div class="row">
+                <div class="col-lg-8 col-md-8 mx-auto">
+                    <h1 class="mt-4 text-shadow text-white logo">Envoyez-nous un message</h1>
+                    <p class="lead text-white">Nous sommes là pour répondre à toutes vos questions !</p>
+                </div>
+            </div>
+        </section>
+
+        <div class="container">
+            {{ form(form) }}
+        </div>
+
+            {% for label, messages in app.flashes %}
+         {% for message in messages %}
+            {% set alertClass = label == 'success' ? 'alert-success' : (label == 'error' ? 'alert-danger' : 'alert-info') %}
+            <div class="alert text-center {{ alertClass }} custom-alert alert-dismissible fade show" role="alert">
+                {{ message }}
+            </div>
+        {% endfor %}
+    {% endfor %}
+    </main>
+{% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('JS/bootstrap.min.js') }}"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const flashMessages = document.querySelectorAll('.alert');
+            flashMessages.forEach(function(flashMessage) {
+                setTimeout(function() {
+                    flashMessage.style.display = 'none';
+                }, 3000); 
+            });
+        });
+    </script>
+{% endblock %}

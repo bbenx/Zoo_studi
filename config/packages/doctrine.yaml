@@ -24,6 +24,11 @@ doctrine:
                 alias: App
         controller_resolver:
             auto_mapping: true
+        entity_listeners:
+            entities:
+                App\Entity\Users:
+                    listeners:
+                        users_listener: App\EntityListener\UsersListener
 
 when@test:
     doctrine:

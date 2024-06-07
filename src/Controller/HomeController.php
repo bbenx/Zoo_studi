@@ -101,11 +101,4 @@ class HomeController extends AbstractController
         ]);
     }
 
-    #[Route('/contact', name: 'home_contact', methods: ['GET'])]
-    public function contact(): Response
-    {
-        return $this->render('home/contact.html.twig', [
-            'current_page' => 'contact',
-        ]);
-    }
 }
