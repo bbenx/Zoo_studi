@@ -1,18 +1,8 @@
-{% extends 'base_admin.html.twig' %}
+{% extends 'base.html.twig' %}
 
-{% block title %}Habitats{% endblock %}
+{% block title %}Habitat - {{ habitat.nom }}{% endblock %}
 
 {% block body %}
-    <div class="d-flex justify-content-between align-items-center mb-4">
-        <h1>Habitats</h1>
-        <div class="d-flex">
-            <a href="{{ path('app_habitats_edit', {'id': habitat.id}) }}" class="btn btn-primary mr-2">
-                <i class="fas fa-edit"></i>
-                Modifier
-            </a>
-            {{ include('habitats/_delete_form.html.twig') }}
-        </div>
-    </div>
 
     <table class="table">
         <tbody>
@@ -30,30 +20,22 @@
             </tr>
             <tr>
                 <th>Images</th>
-                <td>{{ habitat.image }}</td>
-            </tr>
-            <tr>
-                <th>Date de création</th>
-                <td>{{ habitat.creationDate ? habitat.creationDate|date('d-m-Y H:i:s') : '' }}</td>
-            </tr>
-            <tr>
-                <th>Date de modification</th>
-                <td>{{ habitat.modificationDate ? habitat.modificationDate|date('d-m-Y H:i:s') : '' }}</td>
+                <td>
+                    {% for image in habitat.image %}
+                        <img src="{{ image }}" alt="{{ habitat.nom }}" class="img-fluid mb-2" style="max-width: 100px; max-height: 100px;">
+                    {% endfor %}
+                </td>
             </tr>
         </tbody>
     </table>
-    <a href="{{ path('app_habitats_index') }}" class="btn btn-secondary mt-3">
-        <i class="fas fa-arrow-left"></i>
-        Retour à la liste
-    </a>
-    <br>
-    <br>
+
+    <br><br>
     <h2>Commentaires :</h2>
     <table class="table table-striped">
         <thead>
             <tr>
                 <th class="comment-column">Avis</th>
-                <th>Etat</th>
+                <th>État</th>
                 <th>Amélioration</th>
                 <th>Date de création</th>
                 <th>Date de modification</th>
@@ -63,7 +45,7 @@
             {% for group in commentaires|batch(4) %}
                 {% for commentaire_habitat in group %}
                     <tr class="comment-row {% if not loop.parent.loop.first %}d-none{% endif %}">
-                        <td class=>{{ commentaire_habitat.avis }}</td>
+                        <td>{{ commentaire_habitat.avis }}</td>
                         <td>{{ commentaire_habitat.etat|capitalize }}</td>
                         <td>{{ commentaire_habitat.amelioration|capitalize }}</td>
                         <td>{{ commentaire_habitat.creationDate ? commentaire_habitat.creationDate|date('d-m-Y H:i:s') : '' }}</td>
@@ -91,14 +73,11 @@
                 const batchSize = 4;
 
                 loadMoreButtonComments.addEventListener('click', function() {
-                    console.log('Voir plus commentaires clicked');
                     for (let i = 0; i < batchSize && currentIndexComments < hiddenRowsComments.length; i++, currentIndexComments++) {
-                        console.log('Showing row:', hiddenRowsComments[currentIndexComments]);
                         hiddenRowsComments[currentIndexComments].classList.remove('d-none');
                     }
 
                     if (currentIndexComments >= hiddenRowsComments.length) {
-                        console.log('Hiding button voir plus commentaires');
                         loadMoreButtonComments.style.display = 'none';
                     }
                 });

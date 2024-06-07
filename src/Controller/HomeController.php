@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Avis;
 use App\Form\AvisType;
 use App\Repository\AvisRepository;
+use App\Repository\CommentairesHabitatsRepository;
 use App\Repository\EspeceAnimauxRepository;
 use App\Repository\EtablissementRepository;
 use App\Repository\HabitatsRepository;
@@ -70,10 +71,23 @@ class HomeController extends AbstractController
         ]);
     }
     #[Route('/habitats', name: 'home_habitats', methods: ['GET'])]
-    public function habitats(): Response
+    public function habitats(HabitatsRepository $habitatsRepository): Response
     {
+        $habitats = $habitatsRepository->findAll();
         return $this->render('home/habitats.html.twig', [
+            'habitats' => $habitats,
             'current_page' => 'habitats',
+        ]);
+    }
+
+    #[Route('/habitats/{id}', name: 'app_habitats_show', methods: ['GET'])]
+    public function show(habitats $habitats, CommentairesHabitatsRepository $commentaireHabitatRepository): Response
+    {
+        $commentaires = $commentaireHabitatRepository->findBy(['habitats' => $habitats]);
+
+        return $this->render('habitats/show.html.twig', [
+            'habitats' => $habitats,
+            'commentaires' => $commentaires,
         ]);
     }
 

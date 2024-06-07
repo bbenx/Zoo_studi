@@ -13,6 +13,7 @@
     font-family: 'Poppins', sans-serif;
     padding-top: 4rem;
     padding-bottom: 3rem;
+    margin-top:3rem;
 }
 
 .wrapper {
@@ -23,7 +24,7 @@
 
 .wrapper .box {
     width: 400px;
-    height: 400px;
+    height:auto;
     border-radius: 15px;
     transition: transform 500ms ease-out;
     overflow: hidden;
@@ -31,15 +32,15 @@
     padding: 5%;
     text-align: center;
     background: rgba(255, 255, 255, 0.2);
-    backdrop-filter: blur(30px); /* Corrected from 'blue' to 'blur' */
+    backdrop-filter: blur(30px); 
     border: 2px solid rgba(255, 255, 255, 0.1);
-    position: relative; /* Ensures the :before pseudo-element is positioned correctly */
+    position: relative; 
     border: solid 2px orange;
 }
 
 .box h2 {
     font-size: 25px;
-    margin-bottom: 30px;
+    margin-bottom: 20px;
     color: rgba(255, 255, 255, 0.7);
     text-decoration: underline;
     font-weight: bold;
@@ -59,7 +60,7 @@
     left: -125%;
     transform: skew(45deg);
     position: absolute;
-    transition: left 500ms; /* Ensure smooth transition */
+    transition: left 500ms; 
 }
 
 .wrapper .box:hover {
@@ -71,32 +72,31 @@
 }
 
 /* Media Queries */
-
-/* Pour les écrans d'ordinateurs portables */
 @media (max-width: 1199px) {
     .wrapper {
         grid-template-columns: repeat(2, 1fr);
     }
+    .cards{
+        margin-top:0rem;
+    }
 }
 
-/* Pour les tablettes en mode paysage et petits ordinateurs portables */
 @media (max-width: 991px) {
     .wrapper {
         grid-template-columns: 1fr;
     }
     .wrapper .box {
-        width: 90%; /* Réduisez la largeur de la boîte */
-        margin: 0 auto; /* Centrez la boîte horizontalement */
-        height: auto; /* Pour que la hauteur s'ajuste au contenu */
-        padding: 2rem; /* Ajustez le padding pour réduire l'espace autour du contenu */
+        width: 90%; 
+        margin: 0 auto; 
+        height: auto; 
+        padding: 1rem; 
     }
 
     .box h2 {
-        margin-bottom: 10px; /* Réduisez l'espace sous le titre */
+        margin-bottom: 10px; 
     }
 }
 
-/* Pour les petits écrans (tablettes en mode portrait, téléphones en mode paysage) */
 @media (max-width: 767px) {
     .wrapper {
         grid-template-columns: 1fr;
@@ -107,7 +107,6 @@
     }
 }
 
-/* Pour les écrans de téléphones portables */
 @media (max-width: 599px) {
 
 }

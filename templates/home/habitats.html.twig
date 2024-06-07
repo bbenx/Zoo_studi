@@ -7,23 +7,77 @@
 	{{ parent() }}
 	<link rel="stylesheet" href="{{ asset('CSS/bootstrap.min.css') }}">
 	<link rel="stylesheet" href="{{ asset('CSS/header.css') }}">
+	<link rel="stylesheet" href="{{ asset('CSS/habitats.css') }}">
+	 <style>       
+			html, body {
+            height: 100%;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+        }
 
+        .page-container {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        main {
+            flex: 1;
+        }
+
+        footer {
+            background: rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(15px);
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            color: white; /* Assurez-vous que le texte est visible */
+        }
+
+        footer * {
+            background: none; /* Supprime tous les fonds spécifiques aux éléments enfants */
+            color: inherit; /* Assurez-vous que le texte hérite de la couleur du footer */
+        }
+	</style>
 {% endblock %}
 
 {% block body %}
 
-    <main role="main">
-	<div class="pt-5 text-center container text-white">
-	<div class="row">
-	<div class="col-md-12">
-	<h1 class="text-center">Habitats</h1>
-	<p class="text-center">Explore the different habitats of ZOO Arcadia</p>
-	</div>
-	</div>
-	</main>
+    <main role="main" class="content-wrap">
+        <section id="header-services" class="pt-5 text-center container text-white">
+            <div class="row">
+                <div class="col-lg-8 col-md-8 mx-auto">
+                    <h1 class="text-white mt-4 text-shadow logo">Découvrez nos habitats</h1>
+                    <p class="lead text-white">Découvrez nos services exclusifs et transformez votre visite en une expérience inoubliable avec l'aide de notre équipe dévouée !</p>
+                </div>
+            </div>
+        </section>
 
+		<section id="habitats" class="container px-4 text-white">
+			<div class="row justify-content-center py-5 g-4">
+				{% for habitat in habitats %}
+					<div class="col-6 col-sm-4 col-md-3 col-lg-2 text-center mb-4">
+                    {# a href="{{ path('app_home_habitats_habitatss', {'id': habitat.id}) }}" class="habitat-link" #}
+						<div class="habitats-circle">
+							<img src="{{ habitat.image }}" alt="{{ habitat.nom }}" class="img-fluid rounded-circle">
+							<h5 class="mt-2">{{ habitat.nom }}</h5>
+						</div>
+					</div>
+				{% endfor %}
+			</div>
+		</section>
 {% endblock %}
+{% block footer %}
+    <footer>
+        {% include 'home/footer.html.twig' %}
+    </footer>
+{% endblock %}
+
 {% block javascripts %}
-	{{ parent() }}
-	<script src="{{ asset('JS/bootstrap.min.js') }}"></script>
+    {{ parent() }}
+    <script src="{{ asset('JS/bootstrap.min.js') }}"></script>
 {% endblock %}
+

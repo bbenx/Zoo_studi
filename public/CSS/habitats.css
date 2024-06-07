@@ -1,0 +1,63 @@
+.habitats-circle {
+    position: relative;
+    width: 250px;
+    height: 250px;
+    margin: 10px auto;
+    overflow: hidden;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #4caf50;
+    transition: transform 0.3s, box-shadow 0.3s;
+
+}
+
+.habitats-circle:hover, .habitats-circle:focus {
+    transform: scale(1.05);
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+    border: 2px solid orange;
+}
+
+.habitats-circle img {
+    width: 100%;
+    height: auto;
+}
+
+.habitats-circle h5 {
+    display: inline-block;
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 5px 10px;
+    text-align: center;
+    color: white;
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 15px;
+}
+
+.habitat-link {
+    text-decoration: none;
+    color: inherit;
+}
+
+@media (max-width: 1199px) {
+    .habitats-circle{
+        width: 200px;
+        height: 200px;
+    }
+}
+
+@media (max-width: 991px) {
+
+}
+
+@media (max-width: 767px) {
+
+}
+
+@media (max-width: 599px) {
+
+}
