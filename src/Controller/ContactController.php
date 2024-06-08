@@ -36,7 +36,6 @@ class ContactController extends AbstractController
             ->html('<p>Vous avez reçu un nouveau message de contact</p>');
 
             $mailer->send($email);
-            dd($mailer);
 
             $this->addFlash(
                 'success',
@@ -47,7 +46,6 @@ class ContactController extends AbstractController
 
         return $this->render('home/contact/index.html.twig', [
             'form' => $form->createView(),
-            'controller_name' => 'ContactController',
             'current_page' => 'contact',
         ]);
     }

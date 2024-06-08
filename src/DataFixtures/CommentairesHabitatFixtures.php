@@ -9,9 +9,9 @@ use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
 use Doctrine\Persistence\ManagerRegistry;
 use Faker\Factory;
-use Doctrine\Bundle\FixturesBundle\FixtureGroupInterface;
+use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 
-class CommentairesHabitatFixtures extends Fixture implements FixtureGroupInterface
+class CommentairesHabitatFixtures extends Fixture implements DependentFixtureInterface
 {
     private $doctrine;
 
@@ -58,8 +58,11 @@ class CommentairesHabitatFixtures extends Fixture implements FixtureGroupInterfa
         echo "Fixtures loaded successfully.\n";
     }
 
-    public static function getGroups(): array
+    public function getDependencies()
     {
-        return ['commentaires_habitat'];
+        return [
+            AppFixtures::class,
+        ];
     }
+
 }

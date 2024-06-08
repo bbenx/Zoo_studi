@@ -12,6 +12,6 @@ services:
             - '../src/Entity/'
             - '../src/Kernel.php'
 
-    App\EntityListener\UsersListener:
-        arguments:
-            $hasher: '@security.password_hasher'
+    App\EntityListener\:
+        resource: "../src/EntityListener/"
+        tags: ["doctrine.orm.entity_listener"]
