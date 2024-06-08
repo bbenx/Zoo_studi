@@ -2,6 +2,7 @@
 
 namespace App\DataFixtures;
 
+use App\Entity\Contact;
 use App\Entity\Etablissement;
 use App\Entity\Users;
 use Doctrine\Bundle\FixturesBundle\Fixture;
@@ -21,7 +22,16 @@ class AppFixtures extends Fixture
     public function load(ObjectManager $manager): void
     {
         // Récupérer l'établissement 
-        $etablissement = $manager->getRepository(Etablissement::class)->findOneEtablissement();
+        // $etablissement = $manager->getRepository(Etablissement::class)->findOneEtablissement();
+
+        $etablissement = new Etablissement();
+        $etablissement->setNom('Zoo Arcadia')
+                    ->setDescription('Découvrez un monde fascinant où la nature rencontre l\'aventure');
+
+        $manager->persist($etablissement);
+        $manager->flush();
+        $this->addReference('etablissement_1', $etablissement);
+
 
        // Users
        for ($i = 0; $i<10; $i++){
@@ -33,6 +43,19 @@ class AppFixtures extends Fixture
 
         $manager->persist($user);
        }
+
+        // contact
+               for($i = 0; $i < 5; $i++){
+                $contact = new Contact();
+                $contact->setEmail($this->faker->email())
+                        ->setSubject('Demande n°' . $i +1)
+                        ->setMessage($this->faker->text());
+
+                $manager->persist($contact);
+            }
         $manager->flush();
     }
+
+
+
 }

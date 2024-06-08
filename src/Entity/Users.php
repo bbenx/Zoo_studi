@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Entity;
 
 use App\Repository\UsersRepository;
@@ -9,6 +8,7 @@ use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 use DateTimeImmutable;
 use DateTimeInterface;
+use DateTime;
 use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: UsersRepository::class)]
@@ -26,9 +26,6 @@ class Users implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\JoinColumn(nullable: false)]
     private ?Etablissement $Etablissement = null;
 
-    /**
-     * @var list<string> The user roles
-     */
     #[ORM\Column]
     private array $roles = [];
 
@@ -49,8 +46,8 @@ class Users implements UserInterface, PasswordAuthenticatedUserInterface
 
     public function __construct()
     {
-        $this->setcreationDate(new \DateTimeImmutable());
-        $this->setmodificationDate(new \DateTime());
+        $this->setCreationDate(new DateTimeImmutable());
+        $this->setModificationDate(new DateTime());
     }
 
     public function getId(): ?int
@@ -70,32 +67,19 @@ class Users implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    /** A visual identifier that represents this user.
-
-     * @see UserInterface
-     */
     public function getUserIdentifier(): string
     {
         return (string) $this->email;
     }
 
-    /**
-     * @see UserInterface
-     *
-     * @return list<string>
-     */
     public function getRoles(): array
     {
         $roles = $this->roles;
-        // guarantee every user at least has ROLE_USER
         $roles[] = 'ROLE_USER';
 
         return array_unique($roles);
     }
 
-    /**
-     * @param list<string> $roles
-     */
     public function setRoles(array $roles): static
     {
         $this->roles = $roles;
@@ -115,25 +99,18 @@ class Users implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    /**
-     * Get the value of plainPassword
-     */
-    public function getPlainPassword(){
+    public function getPlainPassword(): ?string
+    {
         return $this->plainPassword;
     }
-    
-    /**
-     * Set the value of plainPassword
-     * 
-     * @return self
-     */
-    Public function setPlainPassword($plainPassword){
+
+    public function setPlainPassword(?string $plainPassword): static
+    {
         $this->plainPassword = $plainPassword;
+
         return $this;
     }
-    /**
-     * @see PasswordAuthenticatedUserInterface
-     */
+
     public function getPassword(): string
     {
         return $this->password;
@@ -146,37 +123,32 @@ class Users implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    public function getCreationDate(): ?\DateTimeImmutable
+    public function getCreationDate(): ?DateTimeImmutable
     {
         return $this->creationDate;
     }
 
-    public function setCreationDate(\DateTimeImmutable $creationDate): static
+    public function setCreationDate(DateTimeImmutable $creationDate): static
     {
         $this->creationDate = $creationDate;
 
         return $this;
     }
 
-    public function getModificationDate(): ?\DateTimeInterface
+    public function getModificationDate(): ?DateTimeInterface
     {
         return $this->modificationDate;
     }
 
-    public function setModificationDate(\DateTimeInterface $modificationDate): static
+    public function setModificationDate(DateTimeInterface $modificationDate): static
     {
         $this->modificationDate = $modificationDate;
 
         return $this;
     }
 
-    /**
-     * @see UserInterface
-     */
     public function eraseCredentials(): void
     {
-        // If you store any temporary, sensitive data on the user, clear it here
-        // $this->plainPassword = null;
     }
 
     #[ORM\PrePersist]
@@ -189,6 +161,6 @@ class Users implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\PreUpdate]
     public function setModificationDateValue(): void
     {
-        $this->modificationDate = new \DateTime();
+        $this->modificationDate = new DateTime();
     }
 }
