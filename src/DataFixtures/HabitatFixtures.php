@@ -26,7 +26,7 @@ class HabitatFixtures extends Fixture implements DependentFixtureInterface
 
             $habitat = new Habitats();
             $habitat->setNom('Désert du Sahara');
-            $habitat->setImage('https://my-zoo-images.s3.eu-north-1.amazonaws.com/Images_habitats/desert_sahara.webp'); // Assigner l'utilisateur
+            $habitat->setImage('https://my-zoo-images.s3.eu-north-1.amazonaws.com/Images_habitats/desert_sahara.webp');
             $habitat->setDescription('Plongez dans les paysages arides et mystérieux du désert du Sahara. Apprenez comment les animaux survivent dans cet environnement extrême, entre dunes et oasis.');
             $habitat->setEtablissement($this->getReference('etablissement_1'));
 

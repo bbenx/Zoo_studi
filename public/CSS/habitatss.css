@@ -1,0 +1,51 @@
+.content-wrap {
+    padding: 20px;
+}
+
+.table thead th {
+    border-bottom: 2px solid #dee2e6;
+    background-color: #f8f9fa;
+}
+
+.table tbody tr:nth-child(odd) {
+    background-color: #f8f9fa;
+}
+
+.table tbody tr:hover {
+    background-color: #e9ecef;
+}
+
+.table td, .table th {
+    vertical-align: middle;
+}
+
+.btn {
+    margin-right: 5px;
+}
+
+.habitat-info img {
+    max-width: 100px;
+    max-height: 100px;
+    margin-bottom: 10px;
+    border-radius: 8px;
+}
+
+.habitat-info h2 {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.habitat-info table {
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.habitat-info .btn-info, .habitat-info .btn-primary {
+    margin-right: 10px;
+}
+
+.habitat-info .no-records {
+    text-align: center;
+    font-style: italic;
+    color: #6c757d;
+}

@@ -19,7 +19,7 @@ class Animaux
 
     #[ORM\ManyToOne]
     #[ORM\JoinColumn(nullable: false)]
-    private ?Habitats $Habitat = null;
+    private ?Habitats $habitat = null;
 
     #[ORM\Column(length: 255)]
     private ?string $Prenom = null;
@@ -49,12 +49,12 @@ class Animaux
 
     public function getHabitat(): ?Habitats
     {
-        return $this->Habitat;
+        return $this->habitat;
     }
 
     public function setHabitat(?Habitats $Habitat): static
     {
-        $this->Habitat = $Habitat;
+        $this->habitat = $Habitat;
 
         return $this;
     }

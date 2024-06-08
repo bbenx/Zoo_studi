@@ -70,26 +70,6 @@ class HomeController extends AbstractController
             'current_page' => "home",
         ]);
     }
-    #[Route('/habitats', name: 'home_habitats', methods: ['GET'])]
-    public function habitats(HabitatsRepository $habitatsRepository): Response
-    {
-        $habitats = $habitatsRepository->findAll();
-        return $this->render('home/habitats.html.twig', [
-            'habitats' => $habitats,
-            'current_page' => 'habitats',
-        ]);
-    }
-
-    #[Route('/habitats/{id}', name: 'app_habitats_show', methods: ['GET'])]
-    public function show(habitats $habitats, CommentairesHabitatsRepository $commentaireHabitatRepository): Response
-    {
-        $commentaires = $commentaireHabitatRepository->findBy(['habitats' => $habitats]);
-
-        return $this->render('habitats/show.html.twig', [
-            'habitats' => $habitats,
-            'commentaires' => $commentaires,
-        ]);
-    }
 
     #[Route('/services', name: 'home_services', methods: ['GET'])]
     public function services(ServicesRepository $servicesRepository): Response

@@ -2,86 +2,96 @@
 
 {% block title %}Habitat - {{ habitat.nom }}{% endblock %}
 
-{% block body %}
+{% block stylesheets %}
+	{{ parent() }}
+	<link rel="stylesheet" href="{{ asset('CSS/bootstrap.min.css') }}">
+	<link rel="stylesheet" href="{{ asset('CSS/header.css') }}">
+	<link rel="stylesheet" href="{{ asset('CSS/habitatss.css') }}">
+	 <style>       
+			html, body {
+            height: 100%;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+        }
 
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ habitat.id }}</td>
-            </tr>
-            <tr>
-                <th>Nom</th>
-                <td>{{ habitat.nom }}</td>
-            </tr>
-            <tr>
-                <th>Description</th>
-                <td>{{ habitat.description }}</td>
-            </tr>
-            <tr>
-                <th>Images</th>
-                <td>
-                    {% for image in habitat.image %}
-                        <img src="{{ image }}" alt="{{ habitat.nom }}" class="img-fluid mb-2" style="max-width: 100px; max-height: 100px;">
-                    {% endfor %}
-                </td>
-            </tr>
-        </tbody>
-    </table>
+        .page-container {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
 
-    <br><br>
-    <h2>Commentaires :</h2>
-    <table class="table table-striped">
-        <thead>
-            <tr>
-                <th class="comment-column">Avis</th>
-                <th>État</th>
-                <th>Amélioration</th>
-                <th>Date de création</th>
-                <th>Date de modification</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for group in commentaires|batch(4) %}
-                {% for commentaire_habitat in group %}
-                    <tr class="comment-row {% if not loop.parent.loop.first %}d-none{% endif %}">
-                        <td>{{ commentaire_habitat.avis }}</td>
-                        <td>{{ commentaire_habitat.etat|capitalize }}</td>
-                        <td>{{ commentaire_habitat.amelioration|capitalize }}</td>
-                        <td>{{ commentaire_habitat.creationDate ? commentaire_habitat.creationDate|date('d-m-Y H:i:s') : '' }}</td>
-                        <td>{{ commentaire_habitat.modificationDate ? commentaire_habitat.modificationDate|date('d-m-Y H:i:s') : '' }}</td>
-                    </tr>
-                {% endfor %}
-            {% endfor %}
-        </tbody>
-    </table>
-    {% if commentaires|length > 4 %}
-        <div class="text-center mt-3">
-            <button id="load-more-comments" class="btn btn-primary">Voir plus</button>
-        </div>
-    {% endif %}
+        main {
+            flex: 1;
+        }
+
+        footer {
+            background: rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(15px);
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            color: white; /* Assurez-vous que le texte est visible */
+        }
+
+        footer * {
+            background: none; /* Supprime tous les fonds spécifiques aux éléments enfants */
+            color: inherit; /* Assurez-vous que le texte hérite de la couleur du footer */
+        }
+	</style>
 {% endblock %}
 
+{% block body %}
+
+    <main role="main" class="content-wrap">
+        <div class="container habitat-info">
+            <table class="table">
+                <tbody>
+                    <tr>
+                        <th>Nom</th>
+                        <td>{{ habitat.nom }}</td>
+                    </tr>
+                    <tr>
+                        <th>Description</th>
+                        <td>{{ habitat.description }}</td>
+                    </tr>
+                    <tr>
+                        <th>Images</th>
+                        <td>
+                            {% for image in habitat.image %}
+                            <p>{{ image }}</p> <!-- Debug: affichez l'URL de l'image -->
+                            <img src="{{ image }}" alt="{{ habitat.nom }}" class="img-fluid mb-2">
+                        {% endfor %}
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h2>Animaux</h2>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Prénom</th>
+                        <th>Race</th>
+                        <th>Images</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for animal in animaux %}
+                        <tr>
+                            <td>{{ animal.Prenom }}</td>
+                            <td>{{ animal.Race }}</td>
+                            <td>{{ animal.Images ? animal.Images}}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </main>
+
+{% endblock %}
 {% block javascripts %}
-    {{ parent() }}
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            let loadMoreButtonComments = document.getElementById('load-more-comments');
-            if (loadMoreButtonComments) {
-                let hiddenRowsComments = document.querySelectorAll('.comment-row.d-none');
-                let currentIndexComments = 0;
-                const batchSize = 4;
 
-                loadMoreButtonComments.addEventListener('click', function() {
-                    for (let i = 0; i < batchSize && currentIndexComments < hiddenRowsComments.length; i++, currentIndexComments++) {
-                        hiddenRowsComments[currentIndexComments].classList.remove('d-none');
-                    }
-
-                    if (currentIndexComments >= hiddenRowsComments.length) {
-                        loadMoreButtonComments.style.display = 'none';
-                    }
-                });
-            }
-        });
-    </script>
 {% endblock %}

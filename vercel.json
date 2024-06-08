@@ -1,6 +1,5 @@
 {
     "version": 2,
-    "name": "zoo-studi",
     "builds": [
       {
         "src": "public/index.php",
