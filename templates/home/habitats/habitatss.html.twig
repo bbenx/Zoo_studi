@@ -3,12 +3,12 @@
 {% block title %}Habitat - {{ habitat.nom }}{% endblock %}
 
 {% block stylesheets %}
-	{{ parent() }}
-	<link rel="stylesheet" href="{{ asset('CSS/bootstrap.min.css') }}">
-	<link rel="stylesheet" href="{{ asset('CSS/header.css') }}">
-	<link rel="stylesheet" href="{{ asset('CSS/habitatss.css') }}">
-	 <style>       
-			html, body {
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('CSS/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('CSS/header.css') }}">
+    <link rel="stylesheet" href="{{ asset('CSS/habitatss.css') }}">
+    <style>       
+        html, body {
             height: 100%;
             margin: 0;
             display: flex;
@@ -40,58 +40,31 @@
             background: none; /* Supprime tous les fonds spécifiques aux éléments enfants */
             color: inherit; /* Assurez-vous que le texte hérite de la couleur du footer */
         }
-	</style>
+    </style>
 {% endblock %}
 
 {% block body %}
-
     <main role="main" class="content-wrap">
-        <div class="container habitat-info">
-            <table class="table">
-                <tbody>
-                    <tr>
-                        <th>Nom</th>
-                        <td>{{ habitat.nom }}</td>
-                    </tr>
-                    <tr>
-                        <th>Description</th>
-                        <td>{{ habitat.description }}</td>
-                    </tr>
-                    <tr>
-                        <th>Images</th>
-                        <td>
-                            {% for image in habitat.image %}
-                            <p>{{ image }}</p> <!-- Debug: affichez l'URL de l'image -->
-                            <img src="{{ image }}" alt="{{ habitat.nom }}" class="img-fluid mb-2">
-                        {% endfor %}
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
+        <div class="container pt-5 text-center container text-white habitat-info">
+            <h1>{{ habitat.nom }}</h1>
+            <p class="description">{{ habitat.description }}</p>
+            <img src="{{ habitat.image }}" alt="{{ habitat.nom }}" class="img-fluid mb-2 rounded">
 
             <h2>Animaux</h2>
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th>Prénom</th>
-                        <th>Race</th>
-                        <th>Images</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for animal in animaux %}
-                        <tr>
-                            <td>{{ animal.Prenom }}</td>
-                            <td>{{ animal.Race }}</td>
-                            <td>{{ animal.Images ? animal.Images}}</td>
-                        </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
+            <div class="row justify-content-center py-5 g-4">
+                {% for animal in animaux %}
+                    <div class="col-6 col-sm-4 col-md-3 col-lg-2 text-center mb-4">
+                        <div class="animal-circle">
+                            <img src="{{ animal.Images ? animal.Images : 'default-image.jpg' }}" alt="{{ animal.Prenom }}" class="img-fluid rounded-circle">
+                            <h5 class="animal-name">{{ animal.Prenom }}</h5>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
         </div>
     </main>
-
 {% endblock %}
-{% block javascripts %}
 
+{% block javascripts %}
+    {{ parent() }}
 {% endblock %}
