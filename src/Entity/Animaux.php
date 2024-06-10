@@ -27,8 +27,8 @@ class Animaux
     #[ORM\Column(length: 255)]
     private ?string $Race = null;
 
-    #[ORM\Column(nullable: true)]
-    private ?array $Images = null;
+    #[ORM\Column(length: 255)]
+    private ?string $image = null;
 
     #[ORM\Column(type: Types::DATETIME_IMMUTABLE)]
     private ?DateTimeImmutable $creationDate = null;
@@ -83,14 +83,14 @@ class Animaux
         return $this;
     }
 
-    public function getImages(): ?array
+    public function getImage(): ?string
     {
-        return $this->Images;
+        return $this->image;
     }
 
-    public function setImages(?array $Images): static
+    public function setImage(string $image): static
     {
-        $this->Images = $Images;
+        $this->image = $image;
 
         return $this;
     }
