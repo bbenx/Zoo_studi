@@ -61,7 +61,6 @@ class CommentairesHabitatFixtures extends Fixture implements DependentFixtureInt
     public function getDependencies()
     {
         return [
-            AppFixtures::class,
             HabitatFixtures::class,
         ];
     }

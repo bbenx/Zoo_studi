@@ -19,7 +19,7 @@ class AnimauxType extends AbstractType
         $builder
             ->add('Prenom')
             ->add('Race')
-            ->add('Images', UrlType::class, [
+            ->add('Image', UrlType::class, [
                 'label' => 'Image URL',
                 'required' => false,
             ])
