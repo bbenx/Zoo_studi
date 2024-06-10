@@ -6,7 +6,9 @@ use App\Entity\Animaux;
 use App\Entity\Habitats;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
+use Symfony\Component\Form\Extension\Core\Type\UrlType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -17,6 +19,10 @@ class AnimauxType extends AbstractType
         $builder
             ->add('Prenom')
             ->add('Race')
+            ->add('Images', UrlType::class, [
+                'label' => 'Image URL',
+                'required' => false,
+            ])
             ->add('creationDate', DateTimeType::class, [
                 'widget' => 'single_text',
                 'disabled' => true,
