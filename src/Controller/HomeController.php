@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Avis;
+use App\Entity\Etablissement;
 use App\Form\AvisType;
 use App\Repository\AvisRepository;
 use App\Repository\CommentairesHabitatsRepository;
@@ -11,6 +12,7 @@ use App\Repository\EtablissementRepository;
 use App\Repository\HabitatsRepository;
 use App\Repository\ServicesRepository;
 use Doctrine\ORM\EntityManagerInterface;
+use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -18,6 +20,12 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class HomeController extends AbstractController
 {
+    private $managerRegistry;
+
+    public function __construct(ManagerRegistry $managerRegistry)
+    {
+        $this->managerRegistry = $managerRegistry;
+    }
 
     #[Route('/', name: 'home', methods: ['GET', 'POST'])]
     public function home(
@@ -33,7 +41,7 @@ class HomeController extends AbstractController
         $services = $servicesRepository->findAll();
         $habitats = $habitatsRepository->findAll();
         $avis = new Avis();
-        $etablissement = $etablissementRepository->find(2); // Assurez-vous que cet ID existe
+        $etablissement = $entityManager->getRepository(Etablissement::class)->findOneBy(['nom' => 'Zoo Arcadia']);
         $avis->setEtablissement($etablissement); // Définir l'établissement par défaut dans l'entité
         $form = $this->createForm(AvisType::class, $avis);
 

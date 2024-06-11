@@ -4,7 +4,7 @@ namespace App\DataFixtures;
 
 use App\Entity\CommentairesHabitats;
 use App\Entity\Habitats;
-use App\Entity\Users; // Ajoutez cette ligne
+use App\Entity\Users; 
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
 use Doctrine\Persistence\ManagerRegistry;
@@ -28,20 +28,20 @@ class CommentairesHabitatFixtures extends Fixture implements DependentFixtureInt
         $habitats = $this->doctrine->getRepository(Habitats::class)->findAll();
 
         // Récupérer tous les utilisateurs existants
-        $users = $this->doctrine->getRepository(Users::class)->findAll(); // Assurez-vous qu'il y a des utilisateurs
+        $users = $this->doctrine->getRepository(Users::class)->findAll(); 
 
         if (empty($habitats) || empty($users)) {
             throw new \Exception('Aucun habitat ou utilisateur trouvé dans la base de données.');
         }
 
         // Créer 25 commentaires répartis sur les habitats existants
-        for ($i = 0; $i < 25; $i++) {
+        for ($i = 0; $i < 100; $i++) {
             $habitat = $faker->randomElement($habitats);
-            $user = $faker->randomElement($users); // Assurez-vous qu'un utilisateur est assigné
+            $user = $faker->randomElement($users);
 
             $commentaire = new CommentairesHabitats();
-            $commentaire->setHabitat($this->getReference("habitat_1"));
-            $commentaire->setUser($user); // Assigner l'utilisateur
+            $commentaire->setHabitat($habitat);
+            $commentaire->setUser($user); 
             $commentaire->setAvis($faker->sentence());
             $commentaire->setEtat($faker->word());
             $commentaire->setAmelioration($faker->sentence());
@@ -50,17 +50,16 @@ class CommentairesHabitatFixtures extends Fixture implements DependentFixtureInt
 
             $manager->persist($commentaire);
 
-            // Log the creation of each commentaire
-            echo sprintf("Commentaire for habitat %d created: %s\n", $habitat->getId(), $commentaire->getAvis());
+
         }
 
         $manager->flush();
-        echo "Fixtures loaded successfully.\n";
     }
 
     public function getDependencies()
     {
         return [
+            UsersFixtures::class,
             HabitatFixtures::class,
         ];
     }

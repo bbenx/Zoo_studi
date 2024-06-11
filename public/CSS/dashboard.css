@@ -182,5 +182,28 @@ body {
   text-overflow: ellipsis;
 }
 
-/* Cibler spécifiquement le numéro de page "1" */
+/* Default pagination button styles */
+.dataTables_wrapper .dataTables_paginate .paginate_button {
+    color: #04ff00 !important;  /* Change this color as needed */
+}
+
+/* Active pagination button styles */
+.dataTables_wrapper .dataTables_paginate .paginate_button.current,
+.dataTables_wrapper .dataTables_paginate .paginate_button.current:hover {
+    color: #ffffff !important;
+    background-color: #84ff00 !important;  /* Change this color as needed */
+}
+
+/* Hover pagination button styles */
+.dataTables_wrapper .dataTables_paginate .paginate_button:hover {
+    color: #ffffff !important;
+    background-color: #ff0000 !important;  /* Change this color as needed */
+}
+
+/* Specific styles for disabled pagination buttons */
+.dataTables_wrapper .dataTables_paginate .paginate_button.disabled,
+.dataTables_wrapper .dataTables_paginate .paginate_button.disabled:hover {
+    color: #ff0000 !important;  /* Change this color as needed */
+    background-color: transparent !important;
+}
 

@@ -55,7 +55,7 @@
                 {% for animal in animaux %}
                     <div class="col-6 col-sm-4 col-md-3 col-lg-2 text-center mb-4">
                         <div class="animal-circle">
-                            <img src="{{ animal.Images ? animal.Images : 'default-image.jpg' }}" alt="{{ animal.Prenom }}" class="img-fluid rounded-circle">
+                            <img src="{{animal.Image}}" alt="{{ animal.Prenom }}" class="img-fluid rounded-circle">
                             <h5 class="animal-name">{{ animal.Prenom }}</h5>
                         </div>
                     </div>

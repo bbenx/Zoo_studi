@@ -32,7 +32,7 @@
             </tr>
             <tr>
                 <th>Images</th>
-                <td>{{ animaux.Images ? animaux.Images|json_encode : '' }}</td>
+                <td>{{ animaux.Image}}</td>
             </tr>
             <tr>
                 <th>Date de création</th>
@@ -64,7 +64,13 @@
             {% for group in nourritures|batch(4) %}
                 {% for nourriture in group %}
                     <tr class="nourriture-row {% if not loop.parent.loop.first %}d-none{% endif %}">
-                        <td>{{ nourriture.user.email }}</td>
+                        <td>
+                            {% if is_granted('ROLE_ADMIN') %}
+                                <a href="{{ path('app_users_show', {'id': nourriture.user.id}) }}">{{ nourriture.user.id }}</a>
+                            {% else %}
+                                {{ nourriture.user.id }}
+                            {% endif %}
+                        </td>                        
                         <td>{{ nourriture.type }}</td>
                         <td>{{ nourriture.quantite }}</td>
                         <td>{{ nourriture.DatePassage ? nourriture.DatePassage|date('d-m-Y H:i:s') : '' }}</td>

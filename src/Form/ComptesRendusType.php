@@ -7,6 +7,7 @@ use App\Entity\ComptesRendus;
 use App\Entity\Users;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
@@ -25,7 +26,17 @@ class ComptesRendusType extends AbstractType
                     ->orderBy('a.Prenom', 'ASC');
             }
             ])
-            ->add('EtatAnimal')
+            ->add('EtatAnimal', ChoiceType::class,[
+                'choices' => [
+                    'Très bon' => 'Très bon',
+                    'Bon' => 'Bon',
+                    'Satisfaisant' => 'Satisfaisant',
+                    'Urgent' => 'Urgent'
+                ],
+                'placeholder' => 'Sélectionnez une option',
+                'label' => 'Etat',
+                'required' => true,
+            ])
             ->add('DetailEtat', TextareaType::class,[
                 'required' => false,
             ])
