@@ -50,12 +50,13 @@
     justify-content: center;
     background-color: #4caf50;
     transition: transform 0.3s, box-shadow 0.3s;
+    border: 2px solid white !important;
 }
 
 .animal-circle:hover, .animal-circle:focus {
     transform: scale(1.05);
     box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
-    border: 2px solid orange;
+    border: 2px solid orange !important;
 }
 
 .animal-circle img {
