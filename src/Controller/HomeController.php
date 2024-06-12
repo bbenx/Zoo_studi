@@ -6,9 +6,7 @@ use App\Entity\Avis;
 use App\Entity\Etablissement;
 use App\Form\AvisType;
 use App\Repository\AvisRepository;
-use App\Repository\CommentairesHabitatsRepository;
 use App\Repository\EspeceAnimauxRepository;
-use App\Repository\EtablissementRepository;
 use App\Repository\HabitatsRepository;
 use App\Repository\ServicesRepository;
 use Doctrine\ORM\EntityManagerInterface;
@@ -32,7 +30,6 @@ class HomeController extends AbstractController
         Request $request,
         EntityManagerInterface $entityManager,
         AvisRepository $avisRepository,
-        EtablissementRepository $etablissementRepository,
         EspeceAnimauxRepository $especesAnimauxRepository,
         ServicesRepository $servicesRepository,
         HabitatsRepository $habitatsRepository
@@ -42,7 +39,7 @@ class HomeController extends AbstractController
         $habitats = $habitatsRepository->findAll();
         $avis = new Avis();
         $etablissement = $entityManager->getRepository(Etablissement::class)->findOneBy(['nom' => 'Zoo Arcadia']);
-        $avis->setEtablissement($etablissement); // Définir l'établissement par défaut dans l'entité
+        $avis->setEtablissement($etablissement);
         $form = $this->createForm(AvisType::class, $avis);
 
         $form->handleRequest($request);

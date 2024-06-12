@@ -1,0 +1,81 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Animal - {{ animal.Prenom }}{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('CSS/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('CSS/animal.css') }}">
+    <link rel="stylesheet" href="{{ asset('CSS/header.css') }}">
+
+    <style>
+        html, body {
+            height: 100%;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .page-container {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        main {
+            flex: 1;
+        }
+
+        footer {
+            background: rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(15px);
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            color: white; /* Assurez-vous que le texte est visible */
+        }
+
+        footer * {
+            background: none; /* Supprime tous les fonds spécifiques aux éléments enfants */
+            color: inherit; /* Assurez-vous que le texte hérite de la couleur du footer */
+        }
+    </style>
+{% endblock %}
+
+{% block body %}
+<main role="main" class="content-wrap">
+    <div class="container pt-2 text-white">
+        <div class="description-container">
+            <h1 class="text-white mt-4 text-shadow border-bottom">{{ animal.Prenom }}</h1>
+            <h2 class="description pt-2"><span class="label">Race:</span> {{ animal.Race }}</h2>
+            <h2 class="description"><span class="label">Habitat:</span> {{ habitat.nom }}</h2>
+        </div>
+
+        <div class="animal-info pt-5">
+            <div>
+                <img src="{{ animal.Image }}" alt="{{ animal.Prenom }}">
+            </div>
+            <div class="box">
+                <h2>L'avis du Véto</h2>
+                {% if comptes_rendus_veto is not empty %}
+                    {% set dernier_compte_rendu = comptes_rendus_veto|last %}
+                    <p><span class="labelAvis">Etat Animal:</span><span class="value">{{ dernier_compte_rendu.EtatAnimal }}</span></p>
+                    <p><span class="labelAvis">Détail Etat:</span><span class="value">{{ dernier_compte_rendu.DetailEtat }}</span></p>
+                    <p><span class="labelAvis">Type de Nourriture:</span><span class="value">{{ dernier_compte_rendu.TypeNourriture }}</span></p>
+                    <p><span class="labelAvis">Grammage de Nourriture:</span><span class="value">{{ dernier_compte_rendu.GrammageNourriture }}</span></p>
+                    <p><span class="labelAvis">Date de Passage:</span><span class="value">{{ dernier_compte_rendu.DatePassage|date('d-m-Y à H:i') }}</span></p>
+                {% else %}
+                    <p>Aucun compte rendu disponible</p>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</main>
+
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+{% endblock %}

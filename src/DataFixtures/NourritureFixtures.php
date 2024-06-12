@@ -33,7 +33,7 @@ class NourritureFixtures extends Fixture implements DependentFixtureInterface
             throw new \Exception('Aucun animal ou utilisateur trouvé dans la base de données.');
         }
 
-        for ($i = 0; $i < 50; $i++) {
+        for ($i = 0; $i < 200; $i++) {
             $animal = $faker->randomElement($animaux);
             $user = $faker->randomElement($users);
 

@@ -50,7 +50,8 @@
     </a>
     <br>
     <br>
-        <h2>Nourriture donnée :</h2>
+<h2>Nourriture donnée :</h2>
+{% if nourritures %}
     <table class="table table-striped text-center">
         <thead>
             <tr>
@@ -79,17 +80,22 @@
             {% endfor %}
         </tbody>
     </table>
-   {% if nourritures|length > 4 %}
+    {% if nourritures|length > 4 %}
         <div class="text-center mt-3">
             <button id="load-more-nourriture" class="btn btn-primary">Voir plus</button>
         </div>
     {% endif %}
+{% else %}
+    <p>Aucune nourriture donnée disponible</p>
+{% endif %}
     <br>
     <br>
-    <h2>Avis du Vétérinaire :</h2>
+<h2>Avis du Vétérinaire :</h2>
+{% if comptes_rendus %}
     <table class="table table-striped text-center">
         <thead>
             <tr>
+                <th>Utilisateur</th>
                 <th>Etat de l'animal</th>
                 <th>Détails</th>
                 <th>Type de nourriture</th>
@@ -101,6 +107,13 @@
             {% for group in comptes_rendus|batch(4) %}
                 {% for comptes_rendu in group %}
                     <tr class="comptes-rendu-row {% if not loop.parent.loop.first %}d-none{% endif %}">
+                        <td>
+                            {% if is_granted('ROLE_ADMIN') %}
+                                <a href="{{ path('app_users_show', {'id': comptes_rendu.user.id}) }}">{{ comptes_rendu.user.id }}</a>
+                            {% else %}
+                                {{ comptes_rendu.user.id }}
+                            {% endif %}
+                        </td> 
                         <td>{{ comptes_rendu.EtatAnimal }}</td>
                         <td>{{ comptes_rendu.DetailEtat }}</td>
                         <td>{{ comptes_rendu.TypeNourriture }}</td>
@@ -116,6 +129,9 @@
             <button id="load-more-comptes-rendu" class="btn btn-primary">Voir plus</button>
         </div>
     {% endif %}
+{% else %}
+    <p>Aucun compte rendu disponible</p>
+{% endif %}
 
 {% endblock %}
 

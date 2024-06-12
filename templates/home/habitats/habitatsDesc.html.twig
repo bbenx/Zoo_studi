@@ -6,7 +6,7 @@
     {{ parent() }}
     <link rel="stylesheet" href="{{ asset('CSS/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ asset('CSS/header.css') }}">
-    <link rel="stylesheet" href="{{ asset('CSS/habitatss.css') }}">
+    <link rel="stylesheet" href="{{ asset('CSS/habitatsDesc.css') }}">
     <style>       
         html, body {
             height: 100%;
@@ -45,18 +45,28 @@
 
 {% block body %}
     <main role="main" class="content-wrap">
-        <div class="container pt-5 text-center container text-white habitat-info">
-            <h1>{{ habitat.nom }}</h1>
-            <p class="description">{{ habitat.description }}</p>
-            <img src="{{ habitat.image }}" alt="{{ habitat.nom }}" class="img-fluid mb-2 rounded">
+        <div class="container pt-5 text-white">
+            <div class="row">
+                <div class="col-md-6 description-container d-flex align-items-center">
+                    <div>
+                        <h1 class="text-white mt-4 text-shadow">{{ habitat.nom }}</h1>
+                        <p class="description">{{ habitat.description }}</p>
+                    </div>
+                </div>
+                <div class="col-md-6 text-center pt-3">
+                    <img src="{{ habitat.image }}" alt="{{ habitat.nom }}" class="img-fluid mb-2 img">
+                </div>
+            </div>
 
-            <h2>Animaux</h2>
-            <div class="row justify-content-center py-5 g-4">
+            <h2 class="pb-2 fw-bold text-white border-bottom">Animaux</h2>
+            <div class="row justify-content-center py-5 g-4 align-items-center">
                 {% for animal in animaux %}
-                    <div class="col-6 col-sm-4 col-md-3 col-lg-2 text-center mb-4">
+                    <div class="col-6 col-sm-4 col-md-3 col-lg-2 text-center mb-2">
                         <div class="animal-circle">
-                            <img src="{{animal.Image}}" alt="{{ animal.Prenom }}" class="img-fluid rounded-circle">
-                            <h5 class="animal-name">{{ animal.Prenom }}</h5>
+                            <a href="{{ path('app_animal_show', {'id': animal.id}) }}">
+                                <img src="{{animal.Image}}" alt="{{ animal.Prenom }}" class="img-fluid rounded-circle">
+                                <h5 class="animal-name">{{ animal.Prenom }}</h5>
+                            </a>
                         </div>
                     </div>
                 {% endfor %}

@@ -35,7 +35,7 @@ class CommentairesHabitatFixtures extends Fixture implements DependentFixtureInt
         }
 
         // Créer 25 commentaires répartis sur les habitats existants
-        for ($i = 0; $i < 100; $i++) {
+        for ($i = 0; $i < 200; $i++) {
             $habitat = $faker->randomElement($habitats);
             $user = $faker->randomElement($users);
 

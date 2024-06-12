@@ -34,7 +34,7 @@
 					<td>{{ animal.id }}</td>
 					<td>{{ animal.Prenom }}</td>
 					<td>{{ animal.Race }}</td>
-					<td>{{ animal.Image}}</td>
+					<td style="word-wrap: break-word; max-width: 350px;">{{ animal.Image}}</td>
 					<td>{{ animal.creationDate ? animal.creationDate|date('Y-m-d H:i:s') : '' }}</td>
 					<td>{{ animal.modificationDate ? animal.modificationDate|date('Y-m-d H:i:s') : '' }}</td>
 					<td>

@@ -5,43 +5,45 @@
 .img-fluid {
     width: 400px;
     height: 400px;
+    border-radius: 20px;
 }
 
-.habitat-info h1 {
-    font-size: 2em;
+h1 {
+    font-size: 6rem;
+    font-weight: bold;
     margin-bottom: 10px;
 }
 
-.habitat-info p.description {
+p.description {
     font-size: 1.2em;
     margin-bottom: 20px;
 }
 
-.habitat-info .images {
+.images {
     display: flex;
     flex-wrap: wrap;
     gap: 10px;
 }
 
-.habitat-info .images img {
+.images img {
     max-width: 200px;
     max-height: 200px;
     border-radius: 8px;
 }
 
-.habitat-info h2 {
+h2 {
     margin-top: 40px;
     margin-bottom: 20px;
 }
 
-.habitat-info .row {
+.row {
     justify-content: center;
 }
 
 .animal-circle {
     position: relative;
-    width: 200px;
-    height: 200px;
+    width: 250px;
+    height: 250px;
     margin: 10px auto;
     overflow: hidden;
     border-radius: 50%;
@@ -62,7 +64,7 @@
 .animal-circle img {
     width: 100%;
     height: auto;
-    border-radius: 50%; /* S'assurer que l'image des animaux a des bords arrondis */
+    border-radius: 50%; 
 }
 
 .animal-circle .animal-name {
@@ -84,21 +86,54 @@
     color: inherit;
 }
 
+.description-container {
+    text-align: center;
+    justify-content: center;
+}
+.description {
+    text-align: center;
+}
+
 @media (max-width: 1199px) {
     .animal-circle {
-        width: 150px;
-        height: 150px;
+        width: 200px;
+        height: 200px;
     }
 }
 
 @media (max-width: 991px) {
-    /* Styles supplémentaires pour des écrans plus petits */
+    .img-fluid {
+        width: 350px;
+        height: 350px;
+        border-radius: 20px;
+    }
+    h1 {
+        font-size: 4rem;
+    }
 }
 
 @media (max-width: 767px) {
-    /* Styles supplémentaires pour des écrans encore plus petits */
+    .img-fluid {
+        width: 300px;
+        height: 300px;
+        border-radius: 20px;
+    }
 }
 
-@media (max-width: 599px) {
-    /* Styles supplémentaires pour des écrans très petits */
+@media (max-width: 575px) {
+    h1 {
+        font-size: 3em;
+    }
+    .animal-circle {
+        width: 230px;
+        height: 230px;
+    }
+    .img-fluid {
+        width: 240px;
+        height: 240px;
+        border-radius: 20px;
+    }
+    .col-6{
+        width:100%;
+    }
 }
