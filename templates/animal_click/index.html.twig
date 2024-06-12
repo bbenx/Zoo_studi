@@ -1,0 +1,26 @@
+{% extends 'base_admin.html.twig' %}
+
+{% block title %}Clics des Animaux{% endblock %}
+
+{% block body %}
+<h1>Clics des Animaux</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>ID de l'animal</th>
+            <th>Prénom de l'animal</th>
+            <th>Nombre de clics</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for animal in animalDetails %}
+        <tr>
+            <td><a href="{{ path('app_animaux_show', {'id': animal.id}) }}">{{ animal.id }}</a></td>
+            <td>{{ animal.prenom }}</td>
+            <td>{{ animal.clicks }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

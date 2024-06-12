@@ -1,9 +1,14 @@
+parameters:
+    env(MONGODB_URL): ''
+    env(MONGODB_DB): ''
+
 # config/services.yaml
 
 services:
     _defaults:
         autowire: true
         autoconfigure: true
+        public: false
 
     App\:
         resource: '../src/'
@@ -15,3 +20,11 @@ services:
     App\EntityListener\:
         resource: "../src/EntityListener/"
         tags: ["doctrine.orm.entity_listener"]
+
+    doctrine_mongodb.odm.default_metadata_driver:
+        class: Doctrine\ODM\MongoDB\Mapping\Driver\AttributeDriver
+        arguments: ['%kernel.project_dir%/src/Document']
+        tags:
+            - { name: doctrine_mongodb.odm.metadata_driver, driver: attribute, manager: default }
+    
+    

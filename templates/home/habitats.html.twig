@@ -1,15 +1,14 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}ZOO Arcadia - Habitats
-{% endblock %}
+{% block title %}ZOO Arcadia - Habitats{% endblock %}
 
 {% block stylesheets %}
-	{{ parent() }}
-	<link rel="stylesheet" href="{{ asset('CSS/bootstrap.min.css') }}">
-	<link rel="stylesheet" href="{{ asset('CSS/header.css') }}">
-	<link rel="stylesheet" href="{{ asset('CSS/habitats.css') }}">
-	 <style>       
-			html, body {
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('CSS/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('CSS/header.css') }}">
+    <link rel="stylesheet" href="{{ asset('CSS/habitats.css') }}">
+    <style>       
+        html, body {
             height: 100%;
             margin: 0;
             display: flex;
@@ -34,50 +33,51 @@
             align-items: center;
             justify-content: center;
             width: 100%;
-            color: white; /* Assurez-vous que le texte est visible */
+            color: white;
         }
 
         footer * {
-            background: none; /* Supprime tous les fonds spécifiques aux éléments enfants */
-            color: inherit; /* Assurez-vous que le texte hérite de la couleur du footer */
+            background: none;
+            color: inherit;
         }
-	</style>
+    </style>
 {% endblock %}
 
 {% block body %}
-
-    <main role="main" class="content-wrap">
-        <section id="header-services" class="pt-5 text-center container text-white">
-            <div class="row">
-                <div class="col-lg-8 col-md-8 mx-auto">
-                    <h1 class="text-white mt-4 text-shadow logo">Découvrez nos habitats</h1>
-                    <p class="lead text-white">Découvrez nos services exclusifs et transformez votre visite en une expérience inoubliable avec l'aide de notre équipe dévouée !</p>
-                </div>
+<main role="main" class="content-wrap">
+    <section id="header-services" class="pt-5 text-center container text-white">
+        <div class="row">
+            <div class="col-lg-8 col-md-8 mx-auto">
+                <h1 class="text-white mt-4 text-shadow logo">Découvrez nos habitats</h1>
+                <p class="lead text-white">Découvrez nos services exclusifs et transformez votre visite en une expérience inoubliable avec l'aide de notre équipe dévouée !</p>
             </div>
-        </section>
+        </div>
+    </section>
 
-		<section id="habitats" class="container px-4 text-white">
-			<div class="row justify-content-center py-5 g-4">
-				{% for habitat in habitats %}
-					<div class="col-6 col-sm-4 col-md-3 col-lg-2 text-center mb-4">
-                    <a href="{{ path('app_habitatss_show', {'id': habitat.id}) }}" class="habitat-link">
-						<div class="habitats-circle">
-							<img src="{{ habitat.image }}" alt="{{ habitat.nom }}" class="img-fluid rounded-circle">
-							<h5 class="mt-2">{{ habitat.nom }}</h5>
-						</div></a>
-					</div>
-				{% endfor %}
-			</div>
-		</section>
+    <section id="habitats" class="container px-4 text-white">
+        <div class="row justify-content-center py-5 g-4">
+            {% for habitat in habitats %}
+                <div class="col-6 col-sm-4 col-md-3 col-lg-2 text-center mb-4">
+                    <a href="{{ path('habitat_click', {'id': habitat.id}) }}" class="habitat-link">
+                        <div class="habitats-circle">
+                            <img src="{{ habitat.image }}" alt="{{ habitat.nom }}" class="img-fluid rounded-circle">
+                            <h5 class="mt-2">{{ habitat.nom }}</h5>
+                        </div>
+                    </a>
+                </div>
+            {% endfor %}
+        </div>
+    </section>
+</main>
 {% endblock %}
+
 {% block footer %}
-    <footer>
-        {% include 'home/footer.html.twig' %}
-    </footer>
+<footer>
+    {% include 'home/footer.html.twig' %}
+</footer>
 {% endblock %}
 
 {% block javascripts %}
     {{ parent() }}
     <script src="{{ asset('JS/bootstrap.min.js') }}"></script>
 {% endblock %}
-

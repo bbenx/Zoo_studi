@@ -37,8 +37,8 @@
         }
 
         footer * {
-            background: none; /* Supprime tous les fonds spécifiques aux éléments enfants */
-            color: inherit; /* Assurez-vous que le texte hérite de la couleur du footer */
+            background: none; 
+            color: inherit;
         }
     </style>
 {% endblock %}
@@ -63,6 +63,8 @@
                 {% for animal in animaux %}
                     <div class="col-6 col-sm-4 col-md-3 col-lg-2 text-center mb-2">
                         <div class="animal-circle">
+                        {% set csrf_token = csrf_token('click-animal') %}
+
                             <a href="{{ path('app_animal_show', {'id': animal.id}) }}">
                                 <img src="{{animal.Image}}" alt="{{ animal.Prenom }}" class="img-fluid rounded-circle">
                                 <h5 class="animal-name">{{ animal.Prenom }}</h5>

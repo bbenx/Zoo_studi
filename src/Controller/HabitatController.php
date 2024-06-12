@@ -2,12 +2,16 @@
 
 namespace App\Controller;
 
+use App\Document\AnimalClick;
 use App\Entity\Habitats;
 use App\Repository\AnimauxRepository;
 use App\Repository\HabitatsRepository;
+use Doctrine\ORM\EntityManagerInterface;
+use Doctrine\ODM\MongoDB\DocumentManager;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Routing\Attribute\Route;
+use Symfony\Component\Routing\Annotation\Route;
 
 class HabitatController extends AbstractController
 {
@@ -25,9 +29,34 @@ class HabitatController extends AbstractController
     public function show(Habitats $habitat, AnimauxRepository $animauxRepository): Response
     {
         return $this->render('home/habitats/habitatsDesc.html.twig', [
-            'animaux' => $animauxRepository->findBy(['habitat' =>$habitat]),
+            'animaux' => $animauxRepository->findBy(['habitat' => $habitat]),
             'habitat' => $habitat,
             'current_page' => 'habitats',
         ]);
+    }
+
+    #[Route('/habitat/click/{id}', name: 'habitat_click')]
+    public function click(int $id, EntityManagerInterface $em, DocumentManager $dm): RedirectResponse
+    {
+        $habitat = $em->getRepository(Habitats::class)->find($id);
+
+        if (!$habitat) {
+            throw $this->createNotFoundException('The habitat does not exist');
+        }
+
+        // Incrémenter les clics dans MongoDB
+        $habitatClick = $dm->getRepository(AnimalClick::class)->findOneBy(['animalId' => $id]);
+
+        if (!$habitatClick) {
+            $habitatClick = new AnimalClick();
+            $habitatClick->setAnimalId($id);
+        }
+
+        $habitatClick->incrementClicks();
+        $dm->persist($habitatClick);
+        $dm->flush();
+
+        // Rediriger vers la page de détails de l'habitat
+        return $this->redirectToRoute('app_habitatss_show', ['id' => $id]);
     }
 }
