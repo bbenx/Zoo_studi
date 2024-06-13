@@ -18,22 +18,11 @@ class AnimalController extends AbstractController
         $habitat = $animal->getHabitat();
         $comptesRendusVeto = $comptesRendusRepository->findBy(['Animal' => $animal], ['id' => 'DESC']);
 
-        $animalClick = $dm->getRepository(AnimalClick::class)->findOneBy(['animalId' => $animal->getId()]);
-
-        if (!$animalClick) {
-            $animalClick = new AnimalClick();
-            $animalClick->setAnimalId($animal->getId());
-        }
-
-        $animalClick->incrementClicks();
-        $dm->persist($animalClick);
-        $dm->flush();
-
         return $this->render('animal/animalDesc.html.twig', [
             'animal' => $animal,
             'habitat' => $habitat,
             'comptes_rendus_veto' => $comptesRendusVeto,
-            'current_page' => 'animaux',
+            'current_page' => 'habitats',
         ]);
     }
 }

@@ -16,7 +16,7 @@ class AnimauxFixtures extends Fixture implements DependentFixtureInterface
 
 
             $animaux = new Animaux();
-            $animaux->setHabitat($this->getReference("habitat_1"));
+            $animaux->setHabitat($this->getReference("habitat_2"));
             $animaux->setPrenom('Bebou');
             $animaux->setRace('Girafe');
             $animaux->setImage('https://my-zoo-images.s3.eu-north-1.amazonaws.com/Img_Animaux/Savane+Africaine/Girafes/Bebou.webp');
@@ -26,7 +26,7 @@ class AnimauxFixtures extends Fixture implements DependentFixtureInterface
             $manager->flush();
 
             $animaux2 = new Animaux();
-            $animaux2->setHabitat($this->getReference("habitat_1"));
+            $animaux2->setHabitat($this->getReference("habitat_2"));
             $animaux2->setPrenom('Jasper');
             $animaux2->setRace('Girafe');
             $animaux2->setImage('https://my-zoo-images.s3.eu-north-1.amazonaws.com/Img_Animaux/Savane+Africaine/Girafes/Jasper.webp');
@@ -36,7 +36,7 @@ class AnimauxFixtures extends Fixture implements DependentFixtureInterface
             $manager->flush();
 
             $animaux3 = new Animaux();
-            $animaux3->setHabitat($this->getReference("habitat_1"));
+            $animaux3->setHabitat($this->getReference("habitat_2"));
             $animaux3->setPrenom('Savannah');
             $animaux3->setRace('Girafe');
             $animaux3->setImage('https://my-zoo-images.s3.eu-north-1.amazonaws.com/Img_Animaux/Savane+Africaine/Girafes/Savannah.webp');
@@ -46,7 +46,7 @@ class AnimauxFixtures extends Fixture implements DependentFixtureInterface
             $manager->flush();
 
             $animaux4 = new Animaux();
-            $animaux4->setHabitat($this->getReference("habitat_1"));
+            $animaux4->setHabitat($this->getReference("habitat_2"));
             $animaux4->setPrenom('Stripes');
             $animaux4->setRace('Zèbres');
             $animaux4->setImage('https://my-zoo-images.s3.eu-north-1.amazonaws.com/Img_Animaux/Savane+Africaine/Zebres/Stripes.webp');
@@ -56,7 +56,7 @@ class AnimauxFixtures extends Fixture implements DependentFixtureInterface
             $manager->flush();
 
             $animaux5 = new Animaux();
-            $animaux5->setHabitat($this->getReference("habitat_1"));
+            $animaux5->setHabitat($this->getReference("habitat_2"));
             $animaux5->setPrenom('Zara');
             $animaux5->setRace('Zèbres');
             $animaux5->setImage('https://my-zoo-images.s3.eu-north-1.amazonaws.com/Img_Animaux/Savane+Africaine/Zebres/Zara.webp');
@@ -66,7 +66,7 @@ class AnimauxFixtures extends Fixture implements DependentFixtureInterface
             $manager->flush();
 
             $animaux6 = new Animaux();
-            $animaux6->setHabitat($this->getReference("habitat_1"));
+            $animaux6->setHabitat($this->getReference("habitat_2"));
             $animaux6->setPrenom('Ziggy');
             $animaux6->setRace('Zèbres');
             $animaux6->setImage('https://my-zoo-images.s3.eu-north-1.amazonaws.com/Img_Animaux/Savane+Africaine/Zebres/Ziggy.webp');
@@ -76,7 +76,7 @@ class AnimauxFixtures extends Fixture implements DependentFixtureInterface
             $manager->flush();
 
             $animaux7 = new Animaux();
-            $animaux7->setHabitat($this->getReference("habitat_1"));
+            $animaux7->setHabitat($this->getReference("habitat_2"));
             $animaux7->setPrenom('Tank');
             $animaux7->setRace('Rhinocéroce Blanc');
             $animaux7->setImage('https://my-zoo-images.s3.eu-north-1.amazonaws.com/Img_Animaux/Savane+Africaine/Rhinoce%CC%81roce+Blanc/Tank.webp');
@@ -86,7 +86,7 @@ class AnimauxFixtures extends Fixture implements DependentFixtureInterface
             $manager->flush();
 
             $animaux8 = new Animaux();
-            $animaux8->setHabitat($this->getReference("habitat_1"));
+            $animaux8->setHabitat($this->getReference("habitat_2"));
             $animaux8->setPrenom('Rhonda');
             $animaux8->setRace('Rhinocéroce Blanc');
             $animaux8->setImage('https://my-zoo-images.s3.eu-north-1.amazonaws.com/Img_Animaux/Savane+Africaine/Rhinoce%CC%81roce+Blanc/Rhonda.webp');
@@ -96,7 +96,7 @@ class AnimauxFixtures extends Fixture implements DependentFixtureInterface
             $manager->flush();
 
             $animaux9 = new Animaux();
-            $animaux9->setHabitat($this->getReference("habitat_1"));
+            $animaux9->setHabitat($this->getReference("habitat_2"));
             $animaux9->setPrenom('Buster');
             $animaux9->setRace('Rhinocéroce Blanc');
             $animaux9->setImage('https://my-zoo-images.s3.eu-north-1.amazonaws.com/Img_Animaux/Savane+Africaine/Rhinoce%CC%81roce+Blanc/Buster.webp');
@@ -106,7 +106,7 @@ class AnimauxFixtures extends Fixture implements DependentFixtureInterface
             $manager->flush();
 
             $animaux10 = new Animaux();
-            $animaux10->setHabitat($this->getReference("habitat_1"));
+            $animaux10->setHabitat($this->getReference("habitat_2"));
             $animaux10->setPrenom('Nova');
             $animaux10->setRace('Rhinocéroce Blanc');
             $animaux10->setImage('https://my-zoo-images.s3.eu-north-1.amazonaws.com/Img_Animaux/Savane+Africaine/Rhinoce%CC%81roce+Blanc/Nova.webp');
@@ -116,7 +116,7 @@ class AnimauxFixtures extends Fixture implements DependentFixtureInterface
             $manager->flush();
 
             $animaux11 = new Animaux();
-            $animaux11->setHabitat($this->getReference("habitat_1"));
+            $animaux11->setHabitat($this->getReference("habitat_2"));
             $animaux11->setPrenom('Dash');
             $animaux11->setRace('Antilope');
             $animaux11->setImage('https://my-zoo-images.s3.eu-north-1.amazonaws.com/Img_Animaux/Savane+Africaine/Antilopes/Dash.webp');
@@ -126,7 +126,7 @@ class AnimauxFixtures extends Fixture implements DependentFixtureInterface
             $manager->flush();
 
             $animaux12 = new Animaux();
-            $animaux12->setHabitat($this->getReference("habitat_1"));
+            $animaux12->setHabitat($this->getReference("habitat_2"));
             $animaux12->setPrenom('Meadow');
             $animaux12->setRace('Antilope');
             $animaux12->setImage('https://my-zoo-images.s3.eu-north-1.amazonaws.com/Img_Animaux/Savane+Africaine/Antilopes/Meadow.webp');
@@ -136,8 +136,8 @@ class AnimauxFixtures extends Fixture implements DependentFixtureInterface
             $manager->flush();
 
             $animaux13 = new Animaux();
-            $animaux13->setHabitat($this->getReference("habitat_1"));
-            $animaux13->setPrenom('Nala');
+            $animaux13->setHabitat($this->getReference("habitat_2"));
+            $animaux13->setPrenom('Nafi');
             $animaux13->setRace('Antilope');
             $animaux13->setImage('https://my-zoo-images.s3.eu-north-1.amazonaws.com/Img_Animaux/Savane+Africaine/Antilopes/Nala.webp');
 
@@ -146,7 +146,7 @@ class AnimauxFixtures extends Fixture implements DependentFixtureInterface
             $manager->flush();
 
             $animaux14 = new Animaux();
-            $animaux14->setHabitat($this->getReference("habitat_1"));
+            $animaux14->setHabitat($this->getReference("habitat_2"));
             $animaux14->setPrenom('Leo');
             $animaux14->setRace('Antilope');
             $animaux14->setImage('https://my-zoo-images.s3.eu-north-1.amazonaws.com/Img_Animaux/Savane+Africaine/Antilopes/Leo.webp');
@@ -156,7 +156,7 @@ class AnimauxFixtures extends Fixture implements DependentFixtureInterface
             $manager->flush();
 
             $animaux15 = new Animaux();
-            $animaux15->setHabitat($this->getReference("habitat_1"));
+            $animaux15->setHabitat($this->getReference("habitat_2"));
             $animaux15->setPrenom('Speedy');
             $animaux15->setRace('Autruche');
             $animaux15->setImage('https://my-zoo-images.s3.eu-north-1.amazonaws.com/Img_Animaux/Savane+Africaine/Autruches/Speedy.webp');
@@ -166,7 +166,7 @@ class AnimauxFixtures extends Fixture implements DependentFixtureInterface
             $manager->flush();
 
             $animaux16 = new Animaux();
-            $animaux16->setHabitat($this->getReference("habitat_1"));
+            $animaux16->setHabitat($this->getReference("habitat_2"));
             $animaux16->setPrenom('Olive');
             $animaux16->setRace('Autruche');
             $animaux16->setImage('https://my-zoo-images.s3.eu-north-1.amazonaws.com/Img_Animaux/Savane+Africaine/Autruches/Olive.webp');
@@ -176,7 +176,7 @@ class AnimauxFixtures extends Fixture implements DependentFixtureInterface
             $manager->flush();
 
             $animaux17 = new Animaux();
-            $animaux17->setHabitat($this->getReference("habitat_1"));
+            $animaux17->setHabitat($this->getReference("habitat_2"));
             $animaux17->setPrenom('Stretch');
             $animaux17->setRace('Autruche');
             $animaux17->setImage('https://my-zoo-images.s3.eu-north-1.amazonaws.com/Img_Animaux/Savane+Africaine/Autruches/Stretch.webp');
@@ -186,7 +186,7 @@ class AnimauxFixtures extends Fixture implements DependentFixtureInterface
             $manager->flush();
 
             $animaux18 = new Animaux();
-            $animaux18->setHabitat($this->getReference("habitat_1"));
+            $animaux18->setHabitat($this->getReference("habitat_2"));
             $animaux18->setPrenom('Ella');
             $animaux18->setRace('Autruche');
             $animaux18->setImage('https://my-zoo-images.s3.eu-north-1.amazonaws.com/Img_Animaux/Savane+Africaine/Autruches/Ella.webp');
@@ -196,7 +196,7 @@ class AnimauxFixtures extends Fixture implements DependentFixtureInterface
             $manager->flush();
 
             $animaux19 = new Animaux();
-            $animaux19->setHabitat($this->getReference("habitat_2"));
+            $animaux19->setHabitat($this->getReference("habitat_3"));
             $animaux19->setPrenom('Kong');
             $animaux19->setRace('Gorille');
             $animaux19->setImage('https://my-zoo-images.s3.eu-north-1.amazonaws.com/Img_Animaux/Foret+tropicale/Gorilles/Kong.webp');
@@ -206,7 +206,7 @@ class AnimauxFixtures extends Fixture implements DependentFixtureInterface
             $manager->flush();
 
             $animaux20 = new Animaux();
-            $animaux20->setHabitat($this->getReference("habitat_2"));
+            $animaux20->setHabitat($this->getReference("habitat_3"));
             $animaux20->setPrenom('Tara');
             $animaux20->setRace('Gorille');
             $animaux20->setImage('https://my-zoo-images.s3.eu-north-1.amazonaws.com/Img_Animaux/Foret+tropicale/Gorilles/Tara.webp');
@@ -216,7 +216,7 @@ class AnimauxFixtures extends Fixture implements DependentFixtureInterface
             $manager->flush();
 
             $animaux21 = new Animaux();
-            $animaux21->setHabitat($this->getReference("habitat_2"));
+            $animaux21->setHabitat($this->getReference("habitat_3"));
             $animaux21->setPrenom('Harambe');
             $animaux21->setRace('Gorille');
             $animaux21->setImage('https://my-zoo-images.s3.eu-north-1.amazonaws.com/Img_Animaux/Foret+tropicale/Gorilles/Harambe.webp');
@@ -226,7 +226,7 @@ class AnimauxFixtures extends Fixture implements DependentFixtureInterface
             $manager->flush();
 
             $animaux22 = new Animaux();
-            $animaux22->setHabitat($this->getReference("habitat_2"));
+            $animaux22->setHabitat($this->getReference("habitat_3"));
             $animaux22->setPrenom('Kibi');
             $animaux22->setRace('Gorille');
             $animaux22->setImage('https://my-zoo-images.s3.eu-north-1.amazonaws.com/Img_Animaux/Foret+tropicale/Gorilles/kibi.webp');
@@ -236,7 +236,7 @@ class AnimauxFixtures extends Fixture implements DependentFixtureInterface
             $manager->flush();
 
             $animaux23 = new Animaux();
-            $animaux23->setHabitat($this->getReference("habitat_2"));
+            $animaux23->setHabitat($this->getReference("habitat_3"));
             $animaux23->setPrenom('Rio');
             $animaux23->setRace('Perroquet');
             $animaux23->setImage('https://my-zoo-images.s3.eu-north-1.amazonaws.com/Img_Animaux/Foret+tropicale/Perroquets/Rio.webp');
@@ -246,7 +246,7 @@ class AnimauxFixtures extends Fixture implements DependentFixtureInterface
             $manager->flush();
 
             $animaux24 = new Animaux();
-            $animaux24->setHabitat($this->getReference("habitat_2"));
+            $animaux24->setHabitat($this->getReference("habitat_3"));
             $animaux24->setPrenom('Polly');
             $animaux24->setRace('Perroquet');
             $animaux24->setImage('https://my-zoo-images.s3.eu-north-1.amazonaws.com/Img_Animaux/Foret+tropicale/Perroquets/Poly.webp');
@@ -256,7 +256,7 @@ class AnimauxFixtures extends Fixture implements DependentFixtureInterface
             $manager->flush();
 
             $animaux25 = new Animaux();
-            $animaux25->setHabitat($this->getReference("habitat_2"));
+            $animaux25->setHabitat($this->getReference("habitat_3"));
             $animaux25->setPrenom('Skittles');
             $animaux25->setRace('Perroquet');
             $animaux25->setImage('https://my-zoo-images.s3.eu-north-1.amazonaws.com/Img_Animaux/Foret+tropicale/Perroquets/Skittles.webp');
@@ -266,7 +266,7 @@ class AnimauxFixtures extends Fixture implements DependentFixtureInterface
             $manager->flush();
 
             $animaux26 = new Animaux();
-            $animaux26->setHabitat($this->getReference("habitat_2"));
+            $animaux26->setHabitat($this->getReference("habitat_3"));
             $animaux26->setPrenom('Mango');
             $animaux26->setRace('Perroquet');
             $animaux26->setImage('https://my-zoo-images.s3.eu-north-1.amazonaws.com/Img_Animaux/Foret+tropicale/Perroquets/Mango.webp');
@@ -276,7 +276,7 @@ class AnimauxFixtures extends Fixture implements DependentFixtureInterface
             $manager->flush();
 
             $animaux27 = new Animaux();
-            $animaux27->setHabitat($this->getReference("habitat_2"));
+            $animaux27->setHabitat($this->getReference("habitat_3"));
             $animaux27->setPrenom('Kiwi');
             $animaux27->setRace('Perroquet');
             $animaux27->setImage('https://my-zoo-images.s3.eu-north-1.amazonaws.com/Img_Animaux/Foret+tropicale/Perroquets/Kiwi.webp');
@@ -286,7 +286,7 @@ class AnimauxFixtures extends Fixture implements DependentFixtureInterface
             $manager->flush();
 
             $animaux28 = new Animaux();
-            $animaux28->setHabitat($this->getReference("habitat_2"));
+            $animaux28->setHabitat($this->getReference("habitat_3"));
             $animaux28->setPrenom('Howly');
             $animaux28->setRace('Singe urleur');
             $animaux28->setImage('https://my-zoo-images.s3.eu-north-1.amazonaws.com/Img_Animaux/Foret+tropicale/Singes+Urleurs/Howly.webp');
@@ -296,7 +296,7 @@ class AnimauxFixtures extends Fixture implements DependentFixtureInterface
             $manager->flush();
 
             $animaux29 = new Animaux();
-            $animaux29->setHabitat($this->getReference("habitat_2"));
+            $animaux29->setHabitat($this->getReference("habitat_3"));
             $animaux29->setPrenom('Delta');
             $animaux29->setRace('Singe urleur');
             $animaux29->setImage('https://my-zoo-images.s3.eu-north-1.amazonaws.com/Img_Animaux/Foret+tropicale/Singes+Urleurs/Delta.webp');
@@ -306,7 +306,7 @@ class AnimauxFixtures extends Fixture implements DependentFixtureInterface
             $manager->flush();
 
             $animaux30 = new Animaux();
-            $animaux30->setHabitat($this->getReference("habitat_2"));
+            $animaux30->setHabitat($this->getReference("habitat_3"));
             $animaux30->setPrenom('Banjo');
             $animaux30->setRace('Singe urleur');
             $animaux30->setImage('https://my-zoo-images.s3.eu-north-1.amazonaws.com/Img_Animaux/Foret+tropicale/Singes+Urleurs/Banjo.webp');
@@ -316,7 +316,7 @@ class AnimauxFixtures extends Fixture implements DependentFixtureInterface
             $manager->flush();
 
             $animaux31 = new Animaux();
-            $animaux31->setHabitat($this->getReference("habitat_2"));
+            $animaux31->setHabitat($this->getReference("habitat_3"));
             $animaux31->setPrenom('Lara');
             $animaux31->setRace('Singe urleur');
             $animaux31->setImage('https://my-zoo-images.s3.eu-north-1.amazonaws.com/Img_Animaux/Foret+tropicale/Singes+Urleurs/Lara.webp');
@@ -326,7 +326,7 @@ class AnimauxFixtures extends Fixture implements DependentFixtureInterface
             $manager->flush();
 
             $animaux32 = new Animaux();
-            $animaux32->setHabitat($this->getReference("habitat_2"));
+            $animaux32->setHabitat($this->getReference("habitat_3"));
             $animaux32->setPrenom('Touki');
             $animaux32->setRace('Toucan');
             $animaux32->setImage('https://my-zoo-images.s3.eu-north-1.amazonaws.com/Img_Animaux/Foret+tropicale/Toucans/Touki.webp');
@@ -336,7 +336,7 @@ class AnimauxFixtures extends Fixture implements DependentFixtureInterface
             $manager->flush();
 
             $animaux33 = new Animaux();
-            $animaux33->setHabitat($this->getReference("habitat_2"));
+            $animaux33->setHabitat($this->getReference("habitat_3"));
             $animaux33->setPrenom('Pico');
             $animaux33->setRace('Toucan');
             $animaux33->setImage('https://my-zoo-images.s3.eu-north-1.amazonaws.com/Img_Animaux/Foret+tropicale/Toucans/Pico.webp');
@@ -346,7 +346,7 @@ class AnimauxFixtures extends Fixture implements DependentFixtureInterface
             $manager->flush();
 
             $animaux34 = new Animaux();
-            $animaux34->setHabitat($this->getReference("habitat_2"));
+            $animaux34->setHabitat($this->getReference("habitat_3"));
             $animaux34->setPrenom('Rainbow');
             $animaux34->setRace('Toucan');
             $animaux34->setImage('https://my-zoo-images.s3.eu-north-1.amazonaws.com/Img_Animaux/Foret+tropicale/Toucans/Rainbow.webp');
@@ -356,7 +356,7 @@ class AnimauxFixtures extends Fixture implements DependentFixtureInterface
             $manager->flush();
 
             $animaux35 = new Animaux();
-            $animaux35->setHabitat($this->getReference("habitat_2"));
+            $animaux35->setHabitat($this->getReference("habitat_3"));
             $animaux35->setPrenom('tiki');
             $animaux35->setRace('Toucan');
             $animaux35->setImage('https://my-zoo-images.s3.eu-north-1.amazonaws.com/Img_Animaux/Foret+tropicale/Toucans/Tiki.webp');
@@ -366,7 +366,7 @@ class AnimauxFixtures extends Fixture implements DependentFixtureInterface
             $manager->flush();
 
             $animaux36 = new Animaux();
-            $animaux36->setHabitat($this->getReference("habitat_2"));
+            $animaux36->setHabitat($this->getReference("habitat_3"));
             $animaux36->setPrenom('Jazz');
             $animaux36->setRace('Toucan');
             $animaux36->setImage('https://my-zoo-images.s3.eu-north-1.amazonaws.com/Img_Animaux/Foret+tropicale/Toucans/Jazz.webp');
@@ -376,7 +376,7 @@ class AnimauxFixtures extends Fixture implements DependentFixtureInterface
             $manager->flush();
 
             $animaux37 = new Animaux();
-            $animaux37->setHabitat($this->getReference("habitat_3"));
+            $animaux37->setHabitat($this->getReference("habitat_4"));
             $animaux37->setPrenom('Capri');
             $animaux37->setRace('Capybaras');
             $animaux37->setImage('https://my-zoo-images.s3.eu-north-1.amazonaws.com/Img_Animaux/Rivie%CC%80re+Amazonienne/Capybaras/Capri.webp');
@@ -386,7 +386,7 @@ class AnimauxFixtures extends Fixture implements DependentFixtureInterface
             $manager->flush();
 
             $animaux38 = new Animaux();
-            $animaux38->setHabitat($this->getReference("habitat_3"));
+            $animaux38->setHabitat($this->getReference("habitat_4"));
             $animaux38->setPrenom('Buddy');
             $animaux38->setRace('Capybaras');
             $animaux38->setImage('https://my-zoo-images.s3.eu-north-1.amazonaws.com/Img_Animaux/Rivie%CC%80re+Amazonienne/Capybaras/Buddy.webp');
@@ -396,7 +396,7 @@ class AnimauxFixtures extends Fixture implements DependentFixtureInterface
             $manager->flush();
 
             $animaux39 = new Animaux();
-            $animaux39->setHabitat($this->getReference("habitat_3"));
+            $animaux39->setHabitat($this->getReference("habitat_4"));
             $animaux39->setPrenom('Pip');
             $animaux39->setRace('Capybaras');
             $animaux39->setImage('https://my-zoo-images.s3.eu-north-1.amazonaws.com/Img_Animaux/Rivie%CC%80re+Amazonienne/Capybaras/Pip.webp');
@@ -406,7 +406,7 @@ class AnimauxFixtures extends Fixture implements DependentFixtureInterface
             $manager->flush();
 
             $animaux40 = new Animaux();
-            $animaux40->setHabitat($this->getReference("habitat_3"));
+            $animaux40->setHabitat($this->getReference("habitat_4"));
             $animaux40->setPrenom('Pelo');
             $animaux40->setRace('Aras');
             $animaux40->setImage('https://my-zoo-images.s3.eu-north-1.amazonaws.com/Img_Animaux/Rivie%CC%80re+Amazonienne/Aras/Pelo.webp');
@@ -416,7 +416,7 @@ class AnimauxFixtures extends Fixture implements DependentFixtureInterface
             $manager->flush();
 
             $animaux41 = new Animaux();
-            $animaux41->setHabitat($this->getReference("habitat_3"));
+            $animaux41->setHabitat($this->getReference("habitat_4"));
             $animaux41->setPrenom('Sky');
             $animaux41->setRace('Aras');
             $animaux41->setImage('https://my-zoo-images.s3.eu-north-1.amazonaws.com/Img_Animaux/Rivie%CC%80re+Amazonienne/Aras/Sky.webp');
@@ -426,7 +426,7 @@ class AnimauxFixtures extends Fixture implements DependentFixtureInterface
             $manager->flush();
 
             $animaux42 = new Animaux();
-            $animaux42->setHabitat($this->getReference("habitat_3"));
+            $animaux42->setHabitat($this->getReference("habitat_4"));
             $animaux42->setPrenom('Ruby');
             $animaux42->setRace('Aras');
             $animaux42->setImage('https://my-zoo-images.s3.eu-north-1.amazonaws.com/Img_Animaux/Rivie%CC%80re+Amazonienne/Aras/Ruby.webp');
@@ -436,7 +436,7 @@ class AnimauxFixtures extends Fixture implements DependentFixtureInterface
             $manager->flush();
 
             $animaux43 = new Animaux();
-            $animaux43->setHabitat($this->getReference("habitat_3"));
+            $animaux43->setHabitat($this->getReference("habitat_4"));
             $animaux43->setPrenom('Coco');
             $animaux43->setRace('Aras');
             $animaux43->setImage('https://my-zoo-images.s3.eu-north-1.amazonaws.com/Img_Animaux/Rivie%CC%80re+Amazonienne/Aras/Coco.webp');
@@ -446,7 +446,7 @@ class AnimauxFixtures extends Fixture implements DependentFixtureInterface
             $manager->flush();
 
             $animaux44 = new Animaux();
-            $animaux44->setHabitat($this->getReference("habitat_3"));
+            $animaux44->setHabitat($this->getReference("habitat_4"));
             $animaux44->setPrenom('Spike');
             $animaux44->setRace('Caïman');
             $animaux44->setImage('https://my-zoo-images.s3.eu-north-1.amazonaws.com/Img_Animaux/Rivie%CC%80re+Amazonienne/Cai%CC%88mans/Spike.webp');
@@ -456,7 +456,7 @@ class AnimauxFixtures extends Fixture implements DependentFixtureInterface
             $manager->flush();
 
             $animaux45 = new Animaux();
-            $animaux45->setHabitat($this->getReference("habitat_3"));
+            $animaux45->setHabitat($this->getReference("habitat_4"));
             $animaux45->setPrenom('Gator');
             $animaux45->setRace('Caïman');
             $animaux45->setImage('https://my-zoo-images.s3.eu-north-1.amazonaws.com/Img_Animaux/Rivie%CC%80re+Amazonienne/Cai%CC%88mans/Gator.webp');
@@ -466,7 +466,7 @@ class AnimauxFixtures extends Fixture implements DependentFixtureInterface
             $manager->flush();
 
             $animaux46 = new Animaux();
-            $animaux46->setHabitat($this->getReference("habitat_3"));
+            $animaux46->setHabitat($this->getReference("habitat_4"));
             $animaux46->setPrenom('Rex');
             $animaux46->setRace('Caïman');
             $animaux46->setImage('https://my-zoo-images.s3.eu-north-1.amazonaws.com/Img_Animaux/Rivie%CC%80re+Amazonienne/Cai%CC%88mans/Rex.webp');
@@ -476,7 +476,7 @@ class AnimauxFixtures extends Fixture implements DependentFixtureInterface
             $manager->flush();
 
             $animaux47 = new Animaux();
-            $animaux47->setHabitat($this->getReference("habitat_3"));
+            $animaux47->setHabitat($this->getReference("habitat_4"));
             $animaux47->setPrenom('Nile');
             $animaux47->setRace('Caïman');
             $animaux47->setImage('https://my-zoo-images.s3.eu-north-1.amazonaws.com/Img_Animaux/Rivie%CC%80re+Amazonienne/Cai%CC%88mans/Nile.webp');
@@ -486,7 +486,7 @@ class AnimauxFixtures extends Fixture implements DependentFixtureInterface
             $manager->flush();
 
             $animaux48 = new Animaux();
-            $animaux48->setHabitat($this->getReference("habitat_3"));
+            $animaux48->setHabitat($this->getReference("habitat_4"));
             $animaux48->setPrenom('Snappy');
             $animaux48->setRace('Caïman');
             $animaux48->setImage('https://my-zoo-images.s3.eu-north-1.amazonaws.com/Img_Animaux/Rivie%CC%80re+Amazonienne/Cai%CC%88mans/Snappy.webp');
@@ -496,7 +496,7 @@ class AnimauxFixtures extends Fixture implements DependentFixtureInterface
             $manager->flush();
 
             $animaux49 = new Animaux();
-            $animaux49->setHabitat($this->getReference("habitat_4"));
+            $animaux49->setHabitat($this->getReference("habitat_1"));
             $animaux49->setPrenom('Fenny');
             $animaux49->setRace('Fennec');
             $animaux49->setImage('https://my-zoo-images.s3.eu-north-1.amazonaws.com/Img_Animaux/De%CC%81sert+du+Sahara/Fennecs/Fenny.webp');
@@ -506,7 +506,7 @@ class AnimauxFixtures extends Fixture implements DependentFixtureInterface
             $manager->flush();
 
             $animaux50 = new Animaux();
-            $animaux50->setHabitat($this->getReference("habitat_4"));
+            $animaux50->setHabitat($this->getReference("habitat_1"));
             $animaux50->setPrenom('Sandy');
             $animaux50->setRace('Fennec');
             $animaux50->setImage('https://my-zoo-images.s3.eu-north-1.amazonaws.com/Img_Animaux/De%CC%81sert+du+Sahara/Fennecs/Sandy.webp');
@@ -516,7 +516,7 @@ class AnimauxFixtures extends Fixture implements DependentFixtureInterface
             $manager->flush();
 
             $animaux51 = new Animaux();
-            $animaux51->setHabitat($this->getReference("habitat_4"));
+            $animaux51->setHabitat($this->getReference("habitat_1"));
             $animaux51->setPrenom('Dusty');
             $animaux51->setRace('Fennec');
             $animaux51->setImage('https://my-zoo-images.s3.eu-north-1.amazonaws.com/Img_Animaux/De%CC%81sert+du+Sahara/Fennecs/Dusty.webp');
@@ -526,7 +526,7 @@ class AnimauxFixtures extends Fixture implements DependentFixtureInterface
             $manager->flush();
 
             $animaux52 = new Animaux();
-            $animaux52->setHabitat($this->getReference("habitat_4"));
+            $animaux52->setHabitat($this->getReference("habitat_1"));
             $animaux52->setPrenom('Flash');
             $animaux52->setRace('Fennec');
             $animaux52->setImage('https://my-zoo-images.s3.eu-north-1.amazonaws.com/Img_Animaux/De%CC%81sert+du+Sahara/Fennecs/Flash.webp');
@@ -536,7 +536,7 @@ class AnimauxFixtures extends Fixture implements DependentFixtureInterface
             $manager->flush();
 
             $animaux53 = new Animaux();
-            $animaux53->setHabitat($this->getReference("habitat_4"));
+            $animaux53->setHabitat($this->getReference("habitat_1"));
             $animaux53->setPrenom('Camelot');
             $animaux53->setRace('Dromadaire');
             $animaux53->setImage('https://my-zoo-images.s3.eu-north-1.amazonaws.com/Img_Animaux/De%CC%81sert+du+Sahara/Dromadaires/Camelot.webp');
@@ -546,7 +546,7 @@ class AnimauxFixtures extends Fixture implements DependentFixtureInterface
             $manager->flush();
 
             $animaux54 = new Animaux();
-            $animaux54->setHabitat($this->getReference("habitat_4"));
+            $animaux54->setHabitat($this->getReference("habitat_1"));
             $animaux54->setPrenom('Daisy');
             $animaux54->setRace('Dromadaire');
             $animaux54->setImage('https://my-zoo-images.s3.eu-north-1.amazonaws.com/Img_Animaux/De%CC%81sert+du+Sahara/Dromadaires/Daisy.webp');
@@ -556,7 +556,7 @@ class AnimauxFixtures extends Fixture implements DependentFixtureInterface
             $manager->flush();
 
             $animaux55 = new Animaux();
-            $animaux55->setHabitat($this->getReference("habitat_4"));
+            $animaux55->setHabitat($this->getReference("habitat_1"));
             $animaux55->setPrenom('Humpfrey');
             $animaux55->setRace('Dromadaire');
             $animaux55->setImage('https://my-zoo-images.s3.eu-north-1.amazonaws.com/Img_Animaux/De%CC%81sert+du+Sahara/Dromadaires/Humpfrey.webp');
@@ -566,7 +566,7 @@ class AnimauxFixtures extends Fixture implements DependentFixtureInterface
             $manager->flush();
 
             $animaux56 = new Animaux();
-            $animaux56->setHabitat($this->getReference("habitat_4"));
+            $animaux56->setHabitat($this->getReference("habitat_1"));
             $animaux56->setPrenom('Belle');
             $animaux56->setRace('Gazelle');
             $animaux56->setImage('https://my-zoo-images.s3.eu-north-1.amazonaws.com/Img_Animaux/De%CC%81sert+du+Sahara/Gazelles/Belle.webp');
@@ -576,7 +576,7 @@ class AnimauxFixtures extends Fixture implements DependentFixtureInterface
             $manager->flush();
             
             $animaux57 = new Animaux();
-            $animaux57->setHabitat($this->getReference("habitat_4"));
+            $animaux57->setHabitat($this->getReference("habitat_1"));
             $animaux57->setPrenom('Swift');
             $animaux57->setRace('Gazelle');
             $animaux57->setImage('https://my-zoo-images.s3.eu-north-1.amazonaws.com/Img_Animaux/De%CC%81sert+du+Sahara/Gazelles/Swift.webp');
@@ -586,7 +586,7 @@ class AnimauxFixtures extends Fixture implements DependentFixtureInterface
             $manager->flush();
             
             $animaux58 = new Animaux();
-            $animaux58->setHabitat($this->getReference("habitat_4"));
+            $animaux58->setHabitat($this->getReference("habitat_1"));
             $animaux58->setPrenom('Star');
             $animaux58->setRace('Gazelle');
             $animaux58->setImage('https://my-zoo-images.s3.eu-north-1.amazonaws.com/Img_Animaux/De%CC%81sert+du+Sahara/Gazelles/Star.webp');
@@ -596,7 +596,7 @@ class AnimauxFixtures extends Fixture implements DependentFixtureInterface
             $manager->flush();
             
             $animaux59 = new Animaux();
-            $animaux59->setHabitat($this->getReference("habitat_4"));
+            $animaux59->setHabitat($this->getReference("habitat_1"));
             $animaux59->setPrenom('Blazer');
             $animaux59->setRace('Gazelle');
             $animaux59->setImage('https://my-zoo-images.s3.eu-north-1.amazonaws.com/Img_Animaux/De%CC%81sert+du+Sahara/Gazelles/Blazer.webp');
@@ -606,7 +606,7 @@ class AnimauxFixtures extends Fixture implements DependentFixtureInterface
             $manager->flush();
             
             $animaux60 = new Animaux();
-            $animaux60->setHabitat($this->getReference("habitat_4"));
+            $animaux60->setHabitat($this->getReference("habitat_1"));
             $animaux60->setPrenom('Luna');
             $animaux60->setRace('Gazelle');
             $animaux60->setImage('https://my-zoo-images.s3.eu-north-1.amazonaws.com/Img_Animaux/De%CC%81sert+du+Sahara/Gazelles/Luna.webp');
@@ -1213,6 +1213,56 @@ class AnimauxFixtures extends Fixture implements DependentFixtureInterface
 
             $manager->persist($animaux120);
             $this->addReference('animaux_120', $animaux120);
+            $manager->flush();
+
+            $animaux121 = new Animaux();
+            $animaux121->setHabitat($this->getReference("habitat_2"));
+            $animaux121->setPrenom('Dumbo');
+            $animaux121->setRace('Elephant');
+            $animaux121->setImage('https://my-zoo-images.s3.eu-north-1.amazonaws.com/Img_Animaux/Savane+Africaine/Elephants/Dumbo.webp');
+
+            $manager->persist($animaux121);
+            $this->addReference('animaux_121', $animaux121);
+            $manager->flush();
+
+            $animaux122 = new Animaux();
+            $animaux122->setHabitat($this->getReference("habitat_2"));
+            $animaux122->setPrenom('Babar');
+            $animaux122->setRace('Elephant');
+            $animaux122->setImage('https://my-zoo-images.s3.eu-north-1.amazonaws.com/Img_Animaux/Savane+Africaine/Elephants/Babar.webp');
+
+            $manager->persist($animaux122);
+            $this->addReference('animaux_122', $animaux122);
+            $manager->flush();
+
+            $animaux123 = new Animaux();
+            $animaux123->setHabitat($this->getReference("habitat_2"));
+            $animaux123->setPrenom('Nala');
+            $animaux123->setRace('Lionne');
+            $animaux123->setImage('https://my-zoo-images.s3.eu-north-1.amazonaws.com/Img_Animaux/Savane+Africaine/Lions/Nala.webp');
+
+            $manager->persist($animaux123);
+            $this->addReference('animaux_123', $animaux123);
+            $manager->flush();
+
+            $animaux124 = new Animaux();
+            $animaux124->setHabitat($this->getReference("habitat_2"));
+            $animaux124->setPrenom('Simba');
+            $animaux124->setRace('Lion');
+            $animaux124->setImage('https://my-zoo-images.s3.eu-north-1.amazonaws.com/Img_Animaux/Savane+Africaine/Lions/Simba.webp');
+
+            $manager->persist($animaux124);
+            $this->addReference('animaux_124', $animaux124);
+            $manager->flush();
+
+            $animaux125 = new Animaux();
+            $animaux125->setHabitat($this->getReference("habitat_2"));
+            $animaux125->setPrenom('Kiara');
+            $animaux125->setRace('Lionne');
+            $animaux125->setImage('https://my-zoo-images.s3.eu-north-1.amazonaws.com/Img_Animaux/Savane+Africaine/Lions/Kiara.webp');
+
+            $manager->persist($animaux125);
+            $this->addReference('animaux_125', $animaux125);
             $manager->flush();
 
     }

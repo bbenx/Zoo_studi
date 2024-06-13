@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="{{ asset('CSS/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ asset('CSS/header.css') }}">
     <link rel="stylesheet" href="{{ asset('CSS/habitatsDesc.css') }}">
-    <style>       
+    <style>
         html, body {
             height: 100%;
             margin: 0;
@@ -67,7 +67,7 @@
                             <form id="animal-click-form-{{ animal.id }}" action="{{ path('animal_click', {'id': animal.id}) }}" method="POST" style="display: none;">
                                 <input type="hidden" name="_csrf_token" value="{{ csrf_token }}">
                             </form>
-                            <a href="javascript:void(0);" onclick="handleAnimalClick({{ animal.id }})">
+                            <a href="javascript:void(0);" onclick="handleAnimalClick({{ animal.id }}); return false;">
                                 <img src="{{ animal.Image }}" alt="{{ animal.Prenom }}" class="img-fluid rounded-circle">
                                 <h5 class="animal-name">{{ animal.Prenom }}</h5>
                             </a>
@@ -81,10 +81,15 @@
 
 {% block javascripts %}
     {{ parent() }}
-    <script>
+    // <script>
         function handleAnimalClick(animalId) {
             const form = document.getElementById(`animal-click-form-${animalId}`);
             const formData = new FormData(form);
+
+            const submitButton = form.querySelector('button[type="submit"]');
+            if (submitButton) {
+                submitButton.disabled = true; // Désactiver le bouton pour éviter les doubles soumissions
+            }
 
             fetch(form.action, {
                 method: 'POST',
@@ -94,9 +99,15 @@
                     window.location.href = `/animaux/${animalId}`;
                 } else {
                     console.error('Erreur lors de l\'enregistrement du clic');
+                    if (submitButton) {
+                        submitButton.disabled = false; // Réactiver le bouton en cas d'erreur
+                    }
                 }
             }).catch(error => {
                 console.error('Erreur:', error);
+                if (submitButton) {
+                    submitButton.disabled = false; // Réactiver le bouton en cas d'erreur
+                }
             });
         }
     </script>

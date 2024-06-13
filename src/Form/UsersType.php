@@ -29,7 +29,7 @@ class UsersType extends AbstractType
             ])
             ->add('email')
             ->add('plainPassword', PasswordType::class, [
-                'mapped' => false, // Important pour ne pas mapper directement à l'entité
+                'mapped' => false,
                 'required' => false,
                 'label' => 'Mot de passe',
             ])

@@ -38,8 +38,10 @@ class AnimalClick
     }
 
     public function incrementClicks(): self
-    {
-        $this->clicks++;
-        return $this;
-    }
+{
+    $this->clicks++;
+    error_log('incrementClicks called, current clicks: ' . $this->clicks); // Ajout de journal
+    return $this;
+}
+
 }

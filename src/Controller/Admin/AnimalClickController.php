@@ -40,19 +40,16 @@ class AnimalClickController extends AbstractController
         }
 
         $submittedToken = $request->request->get('_csrf_token');
-
         if (!$this->tokenManager->isTokenValid(new CsrfToken('click-animal', $submittedToken))) {
             return new Response('Invalid CSRF token', 403);
         }
 
         $animal = $em->getRepository(Animaux::class)->find($id);
-
         if (!$animal) {
             return new Response('Animal not found', 404);
         }
 
         $animalClick = $dm->getRepository(AnimalClick::class)->findOneBy(['animalId' => $id]);
-
         if (!$animalClick) {
             $animalClick = new AnimalClick();
             $animalClick->setAnimalId($id);
@@ -68,10 +65,12 @@ class AnimalClickController extends AbstractController
     #[Route('/animal-clicks', name: 'admin_animal_clicks')]
     public function index(DocumentManager $dm, EntityManagerInterface $em): Response
     {
+        // Récupération de tous les clics d'animaux
         $clicks = $dm->getRepository(AnimalClick::class)->findAll();
         $animalDetails = [];
 
         foreach ($clicks as $click) {
+            // Récupération des détails de l'animal correspondant
             $animal = $em->getRepository(Animaux::class)->find($click->getAnimalId());
             if ($animal) {
                 $animalDetails[] = [
