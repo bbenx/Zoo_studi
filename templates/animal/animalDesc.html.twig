@@ -49,8 +49,8 @@
     <div class="container pt-2 text-white">
         <div class="description-container">
             <h1 class="text-white mt-4 text-shadow border-bottom">{{ animal.Prenom }}</h1>
-            <h2 class="description pt-2"><span class="label">Race:</span> {{ animal.Race }}</h2>
-            <h2 class="description"><span class="label">Habitat:</span> {{ habitat.nom }}</h2>
+            <h2 class="description pt-2 roboto-bold"><span class="label">Race:</span> {{ animal.Race }}</h2>
+            <h2 class="description roboto-bold"><span class="label">Habitat:</span> {{ habitat.nom }}</h2>
         </div>
 
         <div class="animal-info pt-5">
@@ -58,7 +58,7 @@
                 <img src="{{ animal.Image }}" alt="{{ animal.Prenom }}">
             </div>
             <div class="box">
-                <h2>L'avis du Véto</h2>
+                <h2 class="roboto-bold">L'avis du Véto</h2>
                 {% if comptes_rendus_veto is not empty %}
                     {% set dernier_compte_rendu = comptes_rendus_veto|last %}
                     <p><span class="labelAvis">Etat Animal:</span><span class="value">{{ dernier_compte_rendu.EtatAnimal }}</span></p>

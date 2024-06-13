@@ -58,12 +58,13 @@
         <div class="row justify-content-center py-5 g-4">
             {% for habitat in habitats %}
                 <div class="col-6 col-sm-4 col-md-3 col-lg-2 text-center mb-4">
-                    <a href="{{ path('habitat_click', {'id': habitat.id}) }}" class="habitat-link">
+                    <a href="{{ path('app_habitatss_show', {'id': habitat.id}) }}" class="habitat-link">
+
                         <div class="habitats-circle">
                             <img src="{{ habitat.image }}" alt="{{ habitat.nom }}" class="img-fluid rounded-circle">
                             <h5 class="mt-2">{{ habitat.nom }}</h5>
                         </div>
-                    </a>
+                        </a>
                 </div>
             {% endfor %}
         </div>
@@ -81,3 +82,5 @@
     {{ parent() }}
     <script src="{{ asset('JS/bootstrap.min.js') }}"></script>
 {% endblock %}
+
+

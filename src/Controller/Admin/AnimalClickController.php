@@ -9,26 +9,37 @@ use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Http\Attribute\IsGranted;
 use Symfony\Component\Security\Csrf\CsrfTokenManagerInterface;
 use Symfony\Component\Security\Csrf\CsrfToken;
+use Symfony\Component\RateLimiter\RateLimiterFactory;
 
 #[Route('admin')]
 #[IsGranted('ROLE_ADMIN')]
 class AnimalClickController extends AbstractController
 {
     private $tokenManager;
+    private $animalClickLimiter;
 
-    public function __construct(CsrfTokenManagerInterface $tokenManager)
+    public function __construct(CsrfTokenManagerInterface $tokenManager, RateLimiterFactory $animalClickLimiter)
     {
         $this->tokenManager = $tokenManager;
+        $this->animalClickLimiter = $animalClickLimiter;
     }
 
-    #[Route('/animal-click/{id}', name: 'animal_click')]
+    #[Route('/animal-click/{id}', name: 'animal_click', methods: ['POST'])]
     public function click(int $id, DocumentManager $dm, EntityManagerInterface $em, Request $request): Response
     {
-        $submittedToken = $request->query->get('_token');
+        $limiter = $this->animalClickLimiter->create($request->getClientIp());
+        $limit = $limiter->consume();
+
+        if (!$limit->isAccepted()) {
+            return new JsonResponse(['error' => 'Too many requests'], 429);
+        }
+
+        $submittedToken = $request->request->get('_csrf_token');
 
         if (!$this->tokenManager->isTokenValid(new CsrfToken('click-animal', $submittedToken))) {
             return new Response('Invalid CSRF token', 403);

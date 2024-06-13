@@ -34,7 +34,6 @@ class CommentairesHabitatFixtures extends Fixture implements DependentFixtureInt
             throw new \Exception('Aucun habitat ou utilisateur trouvé dans la base de données.');
         }
 
-        // Créer 25 commentaires répartis sur les habitats existants
         for ($i = 0; $i < 200; $i++) {
             $habitat = $faker->randomElement($habitats);
             $user = $faker->randomElement($users);
