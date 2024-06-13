@@ -37,7 +37,7 @@ class UsersFixtures extends Fixture implements DependentFixtureInterface
             $user->setPlainPassword($randomPassword);
 
             $manager->persist($user);
-            $this->setReference('user_' . ($i + 6), $user); // Use setReference to avoid conflicts
+            $this->setReference('user_' . ($i + 6), $user); 
         }
 
         $manager->flush();
@@ -52,7 +52,7 @@ class UsersFixtures extends Fixture implements DependentFixtureInterface
         $user1->setPlainPassword('password');
 
         $manager->persist($user1);
-        $this->setReference('user_1', $user1); // Use setReference to avoid conflicts
+        $this->setReference('user_1', $user1); 
 
         $user2 = new Users();
         $user2->setEmail('employe@gmail.com');
@@ -61,7 +61,7 @@ class UsersFixtures extends Fixture implements DependentFixtureInterface
         $user2->setPlainPassword('employe');
 
         $manager->persist($user2);
-        $this->setReference('user_2', $user2); // Use setReference to avoid conflicts
+        $this->setReference('user_2', $user2); 
 
         $user3 = new Users();
         $user3->setEmail('veto@gmail.com');
@@ -70,7 +70,7 @@ class UsersFixtures extends Fixture implements DependentFixtureInterface
         $user3->setPlainPassword('veto');
 
         $manager->persist($user3);
-        $this->setReference('user_3', $user3); // Use setReference to avoid conflicts
+        $this->setReference('user_3', $user3); 
 
         $user4 = new Users();
         $user4->setEmail('admin@gmail.com');
@@ -79,7 +79,7 @@ class UsersFixtures extends Fixture implements DependentFixtureInterface
         $user4->setPlainPassword('admin');
 
         $manager->persist($user4);
-        $this->setReference('user_4', $user4); // Use setReference to avoid conflicts
+        $this->setReference('user_4', $user4); 
 
     }
 

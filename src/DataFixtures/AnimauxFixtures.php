@@ -1199,7 +1199,7 @@ class AnimauxFixtures extends Fixture implements DependentFixtureInterface
             $animaux119->setHabitat($this->getReference("habitat_8"));
             $animaux119->setPrenom('Sly');
             $animaux119->setRace('Coyote');
-            $animaux119->setImage('url');
+            $animaux119->setImage('https://my-zoo-images.s3.eu-north-1.amazonaws.com/Img_Animaux/Priaire+des+grands+plaines/Coyotes/Sly.webp');
 
             $manager->persist($animaux119);
             $this->addReference('animaux_119', $animaux119);

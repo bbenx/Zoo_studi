@@ -1,15 +1,14 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}ZOO Arcadia - Contact
-{% endblock %}
+{% block title %}ZOO Arcadia - Contact{% endblock %}
 
 {% block stylesheets %}
-	{{ parent() }}
-	<link rel="stylesheet" href="{{ asset('CSS/bootstrap.min.css') }}">
-	<link rel="stylesheet" href="{{ asset('CSS/header.css') }}">
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('CSS/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('CSS/header.css') }}">
     <link rel="stylesheet" href="{{ asset('CSS/contact.css') }}">
     <style>
-            html, body {
+        html, body {
             height: 100%;
             margin: 0;
             display: flex;
@@ -45,7 +44,6 @@
 {% endblock %}
 
 {% block body %}
-    
     <main role="main" class="content-wrap">
         <section id="header-services" class="pt-5 text-center container text-dark">
             <div class="row">
@@ -60,16 +58,17 @@
             {{ form(form) }}
         </div>
 
-            {% for label, messages in app.flashes %}
-         {% for message in messages %}
-            {% set alertClass = label == 'success' ? 'alert-success' : (label == 'error' ? 'alert-danger' : 'alert-info') %}
-            <div class="alert text-center {{ alertClass }} custom-alert alert-dismissible fade show" role="alert">
-                {{ message }}
-            </div>
+        {% for label, messages in app.flashes %}
+            {% for message in messages %}
+                {% set alertClass = label == 'success' ? 'alert-success' : (label == 'error' ? 'alert-danger' : 'alert-info') %}
+                <div class="alert text-center {{ alertClass }} custom-alert alert-dismissible fade show" role="alert">
+                    {{ message }}
+                </div>
+            {% endfor %}
         {% endfor %}
-    {% endfor %}
     </main>
 {% endblock %}
+
 {% block javascripts %}
     {{ parent() }}
     <script src="{{ asset('JS/bootstrap.min.js') }}"></script>
@@ -82,5 +81,4 @@
                 }, 3000); 
             });
         });
-    </script>
-{% endblock %}
+    </script>{% endblock %}

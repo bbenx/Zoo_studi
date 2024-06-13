@@ -18,7 +18,6 @@ class AnimalController extends AbstractController
         $habitat = $animal->getHabitat();
         $comptesRendusVeto = $comptesRendusRepository->findBy(['Animal' => $animal], ['id' => 'DESC']);
 
-        // Incrémenter le compteur de vues
         $animalClick = $dm->getRepository(AnimalClick::class)->findOneBy(['animalId' => $animal->getId()]);
 
         if (!$animalClick) {

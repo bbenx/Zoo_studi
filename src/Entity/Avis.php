@@ -46,7 +46,7 @@ class Avis
 
     public function __construct()
     {
-        $this->valide = false; // Par défaut, un avis n'est pas valide
+        $this->valide = false;
         $this->setcreationDate(new \DateTimeImmutable());
         $this->setmodificationDate(new \DateTime());
     }
