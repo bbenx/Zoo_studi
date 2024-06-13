@@ -8,10 +8,12 @@ use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
+use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Validator\Constraints\NotBlank;
 
 class UsersType extends AbstractType
 {
@@ -24,10 +26,14 @@ class UsersType extends AbstractType
                     'Vétérinaire' => 'ROLE_VETERINAIRE',
                 ],
                 'multiple' => true,
+                'required' => true,
                 'expanded' => true,
+                'constraints' => [
+                    new NotBlank(['message' => 'Veuillez sélectionner au moins un rôle.']),
+                ],
                 'label' => 'Rôles',
             ])
-            ->add('email')
+            ->add('email', EmailType::class)
             ->add('plainPassword', PasswordType::class, [
                 'mapped' => false,
                 'required' => false,
