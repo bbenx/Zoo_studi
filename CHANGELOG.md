@@ -88,7 +88,7 @@ All notable changes to this project will be documented in this file.
 - Various minor fixes
 - Duble incrementation Admin Click
 
-## [1.2.0] - 2024-06-13
+## [1.2.0] - 2024-06-14
 # Fixed
 - Mailcatcher error
 - Deploy Error
