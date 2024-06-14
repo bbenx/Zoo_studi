@@ -16,7 +16,6 @@ doctrine_mongodb:
                     type: attribute
                     is_bundle: false
 
-
 when@prod:
     doctrine_mongodb:
         auto_generate_proxy_classes: false
