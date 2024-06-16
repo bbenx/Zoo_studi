@@ -83,7 +83,7 @@ body {
     background-size: cover;
     background-position: center;
     overflow-x: hidden;
-    background-attachment: fixed !important;
+    background-attachment: fixed;
 }
 
 li {
@@ -517,9 +517,6 @@ h1.logo{
     .square h4{
         font-size: medium;
     }
-    body {
-        background-attachment: scroll;
-        background-size: cover;
 }
 
 
