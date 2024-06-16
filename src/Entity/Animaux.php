@@ -95,6 +95,7 @@ class Animaux
         return $this;
     }
 
+
     public function getCreationDate(): ?\DateTimeImmutable
     {
         return $this->creationDate;

@@ -55,11 +55,20 @@ class UsersController extends AbstractController
             $entityManager->flush();
     
             $email = (new Email())
-                ->from('zooarcadia@gmail.com')
-                ->to($user->getEmail())
-                ->subject('Bienvenue !!')
-                ->text("Votre compte a bien été créé \n Pour vous connecter, rendez-vous sur 'http://127.0.0.1:8000/login' 
-                Rapprochez-vous de votre responsable pour obtenir votre mot de passe");
+            ->from('zoo.arcadia.studi@gmail.com')
+            ->to($user->getEmail())
+            ->subject('Bienvenue !!')
+            ->html("
+                <html>
+                <body style='font-family: Arial, sans-serif;'>
+                    <h2 style='color: #3498db;'>Bienvenue au Zoo Arcadia !</h2>
+                    <p>Votre compte a bien été créé. Pour vous connecter, cliquez sur le lien ci-dessous :</p>
+                    <p><a href='http://127.0.0.1:8000/login' style='padding: 10px 20px; background-color: #3498db; color: #fff; text-decoration: none; border-radius: 5px;'>Se connecter</a></p>
+                    <p>Rapprochez-vous de votre responsable pour obtenir votre mot de passe.</p>
+                    <p>Merci et à très vite !!</p>
+                </body>
+                </html>
+            ");
             
             $mailer->send($email);
 
