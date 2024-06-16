@@ -1,5 +1,5 @@
 
 framework:
     mailer:
-        dsn: 'smtp://zoo.arcadia.studi@gmail.com:ajlbereipkqyhkvn@smtp.gmail.com:465?encryption=ssl'
+        dsn: '%env(MAILER_DSN)%'
 

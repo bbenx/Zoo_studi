@@ -7,13 +7,37 @@ ZOO Arcadia est une application web de gestion de zoo permettant aux utilisateur
 Pour installer et configurer le projet en local, suivez ces étapes :
 ```
 git clone https://github.com/bbenx/Zoo_studi.git
-cd zoo-arcadia
-npm install
+cd Zoo_studi
+
+
 ```
+Créer .env.local
+```
+DATABASE_URL="mysql://root:root@localhost:3306/Zoo_Arcadia_DB"
+MONGODB_URL=mongodb://localhost:27017
+MONGODB_DB=Animal_click
+MAILER_DSN=smtp://127.0.0.1:1025
+```
+```
+#Executer
+composer install
+```
+
+Créer mes DB
+```
+#MySql
+bin/console d:d:c
+bin/console d:m:mi
+bin/console d:f:l
+
+#MongoDB
+bin/console d:m:s:c  
+```
+
 ## Utilisation
 Pour démarrer l'application en local :
 ```
-npm start
+symfony server:start
 ```
 
 ## Fonctionnalités

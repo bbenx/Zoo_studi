@@ -13,8 +13,15 @@ class AnimalClick
     #[MongoDB\Field(type: "int")]
     private $animalId;
 
-    #[MongoDB\Field(type: "int")]
-    private $clicks = 0;
+    #[MongoDB\Field(type: "string")]
+    private $prenom;
+
+    #[MongoDB\Field(type: "date")]
+    private $createdAt;
+
+    public function __construct (){
+        $this->createdAt = new \DateTime();
+    }
 
     public function getId(): ?string
     {
@@ -32,16 +39,26 @@ class AnimalClick
         return $this;
     }
 
-    public function getClicks(): int
+    public function getPrenom(): string
     {
-        return $this->clicks;
+        return $this->prenom;
     }
 
-    public function incrementClicks(): self
-{
-    $this->clicks++;
-    error_log('incrementClicks called, current clicks: ' . $this->clicks); // Ajout de journal
-    return $this;
-}
+    public function setPrenom(string $prenom): self
+    {
+        $this->prenom = $prenom;
+        return $this;
+    }
+
+    public function getCreatedAt(): \DateTime
+    {
+        return $this->createdAt;
+    }
+
+    public function setCreatedAt(\DateTime $createdAt): self
+    {
+        $this->createdAt = $createdAt;
+        return $this;
+    }
 
 }

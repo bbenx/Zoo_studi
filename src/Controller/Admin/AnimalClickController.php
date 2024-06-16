@@ -49,41 +49,37 @@ class AnimalClickController extends AbstractController
             return new Response('Animal not found', 404);
         }
 
-        $animalClick = $dm->getRepository(AnimalClick::class)->findOneBy(['animalId' => $id]);
-        if (!$animalClick) {
             $animalClick = new AnimalClick();
             $animalClick->setAnimalId($id);
-        }
+            $animalClick->setPrenom($animal->getPrenom());
 
-        $animalClick->incrementClicks();
+        // $animalClick->incrementClicks();
         $dm->persist($animalClick);
         $dm->flush();
 
-        return new Response(sprintf('Number of clicks on animal %d: %d', $id, $animalClick->getClicks()));
+        return new Response(sprintf('Number of clicks on animal %d:', $id,));
     }
 
     #[Route('/animal-clicks', name: 'admin_animal_clicks')]
     public function index(DocumentManager $dm, EntityManagerInterface $em): Response
     {
         // Récupération de tous les clics d'animaux
-        $clicks = $dm->getRepository(AnimalClick::class)->findAll();
+        $animaux = $em->getRepository(Animaux::class)->findAll();
         $animalDetails = [];
 
-        foreach ($clicks as $click) {
-            // Récupération des détails de l'animal correspondant
-            $animal = $em->getRepository(Animaux::class)->find($click->getAnimalId());
-            if ($animal) {
-                $animalDetails[] = [
-                    'id' => $animal->getId(),
-                    'prenom' => $animal->getPrenom(),
-                    'clicks' => $click->getClicks(),
-                ];
-            }
+        foreach ($animaux as $animal) {
+            $animalClicks = $dm->getRepository(AnimalClick::class)->createQueryBuilder()
+            ->field('animalId')->equals($animal->getId())
+            ->count()
+            ->getQuery()
+            ->execute();
+            $animalDetails [] = ['animal' => $animal, 'animalClicks' => $animalClicks];
         }
-
+        
         return $this->render('animal_click/index.html.twig', [
             'animalDetails' => $animalDetails,
             'controller_name' => 'AnimalClickController',
+        
         ]);
     }
 }

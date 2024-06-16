@@ -16,9 +16,9 @@
     <tbody>
         {% for animal in animalDetails %}
         <tr>
-            <td><a href="{{ path('app_animaux_show', {'id': animal.id}) }}">{{ animal.id }}</a></td>
-            <td>{{ animal.prenom }}</td>
-            <td>{{ animal.clicks }}</td>
+            <td><a href="{{ path('app_animaux_show', {'id': animal.animal.id}) }}">{{ animal.animal.id }}</a></td>
+            <td>{{ animal.animal.prenom }}</td>
+            <td>{{ animal.animalClicks }}</td>
         </tr>
         {% endfor %}
     </tbody>
