@@ -474,13 +474,13 @@ h1.logo{
     }
     .card {
         height: 300px;
-        width: 300px;
+        width: auto;
     } 
     .lead{
         padding-top:1rem;
     }
     .img-zoo{
-        max-width: 70%;
+        max-width: 80%;
         max-height: 300px; 
         width: auto; 
         height: auto;
@@ -489,7 +489,7 @@ h1.logo{
     }
   }
 
-@media (max-width: 576px) {
+@media (max-width: 575px) {
     h1.logo{
         font-size:2rem;
     }
@@ -501,9 +501,24 @@ h1.logo{
         border-radius:20%;
         overflow: hidden;
     }
-
-
+    .habitat-circle {
+        width: 100%;
+        height: auto;
+        max-width: 300px; 
+    }
+    .habitat-circle img {
+        width: 100%;
+        height: auto;
+    }
+    .square{
+        height: 100px;
+        width: auto;
+    }
+    .square h4{
+        font-size: medium;
+    }
 }
+
 
 @media (max-width: 375px) {
 
@@ -531,36 +546,10 @@ h1.logo{
         border-radius:20%;
         overflow: hidden;
     }
-
-}
-
-
-
-@media (max-width: 375px) {
-
-    .square{
-        height: 100px;
-        width: 300px;
-    }
-    .square h4{
-        font-size: medium;
-    }
-    .custom-size{
-        width:80%;
-    }
-    h1.logo{
-        font-size:2rem;
-    }
-    .lead{
-        font-size:1rem;
-    }
-    .img-zoo{
-        max-width: 75%;
-        max-height: 300px; 
-        width: auto; 
-        height: auto;
-        border-radius:20%;
-        overflow: hidden;
+    .dropdown_menu.open {
+        width: 90%;
+        left: 50%;
+        transform: translateX(-50%);
     }
 
 }
