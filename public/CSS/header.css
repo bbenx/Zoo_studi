@@ -83,7 +83,7 @@ body {
     background-size: cover;
     background-position: center;
     overflow-x: hidden;
-    background-attachment: fixed;
+    background-attachment: fixed !important;
 }
 
 li {
@@ -110,7 +110,7 @@ header {
 }
 
 header.scrolled {
-    background: rgba(0, 0, 0, 0.5);
+    background: rgba(0, 0, 0, 0.7);
     backdrop-filter: blur(15px);
 }
 
@@ -517,6 +517,9 @@ h1.logo{
     .square h4{
         font-size: medium;
     }
+    .container-background {
+    background-size: contain; /* ou cover */
+
 }
 
 
