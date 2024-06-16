@@ -517,9 +517,9 @@ h1.logo{
     .square h4{
         font-size: medium;
     }
-    .container-background {
-    background-size: contain; /* ou cover */
-
+    body {
+        background-attachment: scroll;
+        background-size: cover;
 }
 
 
