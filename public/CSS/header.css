@@ -487,30 +487,48 @@ h1.logo{
   }
 
 @media (max-width: 576px) {
-    .dropdown_menu {
-        left: 2rem;
-        width: unset;
+    h1.logo{
+        font-size:2rem;
     }
-    .container {
-        padding-left: 3rem;
-        padding-right: 3rem;
+    .img-zoo{
+        max-width: 85%;
+        max-height: 300px; 
+        width: auto; 
+        height: auto;
+        border-radius:20%;
+        overflow: hidden;
+    }
+
+
+}
+
+@media (max-width: 375px) {
+
+    .square{
+        height: 100px;
+        width: 300px;
+    }
+    .square h4{
+        font-size: medium;
+    }
+    .custom-size{
+        width:80%;
     }
     h1.logo{
-        font-size:3.5rem;
+        font-size:2rem;
     }
     .lead{
         font-size:1rem;
     }
-    .custom-size{
-        width:90%;
+    .img-zoo{
+        max-width: 75%;
+        max-height: 300px; 
+        width: auto; 
+        height: auto;
+        border-radius:20%;
+        overflow: hidden;
     }
-    .col.d-flex {
-        justify-content: center; 
-    }
-    .square {
-        margin: 10px auto; 
-        width: 80%; 
-    }
+
 }
 
 
