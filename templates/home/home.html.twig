@@ -32,7 +32,7 @@
 				<div class="carousel-item">
 					<img class="d-block mx-auto  img-zoo rounded-image" src="https://my-zoo-images.s3.eu-north-1.amazonaws.com/Images-divers/Petit+train.webp" alt="PetitTrain">
 				</div>
-					<div class="carousel-item">
+				<div class="carousel-item">
 					<img class="d-block mx-auto img-zoo rounded-image" src="https://my-zoo-images.s3.eu-north-1.amazonaws.com/Images-divers/Veto.webp" alt="Vétérinaire">
 				</div>
 			</div>
@@ -124,44 +124,44 @@
 		</seciton>
 
 		<section id="testimonials" class="px-4 py-5">
-	
-				<h2 class="pb-2 fw-bold text-white border-bottom roboto-black-italic">Ce qu'ils en pensent</h2>
-				<br>
-				<br>
-				<div id="testimonialCarousel" class="carousel slide" data-bs-ride="carousel">
-					<div class="carousel-inner">
-						{% for avis in avisValides %}
-							<div class="carousel-item {% if loop.first %}active{% endif %}">
-								<div class="row justify-content-center">
-									<div class="col-md-8 col-sm-10">
-										<div class="testimonial-item p-4 rounded shadow-sm avis-border" style="background-color: #f2ddc0;">
-											<div class="d-flex justify-content-center mb-3">
-												<h5 class="mb-0" style="color: white;">{{ avis.Pseudo|capitalize }}</h5>
-											</div>
-											<p class="testimonial-text text-center text-black" style="font-style:italic">{{ avis.Commentaire|capitalize }}</p>
+
+			<h2 class="pb-2 fw-bold text-white border-bottom roboto-black-italic">Ce qu'ils en pensent</h2>
+			<br>
+			<br>
+			<div id="testimonialCarousel" class="carousel slide" data-bs-ride="carousel">
+				<div class="carousel-inner">
+					{% for avis in avisValides %}
+						<div class="carousel-item {% if loop.first %}active{% endif %}">
+							<div class="row justify-content-center">
+								<div class="col-md-8 col-sm-10">
+									<div class="testimonial-item p-4 rounded shadow-sm avis-border" style="background-color: #f2ddc0;">
+										<div class="d-flex justify-content-center mb-3">
+											<h5 class="mb-0" style="color: white;">{{ avis.Pseudo|capitalize }}</h5>
 										</div>
+										<p class="testimonial-text text-center text-black" style="font-style:italic">{{ avis.Commentaire|capitalize }}</p>
 									</div>
 								</div>
 							</div>
-						{% endfor %}
-					</div>
-					<button class="carousel-control-prev" type="button" data-bs-target="#testimonialCarousel" data-bs-slide="prev">
-						<span class="carousel-control-prev-icon" aria-hidden="true"></span>
-						<span class="visually-hidden">Previous</span>
-					</button>
-					<button class="carousel-control-next" type="button" data-bs-target="#testimonialCarousel" data-bs-slide="next">
-						<span class="carousel-control-next-icon" aria-hidden="true"></span>
-						<span class="visually-hidden">Next</span>
-					</button>
+						</div>
+					{% endfor %}
 				</div>
-		
+				<button class="carousel-control-prev" type="button" data-bs-target="#testimonialCarousel" data-bs-slide="prev">
+					<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+					<span class="visually-hidden">Previous</span>
+				</button>
+				<button class="carousel-control-next" type="button" data-bs-target="#testimonialCarousel" data-bs-slide="next">
+					<span class="carousel-control-next-icon" aria-hidden="true"></span>
+					<span class="visually-hidden">Next</span>
+				</button>
+			</div>
+
 		</section>
 
 		<section id="section-avis" class="avis text-center py-4">
-		{% if not avisForm %}
-			<h2 class="pb-2 border-bottom roboto-black-italic">Ajoutez un avis</h2>
-			<br>
-			
+			{% if not avisForm %}
+				<h2 class="pb-2 border-bottom roboto-black-italic">Ajoutez un avis</h2>
+				<br>
+
 				<div class="row justify-content-center">
 					<div>
 						{{ form_start(form) }}
@@ -194,9 +194,7 @@
 	</div>
 
 
-</main>
-{% endblock %}
-{% block javascripts %}
+</main>{% endblock %}{% block javascripts %}
 {{ parent() }}
 <script>
 	document.addEventListener('DOMContentLoaded', function () {
@@ -228,7 +226,6 @@ window.scrollTo(0, scrollPosition);
 localStorage.removeItem('scrollPosition');
 }
 });
-}
-);
+});
 </script>
 <script src="{{ asset('JS/bootstrap.min.js') }}"></script>{% endblock %}

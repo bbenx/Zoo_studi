@@ -73,11 +73,6 @@
             dropDownMenu.classList.toggle('open');
             const isOpen = dropDownMenu.classList.contains('open');
             toggleBtnIcon.classList = isOpen ? 'fa-solid fa-xmark' : 'fa-solid fa-bars';
-            if (isOpen) {
-                header.classList.add('dropdown-open');
-            } else {
-                header.classList.remove('dropdown-open');
-            }
         };
 
         window.addEventListener('scroll', function () {
