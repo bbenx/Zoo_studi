@@ -1,7 +1,7 @@
 parameters:
     env(MONGODB_URL): ''
     env(MONGODB_DB): ''
-
+    BASE_URL: '%env(BASE_URL)%'
 # config/services.yaml
 
 services:
