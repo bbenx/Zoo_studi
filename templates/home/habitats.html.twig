@@ -7,13 +7,12 @@
     <link rel="stylesheet" href="{{ asset('CSS/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ asset('CSS/header.css') }}">
     <link rel="stylesheet" href="{{ asset('CSS/habitats.css') }}">
-    <style>       
+    <style>
         html, body {
             height: 100%;
             margin: 0;
             display: flex;
             flex-direction: column;
-            background-attachment: fixed;
         }
 
         .page-container {
@@ -58,14 +57,13 @@
     <section id="habitats" class="container px-4 text-white">
         <div class="row justify-content-center py-5 g-4">
             {% for habitat in habitats %}
-                <div class="col-6 col-sm-4 col-md-3 col-lg-2 text-center mb-4">
+                <div class="col-6 col-sm-4 col-md-3 col-lg-2 text-center mb-4 d-flex justify-content-center">
                     <a href="{{ path('app_habitatss_show', {'id': habitat.id}) }}" class="habitat-link">
-
                         <div class="habitats-circle">
                             <img src="{{ habitat.image }}" alt="{{ habitat.nom }}" class="img-fluid rounded-circle">
                             <h5 class="mt-2">{{ habitat.nom }}</h5>
                         </div>
-                        </a>
+                    </a>
                 </div>
             {% endfor %}
         </div>
@@ -83,5 +81,3 @@
     {{ parent() }}
     <script src="{{ asset('JS/bootstrap.min.js') }}"></script>
 {% endblock %}
-
-
