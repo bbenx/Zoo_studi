@@ -71,7 +71,6 @@ class UsersController extends AbstractController
             $entityManager->flush();
             
             $baseUrl = $this->params->get('BASE_URL');
-            dd($baseUrl);
 
             $email = (new Email())
             ->from('zoo.arcadia.studi@gmail.com')
