@@ -1,3 +1,46 @@
+html{
+    height:100%
+}
+
+body {
+    height: 100vh;
+    background-color: #5e8153;
+    background-image: url('https://my-zoo-images.s3.eu-north-1.amazonaws.com/Images-divers/pexels-katarzyna-modrzejewska-495044-1466434.jpg');
+    background-blend-mode: multiply;
+    background-size: cover;
+    background-position: center;
+    overflow-x: hidden;
+    background-attachment: fixed;
+}
+
+li {
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+    color: #fff;
+    font-size: 1rem;
+}
+
+a:hover {
+    color: orange;
+}
+
+header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    background: transparent;
+    transition: background 0.3s ease, backdrop-filter 0.3s ease;
+}
+
+header.scrolled {
+    background: rgba(0, 0, 0, 0.9);
+    backdrop-filter: blur(15px);
+}
+
 .roboto-thin {
 font-family: "Roboto", sans-serif;
 font-weight: 100;
@@ -70,51 +113,7 @@ font-weight: 900;
 font-style: italic;
 }
 
-
-html{
-    height:100%
-}
-
-body {
-    height: 100vh;
-    background-color: #5e8153;
-    background-image: url('https://my-zoo-images.s3.eu-north-1.amazonaws.com/Images-divers/pexels-katarzyna-modrzejewska-495044-1466434.jpg');
-    background-blend-mode: multiply;
-    background-size: cover;
-    background-position: center;
-    overflow-x: hidden;
-    background-attachment: fixed;
-}
-
-li {
-    list-style: none;
-}
-
-a {
-    text-decoration: none;
-    color: #fff;
-    font-size: 1rem;
-}
-
-a:hover {
-    color: orange;
-}
-
-header {
-    position: fixed;
-    top: 0;
-    width: 100%;
-    z-index: 1000;
-    background: transparent;
-    transition: background 0.3s ease, backdrop-filter 0.3s ease;
-}
-
-header.scrolled {
-    background: rgba(0, 0, 0, 0.7);
-    backdrop-filter: blur(15px);
-}
-
-
+    
 .img-zoo {
     max-width: 100%;
     max-height: 400px; 
@@ -427,9 +426,6 @@ h1.logo{
     .col.d-flex {
         justify-content: center; 
       }
-    body{
-        background-attachment: fixed;
-        }
     .square {
         width: 130px;
         height: 130px;
@@ -487,11 +483,14 @@ h1.logo{
         border-radius:20%;
         overflow: hidden;
     }
+    h1.logo{
+        font-size:3.2rem;
+    }
   }
 
 @media (max-width: 575px) {
     h1.logo{
-        font-size:2rem;
+        font-size:3rem;
     }
     .img-zoo{
         max-width: 85%;
@@ -517,11 +516,11 @@ h1.logo{
     .square h4{
         font-size: medium;
     }
+
 }
 
 
 @media (max-width: 375px) {
-
     .square{
         height: 100px;
         width: 300px;
@@ -533,13 +532,11 @@ h1.logo{
         width:80%;
     }
     h1.logo{
-        font-size:2rem;
+        font-size:2.2rem;
     }
-    .lead{
-        font-size:1rem;
-    }
+
     .img-zoo{
-        max-width: 75%;
+        max-width: 90%;
         max-height: 300px; 
         width: auto; 
         height: auto;
@@ -550,6 +547,9 @@ h1.logo{
         width: 90%;
         left: 50%;
         transform: translateX(-50%);
+    }
+    .lead{
+        font-size:1rem;
     }
 
 }

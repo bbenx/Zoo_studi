@@ -36,7 +36,7 @@ class ContactType extends AbstractType
                     new Assert\Email(),
                     new Assert\Length(['min' => 2, 'max' => 180])
                 ]
-            ])
+            ]) 
             ->add('subject', TextType::class, [
                 'attr' => [
                     'class' => 'custom_input',
