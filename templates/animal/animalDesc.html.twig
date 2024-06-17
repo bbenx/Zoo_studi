@@ -76,6 +76,12 @@
 
 {% endblock %}
 
+{% block footer %}
+<footer>
+    {% include 'home/footer.html.twig' %}
+</footer>
+{% endblock %}
+
 {% block javascripts %}
     {{ parent() }}
 {% endblock %}
