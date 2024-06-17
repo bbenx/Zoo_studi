@@ -369,7 +369,7 @@ CREATE TABLE `reset_password_request` (
   PRIMARY KEY (`id`),
   KEY `IDX_7CE748AA76ED395` (`user_id`),
   CONSTRAINT `FK_7CE748AA76ED395` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -430,7 +430,7 @@ CREATE TABLE `users` (
   UNIQUE KEY `UNIQ_IDENTIFIER_EMAIL` (`email`),
   KEY `IDX_1483A5E9FF631228` (`etablissement_id`),
   CONSTRAINT `FK_1483A5E9FF631228` FOREIGN KEY (`etablissement_id`) REFERENCES `etablissement` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=75 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=79 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -452,4 +452,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-06-17 17:07:03
+-- Dump completed on 2024-06-17 20:46:57
