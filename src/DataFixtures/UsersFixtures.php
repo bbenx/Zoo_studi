@@ -46,10 +46,10 @@ class UsersFixtures extends Fixture implements DependentFixtureInterface
     private function createManualUsers(ObjectManager $manager): void
     {
         $user1 = new Users();
-        $user1->setEmail('superadmin@gmail.com');
+        $user1->setEmail('admin@gmail.com');
         $user1->setEtablissement($this->getReference('etablissement_1'));
-        $user1->setRoles(['ROLE_USER', 'ROLE_EMPLOYE', 'ROLE_VETERINAIRE','ROLE_ADMIN']);
-        $user1->setPlainPassword('password');
+        $user1->setRoles(['ROLE_USER', 'ROLE_ADMIN']);
+        $user1->setPlainPassword('admin');
 
         $manager->persist($user1);
         $this->setReference('user_1', $user1); 
@@ -71,15 +71,6 @@ class UsersFixtures extends Fixture implements DependentFixtureInterface
 
         $manager->persist($user3);
         $this->setReference('user_3', $user3); 
-
-        $user4 = new Users();
-        $user4->setEmail('admin@gmail.com');
-        $user4->setEtablissement($this->getReference('etablissement_1'));
-        $user4->setRoles(['ROLE_USER', 'ROLE_ADMIN']);
-        $user4->setPlainPassword('admin');
-
-        $manager->persist($user4);
-        $this->setReference('user_4', $user4); 
 
     }
 

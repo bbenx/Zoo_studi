@@ -1,0 +1,47 @@
+{% extends 'base_admin.html.twig' %}
+
+{% block title %}Dashboard{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <style>
+        .dashboard-container {
+            max-width: 800px;
+            padding: 2rem;
+            background: #f0f9f0;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        .main-container {
+            height: calc(100vh - 80px); /* Adjusting height to consider header */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: #f0f9f0;
+        }
+        .header-title {
+            font-size: 2.5rem;
+            color: #343a40;
+            margin-bottom: 1rem;
+        }
+        .content-text {
+            font-size: 1.2rem;
+            color: #6c757d;
+            margin-bottom: 2rem;
+        }
+        .smiley {
+            font-size: 5rem;
+        }
+    </style>
+{% endblock %}
+
+{% block body %}
+    <div class="main-container">
+        <div class="dashboard-container">
+            <h1 class="header-title">OH NON !!!</h1>
+            <p class="content-text">Vous n'avez malheureusement pas les droits pour accéder à cette page </p>
+            <div class="smiley">😞</div>
+        </div>
+    </div>
+{% endblock %}

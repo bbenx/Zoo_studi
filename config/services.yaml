@@ -27,4 +27,8 @@ services:
         tags:
             - { name: doctrine_mongodb.odm.metadata_driver, driver: attribute, manager: default }
     
+    App\Security\AccessDeniedHandler:
+        arguments:
+            $twig: '@twig'
+
     
