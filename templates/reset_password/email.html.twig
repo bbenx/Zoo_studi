@@ -1,0 +1,31 @@
+<html>
+<head>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        h1 {
+            color: #4caf50;
+        }
+        .reset-link {
+            padding: 10px 20px;
+            background-color: orange;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Modifiez votre mot de passe</h1>
+
+    <p>Bonjour,</p>
+    <p>Pour modifier votre mot de passe, veuillez cliquer sur le lien ci-dessous:</p>
+
+    <p><a href="{{ url('app_reset_password', {token: resetToken.token}) }}" class="reset-link">Modifier mon mot de passe</a></p>
+
+    <p>Ce lien expirera dans {{ resetToken.expirationMessageKey|trans(resetToken.expirationMessageData, 'ResetPasswordBundle') }}.</p>
+
+    <p>Merci !</p>
+</body>
+</html>

@@ -14,3 +14,16 @@
 
 	{{ include('users/_form.html.twig', {'button_label': 'Créer'}) }}
 {% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            setTimeout(function() {
+                document.querySelectorAll('.alert').forEach(function(alert) {
+                    alert.style.display = 'none';
+                });
+            }, 3000); // Disparition du message après 3 secondes
+        });
+    </script>
+{% endblock %}
