@@ -50,7 +50,15 @@ class UsersController extends AbstractController
                 $plainPassword
                 )
             );
+
             $user->setPlainPassword(null);
+
+            $roles = $form->get('roles')->getData();
+            if (!in_array('ROLE_USER', $roles)) {
+                $roles[] = 'ROLE_USER';
+            }
+            $user->setRoles($roles);
+
             $entityManager->persist($user);
             $entityManager->flush();
     

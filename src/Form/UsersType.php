@@ -32,6 +32,7 @@ class UsersType extends AbstractType
                     new NotBlank(['message' => 'Veuillez sélectionner au moins un rôle.']),
                 ],
                 'label' => 'Rôles',
+                'data' => ['ROLE_USER'],
             ])
             ->add('email', EmailType::class)
             ->add('plainPassword', PasswordType::class, [

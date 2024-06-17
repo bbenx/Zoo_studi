@@ -136,6 +136,15 @@
   color: white; 
 }
 
+.forgot-password-link {
+  color: #4caf50;
+  text-decoration: none; /* Optionnel : retire le soulignement du lien */
+}
+
+.forgot-password-link:hover {
+  color: #FFEB3B;
+  text-decoration: underline;
+}
 
 hr {
   border-color: #b3ddb3; 
