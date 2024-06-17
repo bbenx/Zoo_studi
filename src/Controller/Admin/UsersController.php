@@ -42,6 +42,7 @@ class UsersController extends AbstractController
     public function new(MailerInterface $mailer, Request $request, EntityManagerInterface $entityManager, UserPasswordHasherInterface $hasher): Response
     {
         $user = new Users();
+        
         $form = $this->createForm(UsersType::class, $user);
         $form->handleRequest($request);
     

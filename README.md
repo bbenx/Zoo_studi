@@ -61,14 +61,14 @@ git commit -m "Description de la nouvelle fonctionnalité"
 git push origin nouvelle-fonctionnalité
 ```
 
-## Tests
+## Tests   ???
 Pour exécuter les tests unitaires :
 ```
 npm test
 ```
 
 ## Liens
-- [Projet Jira](https://zoo-studi.atlassian.net/jira/software/projects/ZS/boards/2)
+- [Projet Jira](https://zoo-studi.atlassian.net/jira/software/projects/ZS/boards/2) -> Public ?
 - [Dépôt GitHub](https://github.com/bbenx/Zoo_studi)
 
 ##Historique des versions
