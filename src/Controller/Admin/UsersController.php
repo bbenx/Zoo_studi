@@ -7,6 +7,7 @@ use App\Form\UsersType;
 use App\Repository\UsersRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Mailer\MailerInterface;
@@ -20,6 +21,13 @@ use Symfony\Component\Security\Http\Attribute\IsGranted;
 #[Route('/admin')]
 class UsersController extends AbstractController
 {
+    private $params;
+
+    public function __construct(ParameterBagInterface $params)
+    {
+        $this->params = $params;
+    }
+    
     #[Route('/users', name: 'app_users_index', methods: ['GET'])]
     #[IsGranted('ROLE_ADMIN')]
     public function index(UsersRepository $usersRepository): Response
@@ -61,7 +69,10 @@ class UsersController extends AbstractController
 
             $entityManager->persist($user);
             $entityManager->flush();
-    
+            
+            $baseUrl = $this->params->get('BASE_URL');
+            dd($baseUrl);
+
             $email = (new Email())
             ->from('zoo.arcadia.studi@gmail.com')
             ->to($user->getEmail())
@@ -71,7 +82,7 @@ class UsersController extends AbstractController
                 <body style='font-family: Arial, sans-serif;'>
                     <h1 style='color: #4caf50;'>Bienvenue au Zoo Arcadia !</h1>
                     <p>Votre compte a bien été créé. Pour vous connecter, cliquez sur le lien ci-dessous :</p>
-                    <p><a href='http://127.0.0.1:8000/login' style='padding: 10px 20px; background-color: orange; color: #fff; text-decoration: none; border-radius: 5px;'>Se connecter</a></p>
+                    <p><a href='$baseUrl/login' style='padding: 10px 20px; background-color: orange; color: #fff; text-decoration: none; border-radius: 5px;'>Se connecter</a></p>
                     <p>Rapprochez-vous de votre responsable pour obtenir votre mot de passe.</p>
                     <p>Merci et à très vite !!</p>
                 </body>
