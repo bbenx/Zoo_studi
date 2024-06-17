@@ -61,9 +61,9 @@ class UsersController extends AbstractController
             ->html("
                 <html>
                 <body style='font-family: Arial, sans-serif;'>
-                    <h2 style='color: #3498db;'>Bienvenue au Zoo Arcadia !</h2>
+                    <h1 style='color: #4caf50;'>Bienvenue au Zoo Arcadia !</h1>
                     <p>Votre compte a bien été créé. Pour vous connecter, cliquez sur le lien ci-dessous :</p>
-                    <p><a href='http://127.0.0.1:8000/login' style='padding: 10px 20px; background-color: #3498db; color: #fff; text-decoration: none; border-radius: 5px;'>Se connecter</a></p>
+                    <p><a href='http://127.0.0.1:8000/login' style='padding: 10px 20px; background-color: orange; color: #fff; text-decoration: none; border-radius: 5px;'>Se connecter</a></p>
                     <p>Rapprochez-vous de votre responsable pour obtenir votre mot de passe.</p>
                     <p>Merci et à très vite !!</p>
                 </body>
@@ -72,10 +72,10 @@ class UsersController extends AbstractController
             
             $mailer->send($email);
 
-            return $this->redirectToRoute('app_users_index', [], Response::HTTP_SEE_OTHER);
-    
             $this->addFlash('success', 'Utilisateur ajouté avec succès.');
-    
+
+            return $this->redirectToRoute('app_users_index', [], Response::HTTP_SEE_OTHER);
+
         }
     
         return $this->render('users/new.html.twig', [

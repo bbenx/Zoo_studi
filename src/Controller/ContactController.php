@@ -84,6 +84,7 @@ class ContactController extends AbstractController
                             border-radius: 20px;
                             font-weight: bold;
                             margin-top: 20px;
+                            margin-bottom: 20px;
                         }
                         .button:hover {
                             background-color: darkorange;
