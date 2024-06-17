@@ -54,7 +54,7 @@ form {
     border: none;
     outline: none;
     border-radius: 20px;
-    font-size: 1.5rem; /* Gardez une seule déclaration de font-size */
+    font-size: 1.5rem; 
     font-weight: bold;
     cursor: pointer;
     transition: transform 0.2s ease;
@@ -68,7 +68,7 @@ form {
 /* Responsive design */
 @media (max-width: 991px) {
     .btn {
-        font-size: 1.5rem; /* Ajustez selon vos besoins */
+        font-size: 1.5rem; 
     }
 }
 
@@ -81,7 +81,7 @@ form {
         padding: 8px 12px;
     }
     .btn {
-        font-size: 1rem; /* Ajustez selon vos besoins */
+        font-size: 1rem; 
     }
 }
 
