@@ -93,6 +93,33 @@ All notable changes to this project will be documented in this file.
 - Mailcatcher error
 - Deploy Error
 
+## [2024-06-16]
+
+### Added
+- Added footer contact.
+- Added footer animaux.
+
+### Changed
+- Update CSS Home.
+- Update orthographe. (missing "e" -> Bienvenu)
+
+### Fixed
+- Fixe Role. (missing ROLE_USER)
+- Link BaseUrl. (Dev/prod)
+- Fix User email.
+- Fix Mail error.
+- Error 500.
+- Access refusé (in `forget_password` branch).
+- Fixes Mongo 1 (in `Mongo-Deploy` branch).
+
+
+### Merged
+- Merge pull request #16 from bbenx/forget_password.
+- Merge pull request #15 from bbenx/forget_password.
+- Merge pull request #14 from bbenx/Mongo-Deploy.
+
+
+
 
 
 
