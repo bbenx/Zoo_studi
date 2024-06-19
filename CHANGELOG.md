@@ -106,8 +106,8 @@ All notable changes to this project will be documented in this file.
 ### Fixed
 - Fixe Role. (missing ROLE_USER)
 - Link BaseUrl. (Dev/prod)
-- Fix User email.
-- Fix Mail error.
+- User email.
+- Mail error.
 - Error 500.
 - Access refusé (in `forget_password` branch).
 - Fixes Mongo 1 (in `Mongo-Deploy` branch).
@@ -118,6 +118,13 @@ All notable changes to this project will be documented in this file.
 - Merge pull request #15 from bbenx/forget_password.
 - Merge pull request #14 from bbenx/Mongo-Deploy.
 
+
+## [2024-06-18]
+
+### Added
+- static pages "Mentions légales - CGU" & "Confidentialité"
+- Link static pages in footer
+- Favicon "Visiteur" & "User"
 
 
 

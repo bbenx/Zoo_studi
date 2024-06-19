@@ -1,0 +1,109 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Politique de confidentialité{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('CSS/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('CSS/header.css') }}">
+    <style>
+        .content-box {
+            background-color: rgba(0, 0, 0, 0.5);
+            border: 2px solid orange;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px auto;
+            max-width: 800px;
+            color: white;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .content-box h1, .content-box h2, .content-box h3 {
+            color: orange;
+        }
+
+        .content-box ul, .content-box ol {
+            padding-left: 20px;
+        }
+    </style>
+{% endblock %}
+
+{% block body %}
+<main class="container pt-5 my-5">
+    <div class="content-box">
+        <h1 class="text-center mb-4">Politique de confidentialité</h1>
+
+        <h2>Le responsable du traitement</h2>
+        <p>La SAS du Zoo Arcadia traite les données vous concernant et est responsable du traitement des données personnelles collectées par le Zoo.</p>
+
+        <h2>Quelles sont les données collectées et dans quel but ?</h2>
+        <p>Les données :</p>
+        <ul>
+            <li>nom</li>
+            <li>prénom</li>
+            <li>date de naissance</li>
+            <li>adresse postale</li>
+            <li>email</li>
+            <li>téléphone mobile</li>
+        </ul>
+
+        <p>Leur utilisation :</p>
+        <ul>
+            <li>Elles sont utilisées pour la gestion de notre relation, de nos échanges et répondre à vos questions ou vos éventuelles réclamations.</li>
+            <li>Enquête de satisfaction</li>
+            <li>Informations personnalisées et actualité du Zoo</li>
+            <li>Envoi d’offres et de promotions</li>
+            <li>Jeu-concours</li>
+            <li>Invitation à des événements</li>
+            <li>Publicité ciblée et/ou géolocalisée</li>
+            <li>La création d’un compte sur notre billetterie et notre système de réservation de séjour, ce qui vous permet de passer commande, de suivre vos achats et de récupérer vos billets ou séjours</li>
+            <li>La gestion des communications et le suivi de nos échanges</li>
+            <li>La gestion du service après-vente</li>
+            <li>La gestion de vos demandes liées à l’exercice des droits notamment d’accès, de rectification, et d’opposition, dont vous bénéficiez en application de la réglementation sur les données personnelles</li>
+            <li>L’analyse de votre utilisation des services (notamment votre navigation en ligne et vos réactions aux emails), afin de vous adresser les communications les plus adaptées.</li>
+        </ul>
+
+        <h2>Qui a accès à vos données ?</h2>
+        <p>Le Zoo Arcadia ne divulgue pas et ne commercialise pas vos données personnelles à des entreprises externes.</p>
+        <p>Nous pouvons avoir recours à des prestataires externes pour le traitement de ces données afin de vous apporter un meilleur service.</p>
+        <p>Les personnes ayant accès à vos données sont :</p>
+        <ul>
+            <li>Les collaborateurs de la SAS du Zoo Arcadia des services concernés par l’utilisation et le traitement de vos données (service marketing, commercial, boutique, accueil, …)</li>
+            <li>Les prestataires marketing et régies publicitaires avec lesquels le Zoo Arcadia s’est associé.</li>
+        </ul>
+
+        <h2>Combien de temps conservons-nous ces données ?</h2>
+        <p>Les données sont conservées au minimum le temps nécessaire à l’exécution du contrat.</p>
+        <p>Elles pourront ensuite être conservées et traitées pendant 3 ans suivant le dernier contact de votre part, pour nous permettre de vous adresser des sollicitations commerciales.</p>
+
+        <h2>Droit d'accès et de rectification des données transmises</h2>
+        <p>Vous disposez d'un droit d'accès, de modification, de rectification et de suppression des données qui vous concernent. Vous pourrez l'exercer en nous contactant :</p>
+        <address>
+            Zoo Arcadia<br>
+            4 rue pasteur<br>
+            28600 Luisant<br>
+            France<br>
+            <br>
+            Par notre <a href="/contact" class="text-white">page de contact</a><br>
+            Par mail : <a href="mailto:zoo-arcadia-studi@gmail.com" class="text-white">zoo-arcadia-studi@gmail.com</a><br>
+            Par téléphone : +33 2 00 00 00 00
+        </address>
+        <p>Vous avez la possibilité de vous désabonner à tout moment de notre liste d’emailing, en nous contactant ou en cliquant sur le lien présent dans tous les e-mails.</p>
+
+        <h2>Déclaration CNIL</h2>
+        <p>La collecte et le traitement automatisé d'informations personnelles et nominatives et les destinataires de ces informations ont été définis, déclarés et autorisés par la CNIL.</p>
+        <p>Numéro de déclaration : 2031466 v 0</p>
+
+        <h2>Les cookies</h2>
+        <h3>Qu'est-ce qu'un cookie ?</h3>
+        <p>Un cookie est un fichier texte déposé sur l’appareil que vous utilisez pour naviguer sur notre site.</p>
+
+        <h3>La finalité de l'utilisation des cookies par la SAS du Zoo Arcadia</h3>
+        <p>La durée de vie d’un cookie est permanente. Ils contiennent un identifiant unique par navigateur. Ils constituent l'historique des visites sur notre site et sur chacune de ses pages. Ils sont utilisés à des fins de statistiques sur la consultation et l’usage du site internet. Ils permettent également de vous adresser des offres et services personnalisés.</p>
+        <p>Vous avez à tout moment la possibilité d’accepter ou de refuser l’utilisation de cookies sur votre terminal.Vous pouvez paramétrer votre navigateur afin de refuser ces cookies sans altérer pour autant votre navigation sur notre site.</p>
+
+        <h2>Modification de cette notice</h2>
+        <p>La SAS du Zoo Arcadia se réserve le droit de modifier, ou d’actualiser cette notice à tout moment.</p>
+    </div>
+</main>
+{% endblock %}

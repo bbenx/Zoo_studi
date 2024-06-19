@@ -1,15 +1,9 @@
-{% block body %}
-<footer class="text-center text-white">
-	<p>&copy;
-		{{ 'now' | date('Y') }}
-		Zoo Studi. Tous droits réservés.</p>
+<footer class="text-center text-white d-flex justify-content-center">
+    <p class="mb-0">
+        &copy; {{ 'now' | date('Y') }} Zoo Studi. Tous droits réservés.
+        <span class="footer-links">
+            <a class="mx-2 {% if current_page == 'mentions_légales_cgu' %}underline{% endif %}" href="{{ path('home_mentions_légales_cgu') }}">Mentions légales - CGU</a> | 
+            <a class="mx-2 {% if current_page == 'confidentialite' %}underline{% endif %}" href="{{ path('home_confidentialite') }}">Confidentialité</a>
+        </span>
+    </p>
 </footer>
-{% endblock %}
-
-
-
-
-
-
-
-

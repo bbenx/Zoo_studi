@@ -1,0 +1,74 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mentions légales - CGU{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('CSS/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('CSS/header.css') }}">
+    <style>
+        .content-box {
+            background-color: rgba(0, 0, 0, 0.5);
+            border: 2px solid orange;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px auto;
+            max-width: 800px;
+            color: white;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .content-box h1, .content-box h2, .content-box h3 {
+            color: orange;
+        }
+
+        .content-box ul, .content-box ol {
+            padding-left: 20px;
+        }
+    </style>
+{% endblock %}
+
+{% block body %}
+<main class="container pt-5 my-5">
+    <div class="content-box">
+        <h1 class="text-center mb-4">Mentions Légales</h1>
+
+        <h2>Informations légales</h2>
+        <p>
+            Ce site est édité par Etoffe & Co, une société anonyme au capital de 1 000 000 euros, immatriculée au Registre du Commerce et des Sociétés de Paris sous le numéro 123456789. Son siège social est situé au 25 Rue du Faubourg Saint-Honoré, 75008 Paris.
+        </p>
+        <p>Coordonnées :</p>
+        <ul>
+            <li>Téléphone : +33 1 23 45 67 89</li>
+            <li>Email : contact@etoffeandco.com</li>
+            <li>Directeur de la publication : Marie Dupont</li>
+            <li>Hébergeur : Amazon Web Services, Inc. Adresse : 410 Terry Avenue North, Seattle, WA 98109-5210, États-Unis</li>
+        </ul>
+
+        <h2>Données Personnelles</h2>
+        <p>
+            Les informations recueillies font l'objet d'un traitement informatique destiné à assurer le suivi des commandes, la gestion des comptes clients et l'envoi de communications commerciales. Les destinataires des données sont les services internes d'Etoffe & Co ainsi que les prestataires de services impliqués dans la réalisation des commandes et des services associés. Conformément à la loi "Informatique et Libertés" du 6 janvier 1978 modifiée et au Règlement Général sur la Protection des Données (RGPD), vous bénéficiez d'un droit d'accès, de rectification et de suppression des informations qui vous concernent. Vous pouvez exercer ce droit en vous adressant à Etoffe & Co, 25 Rue du Faubourg Saint-Honoré, 75008 Paris, ou par email à l'adresse contact@etoffeandco.com.
+        </p>
+
+        <h2>CGU</h2>
+        <p>
+            Les présentes Conditions Générales d'Utilisation (CGU) régissent l'utilisation du site d'Etoffe & Co. En accédant à ce site, vous acceptez sans réserve ces conditions.
+        </p>
+
+        <h3>Conditions Générales d'Utilisation (CGU)</h3>
+        <ol>
+            <li>Acceptation des CGU En accédant et en utilisant ce site, vous acceptez les présentes CGU dans leur intégralité. Si vous n'acceptez pas ces termes, veuillez ne pas utiliser ce site.</li>
+            <li>Propriété intellectuelle
+                <ul>
+                    <li>a. Droits d'auteur : Tous les contenus présents sur le site d'Etoffe & Co, tels que les textes, les graphiques, les logos, les images, les vidéos, les icônes et les éléments sonores, sont la propriété exclusive d'Etoffe & Co ou de ses fournisseurs de contenu, et sont protégés par les lois nationales et internationales sur le droit d'auteur.</li>
+                    <li>b. Marques de commerce : Les marques de commerce, les logos et les noms de produits et de services affichés sur le site sont des marques déposées et non déposées d'Etoffe & Co ou de tiers. Il est strictement interdit d'utiliser ces marques sans l'autorisation écrite préalable d'Etoffe & Co ou du propriétaire de la marque concernée.</li>
+                    <li>c. Utilisation du contenu : Vous pouvez utiliser le contenu du site uniquement à des fins personnelles et non commerciales. Toute utilisation, reproduction ou distribution du contenu à des fins autres que celles expressément autorisées par les présentes conditions est strictement interdite.</li>
+                    <li>d. Contenu généré par l'utilisateur : En soumettant du contenu sur le site d'Etoffe & Co, vous accordez à Etoffe & Co une licence mondiale, non exclusive, transférable, libre de redevance, permettant d'utiliser, de reproduire, de modifier, d'adapter, de publier, de traduire, de distribuer et de diffuser ce contenu à des fins promotionnelles et commerciales.</li>
+                    <li>e. Contenu tiers : Certains contenus présents sur le site peuvent être fournis par des tiers, tels que des partenaires ou des annonceurs. Ces tiers peuvent détenir des droits de propriété intellectuelle sur leur contenu, et leur utilisation est soumise à leurs propres conditions d'utilisation.</li>
+                    <li>En utilisant le site d'Etoffe & Co, vous reconnaissez et acceptez que tout usage non autorisé du contenu peut constituer une violation des lois sur le droit d'auteur et des autres lois applicables, et peut entraîner des sanctions civiles et pénales.</li>
+                </ul>
+            </li>
+        </ol>
+    </div>
+</main>
+{% endblock %}
