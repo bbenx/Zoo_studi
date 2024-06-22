@@ -23,18 +23,18 @@ class AnimauxType extends AbstractType
                 'label' => 'Image URL',
                 'required' => false,
             ])
-            ->add('creationDate', DateTimeType::class, [
-                'widget' => 'single_text',
-                'disabled' => true,
-                'required' => false,
-                'label' => 'Date de création',
-            ])
-            ->add('modificationDate', DateTimeType::class, [
-                'widget' => 'single_text',
-                'disabled' => true,
-                'required' => false,
-                'label' => 'Date de modification',
-            ])
+            // ->add('creationDate', DateTimeType::class, [
+            //     'widget' => 'single_text',
+            //     'disabled' => true,
+            //     'required' => false,
+            //     'label' => 'Date de création',
+            // ])
+            // ->add('modificationDate', DateTimeType::class, [
+            //     'widget' => 'single_text',
+            //     'disabled' => true,
+            //     'required' => false,
+            //     'label' => 'Date de modification',
+            // ])
             ->add('Habitat', EntityType::class, [
                 'class' => Habitats::class,
                 'choice_label' => 'nom',

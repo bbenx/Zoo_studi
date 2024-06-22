@@ -9,7 +9,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
-
+use Symfony\Component\Form\Extension\Core\Type\UrlType;
 
 class HabitatsType extends AbstractType
 {
@@ -18,25 +18,26 @@ class HabitatsType extends AbstractType
         $builder
             ->add('Nom')
             ->add('Description')
-            ->add('Image')
-            ->add('creationDate', DateTimeType::class, [
-                'widget' => 'single_text',
-                'disabled' => true,
-                'required' => false,
-                'label' => 'Date de création',
-            ])
-            ->add('modificationDate', DateTimeType::class, [
-                'widget' => 'single_text',
-                'disabled' => true,
-                'required' => false,
-                'label' => 'Date de modification',
-            ])
+            ->add('Image', UrlType::class, [
+                'label' => 'Image URL',
+                'required' => false,])
+            // ->add('creationDate', DateTimeType::class, [
+            //     'widget' => 'single_text',
+            //     'disabled' => true,
+            //     'required' => false,
+            //     'label' => 'Date de création',
+            // ]);
+            // // ->add('modificationDate', DateTimeType::class, [
+            // //     'widget' => 'single_text',
+            // //     'disabled' => true,
+            // //     'required' => false,
+            // //     'label' => 'Date de modification',
+            // // ])
             ->add('Etablissement', EntityType::class, [
                 'class' => Etablissement::class,
                 'choice_label' => 'nom',
             ]);
     }
-
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([

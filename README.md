@@ -3,6 +3,14 @@
 ## Description
 ZOO Arcadia est une application web de gestion de zoo permettant aux utilisateurs de gérer les animaux, les enclos et les employés. Cette application vise à améliorer l'efficacité opérationnelle et la gestion des ressources du zoo.
 
+## Dépendances
+- Php 8.2
+- MySql 8.3
+- MongoDB 7.0
+- Bootstrap 5.3
+- Symfony 7.0
+  
+
 ## Installation
 Pour installer et configurer le projet en local, suivez ces étapes :
 ```
@@ -13,13 +21,16 @@ cd Zoo_studi
 ```
 Créer .env.local
 ```
-DATABASE_URL="mysql://root:root@localhost:3306/Zoo_Arcadia_DB"
+DATABASE_URL="mysql://<utulistateur>:<password>@localhost:3306/Zoo_Arcadia_DB"
 MONGODB_URL=mongodb://localhost:27017
 MONGODB_DB=Animal_click
+
+# Exemple avec mailcatcher
 MAILER_DSN=smtp://127.0.0.1:1025
 ```
+
 ```
-#Executer
+#Installer les dépendances PHP, executer
 composer install
 ```
 
@@ -38,12 +49,12 @@ bin/console d:m:s:c
 Pour démarrer l'application en local :
 ```
 symfony server:start
+# Se rendre sur l'URL indiquée
 ```
 
 ## Fonctionnalités
-**Gestion des animaux :** Ajout, suppression et mise à jour des informations sur les animaux.
-**Gestion des enclos :** Supervision et maintenance des enclos.
-**Gestion des employés :** Suivi des horaires et des tâches des employés.
+**Gestion des établissements, horaires, utilisateurs, services, habitats, commentaires habitats, animaux et comptes rendus animaux:** CRUD 
+**Lecture des vues par animaux**
 
 ## Contributions
 
@@ -61,14 +72,9 @@ git commit -m "Description de la nouvelle fonctionnalité"
 git push origin nouvelle-fonctionnalité
 ```
 
-## Tests   ???
-Pour exécuter les tests unitaires :
-```
-npm test
-```
 
 ## Liens
-- [Projet Jira](https://zoo-studi.atlassian.net/jira/software/projects/ZS/boards/2) -> Public ?
+- [Projet Jira](https://zoo-studi.atlassian.net/jira/software/projects/ZSA/boards/3)
 - [Dépôt GitHub](https://github.com/bbenx/Zoo_studi)
 
 ##Historique des versions
