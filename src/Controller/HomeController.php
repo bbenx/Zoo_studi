@@ -93,7 +93,7 @@ class HomeController extends AbstractController
     #[Route('/mentionslégales_cgu', name: 'home_mentions_légales_cgu', methods: ['GET'])]
     public function mentionsLégales(): Response
     {
-        return $this->render('home/mentions_légales_cgu.html.twig', [
+        return $this->render('home/mentions_legales_cgu.html.twig', [
             'current_page' => 'mentions_légales_cgu',
         ]);
     }
