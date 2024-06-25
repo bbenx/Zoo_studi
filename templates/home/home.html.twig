@@ -9,6 +9,9 @@
 	<link rel="stylesheet" href="{{ asset('CSS/bootstrap.min.css') }}">
 	<link rel="stylesheet" href="{{ asset('CSS/fontAwesome_all.min.css') }}">
 	<link rel="stylesheet" href="{{ asset('CSS/header.css') }}">
+	<link rel="stylesheet" href="{{ asset('CSS/animal.css') }}">
+
+
 	    <style>
     .hidden {
         max-height: 0;
@@ -78,39 +81,39 @@
 		</div>
 
 
-<div id="about" class="container pt-3 pb-3 mt-1 text-white">
-    <section id="about" class="about text-center grey-background">
-        <h2 class="mb-4 roboto-bold">A propos de nous</h2>
-        <p class="roboto-regular">Arcadia est un zoo situé en France, près de la forêt de Brocéliande en Bretagne, fondé en 1960. Nous offrons une expérience unique avec une variété d'animaux exotiques et indigènes répartis par habitats naturels : savane, jungle et marais.</p>
-        <p class="roboto-regular">La santé et le bien-être des animaux sont notre priorité. Une équipe de vétérinaires qualifiés veille quotidiennement à leur santé, et leur alimentation est soigneusement contrôlée.</p>
-        <p class="roboto-regular">Arcadia est fier d'être totalement indépendant énergétiquement, utilisant exclusivement des sources d'énergie renouvelable. Nous nous engageons pour l'écologie et sensibilisons nos visiteurs à la préservation de l'environnement.</p>
-        <p class="roboto-regular">Découvrez Arcadia, où la nature et l'aventure se rencontrent, et ressentez notre engagement envers un avenir durable.</p>
-        <div class="d-flex justify-content-center">
-            <button id="toggleButton" class="action_btn mt-3">
-                Horaires
-                <br>
-                <i id="chevron" class="fas fa-chevron-down"></i>
-            </button>
-        </div>
-        <div id="horaires" class="toggle-section mt-3 hidden">
-            {% for horaire in horaires %}
-                <div class="row justify-content-center">
-                    <div class="col-lg-6 col-md-8 mx-auto">
-                        <table class="table table-bordered table-hover table-striped text-white">
-                            <tr><td>Lundi: {{ horaire.lundi }}</td></tr>
-                            <tr><td>Mardi: {{ horaire.mardi }}</td></tr>
-                            <tr><td>Mercredi: {{ horaire.mercredi }}</td></tr>
-                            <tr><td>Jeudi: {{ horaire.jeudi }}</td></tr>
-                            <tr><td>Vendredi: {{ horaire.vendredi }}</td></tr>
-                            <tr><td>Samedi: {{ horaire.samedi }}</td></tr>
-                            <tr><td>Dimanche: {{ horaire.dimanche }}</td></tr>
-                        </table>
-                    </div>
-                </div>
-            {% endfor %}
-        </div>
-    </section>
-</div>
+		<div id="about" class="container pt-3 pb-3 mt-1 text-white">
+			<section id="about" class="about text-center grey-background">
+				<h2 class="mb-4 roboto-bold">A propos de nous</h2>
+				<p class="roboto-regular">Arcadia est un zoo situé en France, près de la forêt de Brocéliande en Bretagne, fondé en 1960. Nous offrons une expérience unique avec une variété d'animaux exotiques et indigènes répartis par habitats naturels : savane, jungle et marais.</p>
+				<p class="roboto-regular">La santé et le bien-être des animaux sont notre priorité. Une équipe de vétérinaires qualifiés veille quotidiennement à leur santé, et leur alimentation est soigneusement contrôlée.</p>
+				<p class="roboto-regular">Arcadia est fier d'être totalement indépendant énergétiquement, utilisant exclusivement des sources d'énergie renouvelable. Nous nous engageons pour l'écologie et sensibilisons nos visiteurs à la préservation de l'environnement.</p>
+				<p class="roboto-regular">Découvrez Arcadia, où la nature et l'aventure se rencontrent, et ressentez notre engagement envers un avenir durable.</p>
+				<div class="d-flex justify-content-center">
+				<button id="toggleButton" class="action_btn mt-3">
+					Horaires d'ouverture
+					<br>
+					<i id="chevron" class="fas fa-chevron-down"></i>
+				</button>
+				</div>
+				<div id="horaires" class="toggle-section mt-3 hidden">
+					<div class="box">
+						{% if horaires is not empty %}
+							{% for horaire in horaires %}
+								<p><span class="label">Lundi:</span><span class="value">{{ horaire.lundi }}</span></p>
+								<p><span class="label">Mardi:</span><span class="value">{{ horaire.mardi }}</span></p>
+								<p><span class="label">Mercredi:</span><span class="value">{{ horaire.mercredi }}</span></p>
+								<p><span class="label">Jeudi:</span><span class="value">{{ horaire.jeudi }}</span></p>
+								<p><span class="label">Vendredi:</span><span class="value">{{ horaire.vendredi }}</span></p>
+								<p><span class="label">Samedi:</span><span class="value">{{ horaire.samedi }}</span></p>
+								<p><span class="label">Dimanche:</span><span class="value">{{ horaire.dimanche }}</span></p>
+							{% endfor %}
+						{% else %}
+							<p>Aucun horaire disponible</p>
+						{% endif %}
+					</div>
+				</div>
+			</section>
+		</div>
 
 		<section id="habitats" class="container px-4 py-5 text-white">
 			<h2 class="pb-2 fw-bold text-white border-bottom roboto-black-italic">Nos Habitats</h2>
