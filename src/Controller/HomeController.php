@@ -90,7 +90,7 @@ class HomeController extends AbstractController
         ]);
     }
 
-    #[Route('/mentionslégales_cgu', name: 'home_mentions_legales_cgu', methods: ['GET'])]
+    #[Route('/mentionslegales_cgu', name: 'home_mentions_legales_cgu', methods: ['GET'])]
     public function mentionsLégales(): Response
     {
         return $this->render('home/mentions_legales_cgu.html.twig', [
