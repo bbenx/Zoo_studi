@@ -126,7 +126,7 @@ h2.description {
     }
 
     .label {
-        font-size: 1.5rem;
+        font-size: 1rem;
     }
 }
 
@@ -148,9 +148,6 @@ h2.description {
         font-size: 0.8rem;
     }
 
-    .label {
-        font-size: 1.5rem;
-    }
     .animal-info .box h2 {
         font-size: 1.8rem;
     }

@@ -65,7 +65,7 @@ class ContactType extends AbstractType
             ])
             ->add('submit', SubmitType::class, [
                 'attr' => [
-                    'class' => 'btn action_btn mt-4 d-block mx-auto'
+                    'class' => 'action_btn mt-4 d-block mx-auto'
                 ],
                 'label' => 'Envoyer'
             ])
