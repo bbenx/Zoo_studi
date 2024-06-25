@@ -8,6 +8,7 @@ use App\Form\AvisType;
 use App\Repository\AvisRepository;
 use App\Repository\EspeceAnimauxRepository;
 use App\Repository\HabitatsRepository;
+use App\Repository\HorairesRepository;
 use App\Repository\ServicesRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\Persistence\ManagerRegistry;
@@ -32,10 +33,12 @@ class HomeController extends AbstractController
         AvisRepository $avisRepository,
         EspeceAnimauxRepository $especesAnimauxRepository,
         ServicesRepository $servicesRepository,
-        HabitatsRepository $habitatsRepository
+        HabitatsRepository $habitatsRepository,
+        HorairesRepository $horairesRepository,
     ): Response {
         $especes = $especesAnimauxRepository->findAll();
         $services = $servicesRepository->findAll();
+        $horaires = $horairesRepository->findAll();
         $habitats = $habitatsRepository->findAll();
         $avis = new Avis();
         $etablissement = $entityManager->getRepository(Etablissement::class)->findOneBy(['nom' => 'Zoo Arcadia']);
@@ -72,6 +75,7 @@ class HomeController extends AbstractController
             'especes' => $especes,
             'services' => $services,
             'habitats' => $habitats,
+            'horaires' => $horaires,
             'current_page' => "home",
         ]);
     }
