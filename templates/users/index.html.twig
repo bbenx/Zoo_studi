@@ -16,7 +16,6 @@
 				<th>Id</th>
 				<th>Rôle</th>
 				<th>Email</th>
-				<th>Password</th>
 				<th>Date de création</th>
 				<th>Date de modification</th>
 				<th>Actions</th>
@@ -28,7 +27,6 @@
 					<td>{{ user.id }}</td>
 					<td>{{ user.roles|join(', ') }}</td>
 					<td>{{ user.email }}</td>
-					<td style="max-width: 150px; overflow: hidden;">{{ user.password }}</td>
 					<td>{{ user.creationDate ? user.creationDate|date('Y-m-d H:i:s') : '' }}</td>
 					<td>{{ user.modificationDate ? user.modificationDate|date('Y-m-d H:i:s') : '' }}</td>
 					<td>
