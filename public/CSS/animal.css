@@ -32,6 +32,11 @@ h2.description {
     color: orange;
     border-bottom: 1px solid white;
 }
+.label-t {
+    font-weight: bold;
+    color: orange;
+    border-bottom: 1px solid white;
+}
 
 .labelAvis {
     font-weight: bold;
