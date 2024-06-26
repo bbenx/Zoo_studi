@@ -402,6 +402,12 @@ h1.logo{
     flex-shrink: 0; 
 }
 
+
+.cc-nb-main-container{
+    background-color: #4caf50 !important;
+    border-radius: 20px !important;
+}
+
 /* RESPONSIVE DESIGN */
 @media (max-width: 992px) {
     .col.d-flex {

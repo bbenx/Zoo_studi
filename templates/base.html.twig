@@ -1,46 +1,64 @@
 <!DOCTYPE html>
 <html lang="fr">
 	<head>
-		<meta charset="UTF-8" />
-    	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-   		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		
-		<title>
-			{% block title %}Zoo Arcadia{% endblock %}
-		</title>
-		
-		
+		<meta charset="UTF-8"/>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
-	{% block stylesheets %}
-		<link rel="icon" type="image/png" href="{{ asset('Favicons/favicon.png') }}" />
-		<link rel="preconnect" href="https://fonts.googleapis.com">
-		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-		<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
-		<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
-		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer"/>
-		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.5.0/font/bootstrap-icons.min.css">
-		<link rel="stylesheet" href="{{ asset('CSS/header.css') }}">
-		<link rel="stylesheet" href="{{ asset('CSS/footer.css') }}">
-	{% endblock %}
+		<title>
+			{% block title %}Zoo Arcadia
+			{% endblock %}
+		</title>
+
+
+		{% block stylesheets %}
+			<link rel="icon" type="image/png" href="{{ asset('Favicons/favicon.png') }}"/>
+			<link rel="preconnect" href="https://fonts.googleapis.com">
+			<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+			<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+			<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+			<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer"/>
+			<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.5.0/font/bootstrap-icons.min.css">
+			<link rel="stylesheet" href="{{ asset('CSS/header.css') }}">
+			<link rel="stylesheet" href="{{ asset('CSS/footer.css') }}">
+		{% endblock %}
 
 		{% block javascripts %}
-			{{ encore_entry_script_tags('app') }}
+			<script type="text/javascript" src="https://www.termsfeed.com/public/cookie-consent/4.1.0/cookie-consent.js" charset="UTF-8"></script>
+			<script type="text/javascript" charset="UTF-8">
+				document.addEventListener('DOMContentLoaded', function () {
+				cookieconsent.run({
+					"notice_banner_type": "simple",
+					"consent_type": "express",
+					"palette": "light",
+					"language": "fr",
+					"page_load_consent_levels": ["strictly-necessary"],
+					"notice_banner_reject_button_hide": false,
+					"preferences_center_close_button_hide": false,
+					"page_refresh_confirmation_buttons": false,
+					"website_name": ""
+					});
+				});
+			</script>
+
+		
+
 
 		{% endblock %}
 	</head>
 
-    <body>
- 
-            {% block header %}
-                {% include 'home/header.html.twig' %}
-            {% endblock %}
+	<body>
 
-                {% block body %}{% endblock %}
+		{% block header %}
+			{% include 'home/header.html.twig' %}
+		{% endblock %}
 
-            
-            {% block footer %}
-                {% include 'home/footer.html.twig' %}
-            {% endblock %}
+		{% block body %}{% endblock %}
 
-    </body>
+
+		{% block footer %}
+			{% include 'home/footer.html.twig' %}
+		{% endblock %}
+
+	</body>
 </html>
