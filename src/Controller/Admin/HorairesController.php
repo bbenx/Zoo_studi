@@ -24,31 +24,6 @@ class HorairesController extends AbstractController
         ]);
     }
 
-    #[Route('/horaires/new', name: 'app_horaires_new', methods: ['GET', 'POST'])]
-    #[IsGranted('ROLE_ADMIN')]
-    public function new(Request $request, EntityManagerInterface $entityManager): Response
-    {
-
-        $horaire = new Horaires();
-
-        $form = $this->createForm(HorairesType::class, $horaire);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $entityManager->persist($horaire);
-            $entityManager->flush();
-
-            $this->addFlash('success', 'Horaires ajoutés avec succès.');
-
-
-            return $this->redirectToRoute('app_horaires_index', [], Response::HTTP_SEE_OTHER);
-        }
-
-        return $this->render('horaires/new.html.twig', [
-            'horaire' => $horaire,
-            'form' => $form,
-        ]);
-    }
 
     #[Route('/horaires/{id}', name: 'app_horaires_show', methods: ['GET'])]
     #[IsGranted('ROLE_ADMIN')]
