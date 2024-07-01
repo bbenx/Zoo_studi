@@ -1,23 +1,81 @@
 -- Voici un exemple de schéma de création de table et d'intégration de données
 
--- Création de la table `animaux`
--- Cette table stocke les informations sur les animaux du zoo.
--- Chaque animal est associé à un habitat spécifique et contient des détails comme le prénom, la race, et une image.
-
-CREATE TABLE `animaux` (
-  `id` int NOT NULL AUTO_INCREMENT, -- Identifiant unique de l'animal
-  `habitat_id` int NOT NULL, -- Identifiant de l'habitat associé
-  `prenom` varchar(255) NOT NULL, -- Prénom de l'animal
-  `race` varchar(255) NOT NULL, -- Race de l'animal
-  `image` varchar(255) NOT NULL, -- URL de l'image de l'animal
-  `creation_date` datetime NOT NULL COMMENT '(DC2Type:datetime_immutable)', -- Date et heure de création
-  `modification_date` datetime NOT NULL, -- Date et heure de la dernière modification
-  PRIMARY KEY (`id`), -- Clé primaire sur le champ `id`
-  KEY `IDX_9ABE194DAFFE2D26` (`habitat_id`), -- Index sur le champ `habitat_id` pour optimiser les recherches
-  CONSTRAINT `FK_9ABE194DAFFE2D26` FOREIGN KEY (`habitat_id`) REFERENCES `habitats` (`id`) -- Clé étrangère référencée à la table `habitats`
+-- Création de la table `etablissement`
+CREATE TABLE `etablissement` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `nom` varchar(255) NOT NULL,
+  `description` longtext NOT NULL,
+  `creation_date` datetime NOT NULL COMMENT '(DC2Type:datetime_immutable)',
+  `modification_date` datetime NOT NULL,
+  PRIMARY KEY (`id`)
 );
 
+-- Insertion d'un enregistrement dans la table `etablissement`
+INSERT INTO `etablissement` VALUES (NULL, 'Zoo Arcadia', 'Le Zoo Arcadia est un lieu de conservation et de protection des espèces.', NOW(), NOW());
 
+-- Création de la table `habitats`
+CREATE TABLE `habitats` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `etablissement_id` int NOT NULL,
+  `nom` varchar(255) NOT NULL,
+  `description` longtext NOT NULL,
+  `image` varchar(255) NOT NULL,
+  `creation_date` datetime NOT NULL COMMENT '(DC2Type:datetime_immutable)',
+  `modification_date` datetime NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `IDX_B5E492F3FF631228` (`etablissement_id`),
+  CONSTRAINT `FK_B5E492F3FF631228` FOREIGN KEY (`etablissement_id`) REFERENCES `etablissement` (`id`)
+);
+
+-- Insertion d'un enregistrement dans la table `habitats`
+INSERT INTO `habitats` VALUES (NULL, 1, 'Savane Africaine', 'La savane abrite de nombreux animaux emblématiques d’Afrique.', 'https://my-zoo-images.s3.eu-north-1.amazonaws.com/Images_habitats/savane_africaine.webp', '2024-06-17 17:05:50', NOW());
+
+-- Création de la table `espece_animaux`
+CREATE TABLE `espece_animaux` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `nom` varchar(255) NOT NULL,
+  `image` varchar(255) NOT NULL,
+  PRIMARY KEY (`id`)
+);
+
+-- Insertion d'un enregistrement dans la table `espece_animaux`
+INSERT INTO `espece_animaux` VALUES (NULL, 'Bisons', 'https://my-zoo-images.s3.eu-north-1.amazonaws.com/Images_especes/Bisons.webp');
+
+-- Création de la table `users`
+CREATE TABLE `users` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `etablissement_id` int NOT NULL,
+  `roles` json NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `password` varchar(255) NOT NULL,
+  `creation_date` datetime NOT NULL COMMENT '(DC2Type:datetime_immutable)',
+  `modification_date` datetime NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `UNIQ_IDENTIFIER_EMAIL` (`email`),
+  KEY `IDX_1483A5E9FF631228` (`etablissement_id`),
+  CONSTRAINT `FK_1483A5E9FF631228` FOREIGN KEY (`etablissement_id`) REFERENCES `etablissement` (`id`)
+);
+-- Insertion d'un enregistrement dans la table `users`
+INSERT INTO `users` VALUES (NULL, 1, '[\"ROLE_ADMIN\"]', 'admin@example.com', '$2y$10$saltsaltsaltsaltplaintextpassword', '2024-06-17 17:05:50', NOW());
+
+-- Création de la table `animaux`
+CREATE TABLE `animaux` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `habitat_id` int NOT NULL,
+  `prenom` varchar(255) NOT NULL,
+  `race` varchar(255) NOT NULL,
+  `image` varchar(255) NOT NULL,
+  `creation_date` datetime NOT NULL COMMENT '(DC2Type:datetime_immutable)',
+  `modification_date` datetime NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `IDX_9ABE194DAFFE2D26` (`habitat_id`),
+  CONSTRAINT `FK_9ABE194DAFFE2D26` FOREIGN KEY (`habitat_id`) REFERENCES `habitats` (`id`)
+);
+
+-- Insertion d'un enregistrement dans la table `animaux`
+INSERT INTO `animaux` VALUES (NULL, 1, 'Bebou', 'Girafe', 'https://my-zoo-images.s3.eu-north-1.amazonaws.com/Img_Animaux/Savane+Africaine/Girafes/Bebou.webp', NOW(), NOW());
+
+-- Création de la table `avis`
 CREATE TABLE `avis` (
   `id` binary(16) NOT NULL COMMENT '(DC2Type:uuid)',
   `etablissement_id` int NOT NULL,
@@ -30,9 +88,12 @@ CREATE TABLE `avis` (
   PRIMARY KEY (`id`),
   KEY `IDX_8F91ABF0FF631228` (`etablissement_id`),
   CONSTRAINT `FK_8F91ABF0FF631228` FOREIGN KEY (`etablissement_id`) REFERENCES `etablissement` (`id`)
-) 
+);
 
+-- Insertion d'un enregistrement dans la table `avis`
+INSERT INTO `avis` VALUES ((UUID_TO_BIN(UUID())), 1, 'Visiteur1', 'Très beau zoo', NOW(), NOW(), 'validé', 0);
 
+-- Création de la table `commentaires_habitats`
 CREATE TABLE `commentaires_habitats` (
   `id` int NOT NULL AUTO_INCREMENT,
   `habitat_id` int DEFAULT NULL,
@@ -47,9 +108,12 @@ CREATE TABLE `commentaires_habitats` (
   KEY `IDX_41D2BBFAA76ED395` (`user_id`),
   CONSTRAINT `FK_41D2BBFAA76ED395` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`),
   CONSTRAINT `FK_41D2BBFAAFFE2D26` FOREIGN KEY (`habitat_id`) REFERENCES `habitats` (`id`)
-) 
+);
 
+-- Insertion d'un enregistrement dans la table `commentaires_habitats`
+INSERT INTO `commentaires_habitats` VALUES (NULL, 1, 1, 'Qui veritatis inventore aut assumenda harum.', 'repellat', 'Accusamus enim voluptatibus odit tempora sed ipsam.', NOW(), NOW());
 
+-- Création de la table `comptes_rendus`
 CREATE TABLE `comptes_rendus` (
   `id` int NOT NULL AUTO_INCREMENT,
   `animal_id` int NOT NULL,
@@ -66,9 +130,11 @@ CREATE TABLE `comptes_rendus` (
   KEY `IDX_46141761A76ED395` (`user_id`),
   CONSTRAINT `FK_461417618E962C16` FOREIGN KEY (`animal_id`) REFERENCES `animaux` (`id`),
   CONSTRAINT `FK_46141761A76ED395` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`)
-) 
+);
 
+INSERT INTO `comptes_rendus` VALUES (NULL, 1, 1, 'Bon', 'L''animal est en bonne santé.', 'Herbe', 500, NOW(), NOW(), NOW());
 
+-- Création de la table `contact` 
 CREATE TABLE `contact` (
   `id` int NOT NULL AUTO_INCREMENT,
   `email` varchar(180) NOT NULL,
@@ -76,41 +142,12 @@ CREATE TABLE `contact` (
   `message` longtext NOT NULL,
   `created_at` datetime NOT NULL,
   PRIMARY KEY (`id`)
-) 
+);
 
+-- Insertion d'un enregistrement dans la table `contact`
+INSERT INTO `contact` VALUES (NULL, 'colas.susanne@hotmail.fr', 'Demande n°1', 'Id sed dolorem rerum omnis. Veritatis est accusamus hic ut. Sed quam necessitatibus qui sunt soluta. Et facilis porro doloremque doloremque.', NOW());
 
-CREATE TABLE `espece_animaux` (
-  `id` int NOT NULL AUTO_INCREMENT,
-  `nom` varchar(255) NOT NULL,
-  `image` varchar(255) NOT NULL,
-  PRIMARY KEY (`id`)
-) 
-
-
-CREATE TABLE `etablissement` (
-  `id` int NOT NULL AUTO_INCREMENT,
-  `nom` varchar(255) NOT NULL,
-  `description` longtext NOT NULL,
-  `creation_date` datetime NOT NULL COMMENT '(DC2Type:datetime_immutable)',
-  `modification_date` datetime NOT NULL,
-  PRIMARY KEY (`id`)
-) 
-
-
-CREATE TABLE `habitats` (
-  `id` int NOT NULL AUTO_INCREMENT,
-  `etablissement_id` int NOT NULL,
-  `nom` varchar(255) NOT NULL,
-  `description` longtext NOT NULL,
-  `image` varchar(255) NOT NULL,
-  `creation_date` datetime NOT NULL COMMENT '(DC2Type:datetime_immutable)',
-  `modification_date` datetime NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `IDX_B5E492F3FF631228` (`etablissement_id`),
-  CONSTRAINT `FK_B5E492F3FF631228` FOREIGN KEY (`etablissement_id`) REFERENCES `etablissement` (`id`)
-)
-
-
+-- Création de la table `horaires`
 CREATE TABLE `horaires` (
   `id` int NOT NULL AUTO_INCREMENT,
   `id_etablissement_id` int NOT NULL,
@@ -126,9 +163,12 @@ CREATE TABLE `horaires` (
   PRIMARY KEY (`id`),
   KEY `IDX_39B7118F1CE947F9` (`id_etablissement_id`),
   CONSTRAINT `FK_39B7118F1CE947F9` FOREIGN KEY (`id_etablissement_id`) REFERENCES `etablissement` (`id`)
-) 
+);
 
+-- Insertion d'un enregistrement dans la table `horaires`
+INSERT INTO `horaires` VALUES (NULL, 1, '09:00-18:00', '09:00-18:00', '09:00-18:00', '09:00-18:00', '09:00-18:00', '09:00-18:00', '09:00-18:00', NOW(), NOW());
 
+-- Création de la table `nourriture`
 CREATE TABLE `nourriture` (
   `id` int NOT NULL AUTO_INCREMENT,
   `animal_id` int NOT NULL,
@@ -143,9 +183,12 @@ CREATE TABLE `nourriture` (
   KEY `IDX_7447E613A76ED395` (`user_id`),
   CONSTRAINT `FK_7447E6138E962C16` FOREIGN KEY (`animal_id`) REFERENCES `animaux` (`id`),
   CONSTRAINT `FK_7447E613A76ED395` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`)
-) 
+);
 
+-- Insertion d'un enregistrement dans la table `nourriture`
+INSERT INTO `nourriture` VALUES (NULL, 1, 1, 'doloremque', 19, NOW(), NOW(), NOW());
 
+-- Création de la table `reset_password_request`
 CREATE TABLE `reset_password_request` (
   `id` int NOT NULL AUTO_INCREMENT,
   `user_id` int NOT NULL,
@@ -156,9 +199,9 @@ CREATE TABLE `reset_password_request` (
   PRIMARY KEY (`id`),
   KEY `IDX_7CE748AA76ED395` (`user_id`),
   CONSTRAINT `FK_7CE748AA76ED395` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE
-)
+);
 
-
+-- Création de la table `services`
 CREATE TABLE `services` (
   `id` int NOT NULL AUTO_INCREMENT,
   `etablissement_id` int NOT NULL,
@@ -169,43 +212,7 @@ CREATE TABLE `services` (
   PRIMARY KEY (`id`),
   KEY `IDX_7332E169FF631228` (`etablissement_id`),
   CONSTRAINT `FK_7332E169FF631228` FOREIGN KEY (`etablissement_id`) REFERENCES `etablissement` (`id`)
-)
+);
 
-
-CREATE TABLE `users` (
-  `id` int NOT NULL AUTO_INCREMENT,
-  `etablissement_id` int NOT NULL,
-  `roles` json NOT NULL,
-  `email` varchar(255) NOT NULL,
-  `password` varchar(255) NOT NULL,
-  `creation_date` datetime NOT NULL COMMENT '(DC2Type:datetime_immutable)',
-  `modification_date` datetime NOT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `UNIQ_IDENTIFIER_EMAIL` (`email`),
-  KEY `IDX_1483A5E9FF631228` (`etablissement_id`),
-  CONSTRAINT `FK_1483A5E9FF631228` FOREIGN KEY (`etablissement_id`) REFERENCES `etablissement` (`id`)
-)
-
-
--- Insertion d'une ligne d'exemple dans la table `animaux`
--- Cette insertion sert d'exemple pour montrer comment ajouter un nouvel animal dans la base de données.
--- Notez que les valeurs sont des exemples et doivent être ajustées selon les besoins réels.
-
-INSERT INTO `animaux` VALUES (127,11,'Bebou','Girafe','https://my-zoo-images.s3.eu-north-1.amazonaws.com/Img_Animaux/Savane+Africaine/Girafes/Bebou.webp','2024-06-17 17:05:50','2024-06-17 17:05:50');
-
-
-
-
-
-
-INSERT INTO `commentaires_habitats` VALUES (201,17,60,'Qui veritatis inventore aut assumenda harum.','repellat','Accusamus enim voluptatibus odit tempora sed ipsam.','2024-06-17 17:05:50','2024-06-17 17:05:50');
-
-INSERT INTO `contact` VALUES (59,'colas.susanne@hotmail.fr','Demande n°1','Id sed dolorem rerum omnis. Veritatis est accusamus hic ut. Sed quam necessitatibus qui sunt soluta. Et facilis porro doloremque doloremque.','2024-06-17 17:05:37');
-
-INSERT INTO `espece_animaux` VALUES (9,'Bisons','https://my-zoo-images.s3.eu-north-1.amazonaws.com/Images_especes/Bisons.webp');
-
-INSERT INTO `habitats` VALUES (10,2,'Désert du Sahara','Plongez dans les paysages arides et mystérieux du désert du Sahara. Apprenez comment les animaux survivent dans cet environnement extrême, entre dunes et oasis.','https://my-zoo-images.s3.eu-north-1.amazonaws.com/Images_habitats/desert_sahara.webp','2024-06-17 17:05:37','2024-06-17 17:05:37');
-
-INSERT INTO `nourriture` VALUES (201,139,60,'doloremque',19,'2024-06-17 17:05:50','2024-06-17 17:05:50','2024-06-17 17:05:50');
-
-INSERT INTO `service` VALUES (1, 'Restauration', 'Venez manger !');
+-- Insertion d'un enregistrement dans la table `services`
+INSERT INTO `services` VALUES (NULL, 1, 'Restauration', 'Venez manger !', NOW(), NOW());
