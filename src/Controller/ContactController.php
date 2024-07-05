@@ -23,13 +23,11 @@ class ContactController extends AbstractController
 
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
-            // Utilisation des données du formulaire
             $contact = $form->getData();
 
             $manager->persist($contact);
             $manager->flush();
 
-            // Récupération de l'adresse email saisie par l'utilisateur
             $visitorEmail = $contact->getEmail();
 
             // Construction de l'email avec l'adresse email de l'expéditeur dynamique

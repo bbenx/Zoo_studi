@@ -13,8 +13,6 @@ class AnimauxFixtures extends Fixture implements DependentFixtureInterface
     public function load(ObjectManager $manager): void
     {
 
-
-
             $animaux = new Animaux();
             $animaux->setHabitat($this->getReference("habitat_2"));
             $animaux->setPrenom('Bebou');
