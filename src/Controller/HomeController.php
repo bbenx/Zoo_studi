@@ -63,7 +63,7 @@ class HomeController extends AbstractController
         
         $avisForm = !empty($_COOKIE['avisForm']);
 
-        $avisValides = $avisRepository->findBy(['statut' => 'validé'], ['creationDate' => 'DESC'], 4);
+        $avisValides = $avisRepository->findBy(['statut' => 'validé'], ['creationDate' => 'DESC'], 5);
 
         $current_page = 'home';
 

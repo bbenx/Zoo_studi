@@ -252,48 +252,48 @@
 {{ parent() }}
 <script>
 	document.addEventListener('DOMContentLoaded', function () {
-const toggleBtn = document.querySelector('.toggle_btn');
-const toggleBtnIcon = document.querySelector('.toggle_btn i');
-const dropDownMenu = document.querySelector('.dropdown_menu');
+		const toggleBtn = document.querySelector('.toggle_btn');
+		const toggleBtnIcon = document.querySelector('.toggle_btn i');
+		const dropDownMenu = document.querySelector('.dropdown_menu');
 
-toggleBtn.onclick = function () {
-dropDownMenu.classList.toggle('open');
-const isOpen = dropDownMenu.classList.contains('open');
-toggleBtnIcon.classList = isOpen ? 'fa-solid fa-xmark' : 'fa-solid fa-bars';
-};
+	toggleBtn.onclick = function () {
+		dropDownMenu.classList.toggle('open');
+		const isOpen = dropDownMenu.classList.contains('open');
+		toggleBtnIcon.classList = isOpen ? 'fa-solid fa-xmark' : 'fa-solid fa-bars';
+	};
 
-setTimeout(function () {
-const flashMessage = document.querySelector('.flash-message');
-if (flashMessage) {
-flashMessage.style.display = 'none';
-}
+	setTimeout(function () {
+		const flashMessage = document.querySelector('.flash-message');
+		if (flashMessage) {
+		flashMessage.style.display = 'none';
+	}
 }, 5000);
 
-window.addEventListener('beforeunload', function () {
-localStorage.setItem('scrollPosition', window.scrollY);
+	window.addEventListener('beforeunload', function () {
+	localStorage.setItem('scrollPosition', window.scrollY);
 });
 
-window.addEventListener('load', function () {
-const scrollPosition = localStorage.getItem('scrollPosition');
-if (scrollPosition) {
-window.scrollTo(0, scrollPosition);
-localStorage.removeItem('scrollPosition');
+	window.addEventListener('load', function () {
+	const scrollPosition = localStorage.getItem('scrollPosition');
+	if (scrollPosition) {
+	window.scrollTo(0, scrollPosition);
+	localStorage.removeItem('scrollPosition');
 }
 });
-        const horairesBtn = document.getElementById('toggleButton');
-        const horairesSection = document.getElementById('horaires');
-        const chevron = document.getElementById('chevron');
+	const horairesBtn = document.getElementById('toggleButton');
+	const horairesSection = document.getElementById('horaires');
+	const chevron = document.getElementById('chevron');
 
-        horairesBtn.addEventListener('click', function () {
-            if (horairesSection.classList.contains('hidden')) {
-                horairesSection.classList.remove('hidden');
-                horairesSection.classList.add('visible');
-                chevron.classList.add('rotate');
-            } else {
-                horairesSection.classList.remove('visible');
-                horairesSection.classList.add('hidden');
-                chevron.classList.remove('rotate');
-            }
+	horairesBtn.addEventListener('click', function () {
+		if (horairesSection.classList.contains('hidden')) {
+			horairesSection.classList.remove('hidden');
+			horairesSection.classList.add('visible');
+			chevron.classList.add('rotate');
+		} else {
+			horairesSection.classList.remove('visible');
+			horairesSection.classList.add('hidden');
+			chevron.classList.remove('rotate');
+		}
         });
 });
 </script>
