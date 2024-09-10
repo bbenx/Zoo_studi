@@ -16,7 +16,7 @@ use Symfony\Component\Security\Csrf\CsrfTokenManagerInterface;
 use Symfony\Component\Security\Csrf\CsrfToken;
 use Symfony\Component\RateLimiter\RateLimiterFactory;
 
-#[Route('admin')]
+
 class AnimalClickController extends AbstractController
 {
     private $tokenManager;
@@ -66,6 +66,7 @@ class AnimalClickController extends AbstractController
         return new Response(sprintf('Number of clicks on animal %d:', $id,));
     }
 
+#[Route('admin')]
     #[Route('/animal-clicks', name: 'admin_animal_clicks')]
     #[IsGranted('ROLE_ADMIN')] 
     public function index(DocumentManager $dm, EntityManagerInterface $em): Response
