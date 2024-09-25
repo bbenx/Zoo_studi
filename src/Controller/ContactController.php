@@ -6,6 +6,7 @@ use App\Entity\Contact;
 use App\Form\ContactType;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Mailer\MailerInterface;
@@ -15,8 +16,20 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class ContactController extends AbstractController
 {
-    #[Route('/contact', name: 'home_contact')]
-    public function index(Request $request, EntityManagerInterface $manager, MailerInterface $mailer): Response
+    #[Route('/contact', name: 'home_contact', methods: ['GET'])]
+    public function showForm(): Response
+    {
+        $contact = new Contact();
+        $form = $this->createForm(ContactType::class, $contact);
+
+
+        return $this->render('home/contact/index.html.twig', [
+            'current_page' => 'contact',
+            'form' => $form->createView(),
+        ]);
+    }
+    #[Route('/contact', name: 'contact_submit', methods: ['POST'])]
+    public function submitForm(Request $request, EntityManagerInterface $manager, MailerInterface $mailer): JsonResponse
     {
         $contact = new Contact();
         $form = $this->createForm(ContactType::class, $contact);
@@ -101,13 +114,10 @@ class ContactController extends AbstractController
 
             $mailer->send($email);
 
-            $this->addFlash('success', 'Votre message a bien été envoyé ! 🙂');
-            return $this->redirectToRoute('home_contact');
+            
+            return new JsonResponse (['success' => true]);
         }
 
-        return $this->render('home/contact/index.html.twig', [
-            'form' => $form->createView(),
-            'current_page' => 'contact',
-        ]);
+        return new JsonResponse (['success' => false, 'message' => 'Une erreur est survenue lors de l\'envoi du message']);
     }
 }

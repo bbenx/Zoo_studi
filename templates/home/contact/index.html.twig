@@ -54,20 +54,15 @@
             </div>
         </section>
 
-        {% for label, messages in app.flashes %}
-            {% for message in messages %}
-                {% set alertClass = label == 'success' ? 'alert-success' : (label == 'error' ? 'alert-danger' : 'alert-info') %}
-                <div class="alert text-center {{ alertClass }} custom-alert alert-dismissible fade show" role="alert">
-                    {{ message }}
-                </div>
-            {% endfor %}
-        {% endfor %}
-        
         <div class="container">
-            {{ form(form) }}
+            {{ form_start(form, {'attr' : {'id': 'contactForm'}}) }}
+            {{form_widget(form)}}
+            {{form_end(form)}}
         </div>
 
-
+		<div class="container mt-1" id="message-flash-container">
+		
+		</div>
     </main>
 {% endblock %}
 
@@ -81,12 +76,42 @@
     {{ parent() }}
     <script src="{{ asset('JS/bootstrap.min.js') }}"></script>
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const flashMessages = document.querySelectorAll('.alert');
-            flashMessages.forEach(function(flashMessage) {
-                setTimeout(function() {
-                    flashMessage.style.display = 'none';
-                }, 3000); 
-            });
+    document.addEventListener('DOMContentLoaded', function(){
+        const form = document.getElementById('contactForm');
+        if(form){
+            form.addEventListener('submit', function (event){
+            event.preventDefault();
+
+            const formData = new FormData(this);
+
+            fetch ('/contact', {
+                method: 'POST',
+                body: formData
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success){
+            const flashMessage = document.querySelector ('#message-flash-container');
+            flashMessage.innerHTML = '<div class="flash-message alert alert-success text-center"><p>Votre message a été envoyé avec succès</p></div>'
+            form.reset();
+             setTimeout(() => {
+                flashMessage.innerHTML = '';
+            }, 5000);
+        }
+        else {
+            flashMessage.innerHTML = '<div class="flash-message alert alert-danger text-center"><p>Une erreur est survenue lors de l\'envoi de votre message</p></div>'
+             setTimeout(() => {
+                flashMessage.innerHTML = '';
+            }, 5000);
+        }
+     
+    })
+        .catch(error => console.error ('Erreur', error));
         });
-    </script>{% endblock %}
+        }
+        else {
+            console.error('Le formulaire est introuvable');
+        }
+    });
+    </script>
+{% endblock %}

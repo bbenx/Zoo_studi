@@ -16,6 +16,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\JsonResponse;
 
 class HomeController extends AbstractController
 {
@@ -88,6 +89,32 @@ class HomeController extends AbstractController
             'services' => $services,
             'current_page' => 'services',
         ]);
+    }
+
+    #[Route('/avis/ajouter', name:'app_avis_ajouter', methods:['POST'])]
+    public function ajouterAvis (Request $request, EntityManagerInterface $entityManager) : JsonResponse 
+    {
+        $avis = new Avis ();
+
+        $etablissement = $entityManager->getRepository(Etablissement::class)->findOneBy(['nom' => 'Zoo Arcadia']);
+        if ($etablissement) {
+            $avis->setEtablissement($etablissement);
+        } else {
+            return new JsonResponse(['success' => false, 'message' => 'Etablissement non trouvé'], 400);
+        }
+
+        $form = $this->createForm(AvisType::class, $avis);
+        $form -> handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $avis->setStatut('en attente');
+            $entityManager->persist($avis);
+            $entityManager->flush();
+            
+
+            return new JsonResponse(['success' =>true]);
+        }
+        return new JsonResponse(['success' => false], 400);
     }
 
     #[Route('/mentionslegales_cgu', name: 'home_mentions_legales_cgu', methods: ['GET'])]

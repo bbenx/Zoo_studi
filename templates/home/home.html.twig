@@ -7,7 +7,7 @@
 {% block stylesheets %}
 	{{ parent() }}
 	<link rel="stylesheet" href="{{ asset('CSS/bootstrap.min.css') }}">
-	<link rel="stylesheet" href="{{ asset('CSS/fontAwesome_all.min.css') }}">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 	<link rel="stylesheet" href="{{ asset('CSS/header.css') }}">
 	<link rel="stylesheet" href="{{ asset('CSS/animal.css') }}">
 
@@ -218,7 +218,7 @@
 
 				<div class="row justify-content-center">
 					<div>
-						{{ form_start(form) }}
+						{{ form_start(form, {'attr': {'id': 'avisForm'}}) }}
 						<div class="form-group col-lg-3 col-md-4 col-sm-4 col-8 mx-auto roboto-regular">
 							{{ form_label(form.Pseudo, 'Entrez votre pseudo') }}
 							{{ form_widget(form.Pseudo, {'attr': {'class': 'form-control avis-border'}}) }}
@@ -239,11 +239,7 @@
 		</section>
 		<!-- Affichage du message flash en bas de la page -->
 		<div class="container mt-1" id="message-flash-container">
-			{% for message in app.flashes('success') %}
-				<div id="confirmation-message" class="flash-message alert alert-success text-center">
-					<p>{{ message }}</p>
-				</div>
-			{% endfor %}
+		
 		</div>
 	</div>
 
@@ -262,12 +258,33 @@
 		toggleBtnIcon.classList = isOpen ? 'fa-solid fa-xmark' : 'fa-solid fa-bars';
 	};
 
-	setTimeout(function () {
-		const flashMessage = document.querySelector('.flash-message');
-		if (flashMessage) {
-		flashMessage.style.display = 'none';
-	}
-}, 5000);
+	document.getElementById('avisForm').addEventListener('submit', function(event) {
+		event.preventDefault();
+
+		const formData = new FormData(this);
+
+		fetch ('/avis/ajouter', {
+			method:'POST',
+			body:formData
+		})
+
+		.then(response => response.json())
+		.then(data => {
+			if (data.success) {
+				const flashMessage = document.querySelector ('#message-flash-container');
+				flashMessage.innerHTML = '<div class="flash-message alert alert-success text-center"><p>Votre avis a été ajouté avec succès</p></div>';
+
+				document.getElementById('section-avis').style.display = 'none';
+
+				setTimeout(() => {
+					flashMessage.innerHTML = '';
+				}, 5000);
+			} else {
+				flashMessage.innerHTML = '<div class="flash-message alert alert-danger text-center"><p>Erreur lors de l\'ajout de l\'avis</p></div>';
+			}
+		})
+		.catch(error => console.error ('Erreur', error));
+	});
 
 	window.addEventListener('beforeunload', function () {
 	localStorage.setItem('scrollPosition', window.scrollY);
